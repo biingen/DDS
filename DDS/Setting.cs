@@ -73,9 +73,9 @@ namespace Venus
                 comboBox9.Enabled = false;
             }
 
-            comboBox1.Text = ini12.INIRead(Config_Path, "serialPort1", "Type", "");
-            comboBox2.Text = ini12.INIRead(Config_Path, "serialPort1", "PortName", "");
             comboBox3.Text = ini12.INIRead(Config_Path, "serialPort1", "BaudRate", "");
+            comboBox2.Text = ini12.INIRead(Config_Path, "serialPort1", "PortName", "");
+            comboBox1.Text = ini12.INIRead(Config_Path, "serialPort1", "Type", "");
             comboBox4.Text = ini12.INIRead(Config_Path, "serialPort2", "BaudRate", "");
             comboBox5.Text = ini12.INIRead(Config_Path, "serialPort2", "PortName", "");
             comboBox6.Text = ini12.INIRead(Config_Path, "serialPort2", "Type", "");
@@ -85,6 +85,7 @@ namespace Venus
 
             textBox_csv_script.Text = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
             textBox_log_folder.Text = ini12.INIRead(Config_Path, "Config", "canbusLog", "");
+
             if (ini12.INIRead(Config_Path, "AutoKit", "Exist", "") == "1")
                 label10.Text = "AutoKit connnected to " + ini12.INIRead(Config_Path, "AutoKit", "PortName", "") + ".";
             else
@@ -155,13 +156,17 @@ namespace Venus
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox2.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim())
+            if (checkBox1.Checked == true)
             {
-                ini12.INIWrite(Config_Path, "serialPort1", "PortName", comboBox2.Text.Trim());
-            }
-            else
-            {
-                label11.Text = "serialPort1 portname can't save to config.";
+                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox2.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim())
+                {
+                    ini12.INIWrite(Config_Path, "serialPort1", "PortName", comboBox2.Text.Trim());
+                    label11.Text = "serialPort1 portname already save.";
+                }
+                else
+                {
+                    label11.Text = "serialPort1 portname can't save to config.";
+                }
             }
         }
 
@@ -180,14 +185,17 @@ namespace Venus
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim())
+            if (checkBox2.Checked == true)
             {
-                ini12.INIWrite(Config_Path, "serialPort2", "PortName", comboBox5.Text.Trim());
-                label11.Text = "serialPort2 portname already save.";
-            }
-            else
-            {
-                label11.Text = "serialPort2 portname can't save to config.";
+                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim())
+                {
+                    ini12.INIWrite(Config_Path, "serialPort2", "PortName", comboBox5.Text.Trim());
+                    label11.Text = "serialPort2 portname already save.";
+                }
+                else
+                {
+                    label11.Text = "serialPort2 portname can't save to config.";
+                }
             }
         }
 
@@ -206,14 +214,17 @@ namespace Venus
 
         private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox8.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim())
+            if (checkBox3.Checked == true)
             {
-                ini12.INIWrite(Config_Path, "serialPort3", "PortName", comboBox8.Text.Trim());
-                label11.Text = "serialPort3 portname already save.";
-            }
-            else
-            {
-                label11.Text = "serialPort3 portname can't save to config.";
+                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox8.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim())
+                {
+                    ini12.INIWrite(Config_Path, "serialPort3", "PortName", comboBox8.Text.Trim());
+                    label11.Text = "serialPort3 portname already save.";
+                }
+                else
+                {
+                    label11.Text = "serialPort3 portname can't save to config.";
+                }
             }
         }
 
