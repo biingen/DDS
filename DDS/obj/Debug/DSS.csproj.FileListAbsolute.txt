@@ -1,0 +1,125 @@
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\DSS.exe.config
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\obj\Debug\DSS.exe
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\obj\Debug\DSS.pdb
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\obj\Debug\DSS.csprojResolveAssemblyReference.cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\obj\Debug\Venus.Venus.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\obj\Debug\DSS.Properties.Resources.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\obj\Debug\Venus.Setting.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\obj\Debug\DSS.csproj.GenerateResource.Cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\DSS.exe
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\DSS.pdb
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\BlueRatLibrary.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\MaterialSkin.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\NationalInstruments.Common.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\Venus\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\DSS.exe.config
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\obj\Debug\DSS.exe
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\obj\Debug\DSS.pdb
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\DSS.exe
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\DSS.pdb
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\BlueRatLibrary.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\MaterialSkin.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\NationalInstruments.Common.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\obj\Debug\DSS.csprojResolveAssemblyReference.cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\obj\Debug\Venus.Venus.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\obj\Debug\DSS.Properties.Resources.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\obj\Debug\Venus.Setting.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\Venus\DSS\obj\Debug\DSS.csproj.GenerateResource.Cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\DSS.exe.config
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\obj\Debug\DSS.exe
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\obj\Debug\DSS.pdb
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\DSS.exe
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\DSS.pdb
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\BlueRatLibrary.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\MaterialSkin.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\NationalInstruments.Common.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\obj\Debug\DSS.csprojResolveAssemblyReference.cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\obj\Debug\Venus.Venus.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\obj\Debug\DSS.Properties.Resources.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\obj\Debug\Venus.Setting.resources
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\obj\Debug\DSS.csproj.GenerateResource.Cache
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\bin\Debug\DSS.exe.config
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\bin\Debug\DSS.exe
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\bin\Debug\DSS.pdb
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\bin\Debug\BlueRatLibrary.dll
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\bin\Debug\MaterialSkin.dll
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\DSS.csprojAssemblyReference.cache
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\Venus.Venus.resources
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\DSS.Properties.Resources.resources
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\Venus.Setting.resources
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\DSS.csproj.GenerateResource.cache
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\DSS.csproj.CoreCompileInputs.cache
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\DSS.csproj.CopyComplete
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\DSS.exe
+C:\Users\Jerem\Downloads\DSS\DSS\DSS\obj\Debug\DSS.pdb
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_new\DSS\bin\Debug\DSS.exe.config
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_new\DSS\obj\Debug\DSS.exe
+C:\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_new\DSS\obj\Debug\DSS.pdb
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\DSS.csprojAssemblyReference.cache
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\Venus.Venus.resources
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\DSS.Properties.Resources.resources
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\Venus.Setting.resources
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\DSS.csproj.GenerateResource.cache
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\DSS.csproj.CoreCompileInputs.cache
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\DSS.exe
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\DSS.pdb
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\bin\Debug\DSS.exe.config
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\bin\Debug\DSS.exe
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\bin\Debug\DSS.pdb
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\bin\Debug\BlueRatLibrary.dll
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\bin\Debug\MaterialSkin.dll
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Users\Jerem\Downloads\DSS_20190717\DSS\DSS\obj\Debug\DSS.csproj.CopyComplete
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\bin\Debug\DSS.exe.config
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\bin\Debug\DSS.exe
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\bin\Debug\DSS.pdb
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\bin\Debug\BlueRatLibrary.dll
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\bin\Debug\MaterialSkin.dll
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\Venus.Venus.resources
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\DSS.Properties.Resources.resources
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\Venus.Setting.resources
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\DSS.csproj.GenerateResource.cache
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\DSS.csproj.CoreCompileInputs.cache
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\DSS.csproj.CopyComplete
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\DSS.exe
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\DSS.pdb
+C:\Users\Jerem\Downloads\DSS_20190717_v2\DSS\DSS\obj\Debug\DSS.csprojAssemblyReference.cache
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\bin\Debug\DSS.exe.config
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\obj\Debug\DSS.exe
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\obj\Debug\DSS.pdb
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\bin\Debug\DSS.exe
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\bin\Debug\DSS.pdb
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\bin\Debug\BlueRatLibrary.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\bin\Debug\MaterialSkin.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\obj\Debug\DSS.csprojResolveAssemblyReference.cache
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\obj\Debug\Venus.Venus.resources
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\obj\Debug\DSS.Properties.Resources.resources
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\obj\Debug\Venus.Setting.resources
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS_20190717_v3\DSS\DSS\obj\Debug\DSS.csproj.GenerateResource.Cache
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\BlueRatLibrary.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\MaterialSkin.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\obj\Debug\DSS.csprojResolveAssemblyReference.cache
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\obj\Debug\Venus.Venus.resources
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\obj\Debug\Venus.Setting.resources
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\obj\Debug\DSS.csproj.GenerateResource.Cache
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\NationalInstruments.Common.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\NationalInstruments.DAQmx.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\NationalInstruments.MStudioCLM.dll
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\NationalInstruments.Common.xml
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\NationalInstruments.DAQmx.xml
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\DDS.exe.config
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\DDS.exe
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\bin\Debug\DDS.pdb
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\obj\Debug\DDS.Properties.Resources.resources
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\obj\Debug\DDS.exe
+E:\Software\Drive\One\OneDrive - ems.niu.edu.tw\AUO\DQA\02_Smart Test\DSS\DSS\DSS\obj\Debug\DDS.pdb
