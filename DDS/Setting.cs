@@ -27,6 +27,7 @@ namespace Venus
             comboBox2.DataSource = System.IO.Ports.SerialPort.GetPortNames();
             comboBox5.DataSource = System.IO.Ports.SerialPort.GetPortNames();
             comboBox8.DataSource = System.IO.Ports.SerialPort.GetPortNames();
+            comboBox10.DataSource = System.IO.Ports.SerialPort.GetPortNames();
 
             if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
             {
@@ -82,6 +83,7 @@ namespace Venus
             comboBox7.Text = ini12.INIRead(Config_Path, "serialPort3", "BaudRate", "");
             comboBox8.Text = ini12.INIRead(Config_Path, "serialPort3", "PortName", "");
             comboBox9.Text = ini12.INIRead(Config_Path, "serialPort3", "Type", "");
+            comboBox10.Text = ini12.INIRead(Config_Path, "K_Line", "PortName", "");
 
             textBox_csv_script.Text = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
             textBox_log_folder.Text = ini12.INIRead(Config_Path, "Config", "canbusLog", "");
@@ -158,7 +160,7 @@ namespace Venus
         {
             if (checkBox1.Checked == true)
             {
-                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox2.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim())
+                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox2.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim() && comboBox2.Text.Trim() != comboBox10.Text.Trim())
                 {
                     ini12.INIWrite(Config_Path, "serialPort1", "PortName", comboBox2.Text.Trim());
                     label11.Text = "serialPort1 portname already save.";
@@ -187,7 +189,7 @@ namespace Venus
         {
             if (checkBox2.Checked == true)
             {
-                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim())
+                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox5.Text.Trim() && comboBox2.Text.Trim() != comboBox5.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim() && comboBox5.Text.Trim() != comboBox10.Text.Trim())
                 {
                     ini12.INIWrite(Config_Path, "serialPort2", "PortName", comboBox5.Text.Trim());
                     label11.Text = "serialPort2 portname already save.";
@@ -216,7 +218,7 @@ namespace Venus
         {
             if (checkBox3.Checked == true)
             {
-                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox8.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim())
+                if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox8.Text.Trim() && comboBox2.Text.Trim() != comboBox8.Text.Trim() && comboBox5.Text.Trim() != comboBox8.Text.Trim() && comboBox8.Text.Trim() != comboBox10.Text.Trim())
                 {
                     ini12.INIWrite(Config_Path, "serialPort3", "PortName", comboBox8.Text.Trim());
                     label11.Text = "serialPort3 portname already save.";
@@ -270,6 +272,21 @@ namespace Venus
             if (Directory.Exists(textBox_log_folder.Text.Trim()) == true)
             {
                 ini12.INIWrite(Config_Path, "Config", "Canbuslog", textBox_log_folder.Text.Trim());
+            }
+        }
+
+        private void ComboBox10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ini12.INIRead(Config_Path, "AutoKit", "PortName", "") != comboBox10.Text.Trim() && comboBox2.Text.Trim() != comboBox10.Text.Trim() && comboBox5.Text.Trim() != comboBox10.Text.Trim())
+            {
+                ini12.INIWrite(Config_Path, "K_Line", "Exist", "1");
+                ini12.INIWrite(Config_Path, "K_Line", "PortName", comboBox10.Text.Trim());
+                label11.Text = "kline setting already save.";
+            }
+            else
+            {
+                ini12.INIWrite(Config_Path, "K_Line", "Exist", "0");
+                label11.Text = "kline setting can't save to config.";
             }
         }
     }

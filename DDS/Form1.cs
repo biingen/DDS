@@ -20,6 +20,11 @@ using Microsoft.Win32.SafeHandles;
 using System.Threading;
 using System.Runtime.InteropServices;
 using Can_Reader_Lib;
+using MySerialLibrary;
+using BlockMessageLibrary;
+using KWP_2000;
+using DTC_ABS;
+using DTC_OBD;
 
 namespace Venus
 {
@@ -36,6 +41,10 @@ namespace Venus
         public static List<string> VID = new List<string> { };
         public static List<string> PID = new List<string> { };
         public static List<string> AutoBoxComport = new List<string> { };
+
+        private MySerial MySerialPort = new MySerial();
+        private List<BlockMessage> MyBlockMessageList = new List<BlockMessage>();
+        private ProcessBlockMessage MyProcessBlockMessage = new ProcessBlockMessage();
 
         System.Windows.Forms.Label[] v3_GPIO_icon_remark;
         System.Windows.Forms.Label[] v3_GPIO_iconR_remark;
@@ -72,14 +81,16 @@ namespace Venus
             InitializeComponent();
         }
 
-        private void Venus_Load(object sender, EventArgs e)
+        private void DDS_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             USB_Read();
+            Form_K_Line_Load();
             AutoKit_Initial_port();
             Extend_Initial_port();
             CSVtoINIfile();
             ConnectCanBus();
+            ConnectKline();
         }
 
         #region -- 讀取USB裝置 --
@@ -89,6 +100,7 @@ namespace Venus
             ini12.INIWrite(Config_Path, "AutoKit", "Exist", "0");
             ini12.INIWrite(Config_Path, "AutoKit", "PortName", "");
             ini12.INIWrite(Config_Path, "NI_6501", "Exist", "0");
+            ini12.INIWrite(Config_Path, "K_Line", "Exist", "0");
 
             ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity");
             ManagementObjectCollection collection = search.Get();
@@ -197,6 +209,23 @@ namespace Venus
                                               , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
 
                         ini12.INIWrite(Config_Path, "NI_6501", "Exist", "1");
+                    }
+                    #endregion
+
+                    #region 偵測K-Line
+                    if (deviceId.IndexOf("USB\\VID_0403&PID_6001\\", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        Console.WriteLine("-----------------FTDI K-Line------------------");
+                        Console.WriteLine("DeviceID: {0}\n" +
+                                              "Name: {1}\n" +
+                                              "Description: {2}\n" +
+                                              "Status: {3}\n" +
+                                              "System: {4}\n" +
+                                              "Caption: {5}\n" +
+                                              "Pnp: {6}\n"
+                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
+
+                        ini12.INIWrite(Config_Path, "K_Line", "Exist", "1");
                     }
                     #endregion
                 }
@@ -1819,6 +1848,107 @@ namespace Venus
 
         }
 
+        protected void ConnectKline()
+        {
+            string Kline_Exist = ini12.INIRead(Config_Path, "K_Line", "Exist", "");
+
+            if (Kline_Exist == "1")
+            {
+                string curItem = ini12.INIRead(Config_Path, "K_Line", "PortName", "");
+                if (MySerialPort.OpenPort(curItem) == true)
+                {
+                    //BlueRat_UART_Exception_status = false;
+                    tmr_FetchingUARTInput.Enabled = true;
+                    label_Kline_status.Text = "The K-Line already connected.";
+                }
+                else
+                {
+                    tmr_FetchingUARTInput.Enabled = false;
+                    label_Kline_status.Text = "The K-Line can't connect.";
+                }
+            }
+        }
+
+        private List<CheckBox> abs_lut = new List<CheckBox>();
+        private List<CheckBox> obd_lut = new List<CheckBox>();
+        private void Form_K_Line_Load()
+        {
+            // Generate abs_lut -- need to add CheckBox in sequence of byte/bit index from (0,0)
+            abs_lut.Add(ABS_0x5055); //, ABS_DTC_Code.ECU_Control_unit_failure);
+            abs_lut.Add(ABS_0x5019); //, ABS_DTC_Code.VR_Valve_Relay_Fault);
+            abs_lut.Add(ABS_0x5017); //, ABS_DTC_Code.Valves_EV_Inlet_value_Failure_F);
+            abs_lut.Add(ABS_0x5013); //, ABS_DTC_Code.Valves_EV_Inlet_value_Failure_R);
+            abs_lut.Add(ABS_0x5018); //, ABS_DTC_Code.Valves_AV_Outlet_value_Failure_F);
+            abs_lut.Add(ABS_0x5014); //, ABS_DTC_Code.Valves_AV_Outlet_value_Failure_R);
+            abs_lut.Add(ABS_0x5053); //, ABS_DTC_Code.UZ_Batter_Voltage_fault_Over_Voltage);
+            abs_lut.Add(ABS_0x5052); //, ABS_DTC_Code.UZ_Batter_Voltage_fault_Under_Voltage);
+            // Byte (1,0)
+            abs_lut.Add(ABS_0x5035); //, ABS_DTC_Code.RFP_Pump_Motor_Failure);
+            abs_lut.Add(ABS_0x5043); //, ABS_DTC_Code.WSS_ohmic_WSS_ohmic_failure_F);
+            abs_lut.Add(ABS_0x5045); //, ABS_DTC_Code.WSS_ohmic_WSS_ohmic_failure_R);
+            abs_lut.Add(ABS_0x5042); //, ABS_DTC_Code.WSS_plausibility_failure_F);
+            abs_lut.Add(ABS_0x5044); //, ABS_DTC_Code.WSS_plausibility_failure_R);
+            abs_lut.Add(ABS_0x5025); //, ABS_DTC_Code.WSS_generic_failure);
+
+            // Generate obd_lut -- need to add CheckBox in sequence of byte/bit index from (0,0)
+            obd_lut.Add(OBD_P0503);
+            obd_lut.Add(OBD_C0083);
+            obd_lut.Add(OBD_C0085);
+            obd_lut.Add(OBD_P0105);
+            obd_lut.Add(OBD_P0110);
+            obd_lut.Add(OBD_P0115);
+            obd_lut.Add(OBD_P0120);
+            obd_lut.Add(OBD_P0130);
+            // Byte (1,0)
+            obd_lut.Add(OBD_P0135);
+            obd_lut.Add(OBD_P0150);
+            obd_lut.Add(OBD_P0155);
+            obd_lut.Add(OBD_P0201);
+            obd_lut.Add(OBD_P0202);
+            obd_lut.Add(OBD_P0217);
+            obd_lut.Add(OBD_P0230);
+            obd_lut.Add(OBD_P0335);
+            // Byte (2,0)
+            obd_lut.Add(OBD_P0336);
+            obd_lut.Add(OBD_P0351);
+            obd_lut.Add(OBD_P0352);
+            obd_lut.Add(OBD_P0410);
+            obd_lut.Add(OBD_P0480);
+            obd_lut.Add(OBD_P0500);
+            obd_lut.Add(OBD_P0501);
+            obd_lut.Add(OBD_P0505);
+            // Byte (3,0)
+            obd_lut.Add(OBD_P0512);
+            obd_lut.Add(OBD_P0560);
+            obd_lut.Add(OBD_P0601);
+            obd_lut.Add(OBD_P0604);
+            obd_lut.Add(OBD_P0605);
+            obd_lut.Add(OBD_P0606);
+            obd_lut.Add(OBD_P0620_PIN2);
+            obd_lut.Add(OBD_P0620_PIN31);
+            // Byte (4,0)
+            obd_lut.Add(OBD_P0650);
+            obd_lut.Add(OBD_P0655);
+            obd_lut.Add(OBD_P0A0F);
+            obd_lut.Add(OBD_P1300);
+            obd_lut.Add(OBD_P1310);
+            obd_lut.Add(OBD_P1536);
+            obd_lut.Add(OBD_P1607);
+            obd_lut.Add(OBD_P1800);
+            // Byte (5,0)
+            obd_lut.Add(OBD_P2158);
+            obd_lut.Add(OBD_P2600);
+            obd_lut.Add(OBD_U0001);
+            obd_lut.Add(OBD_U0002);
+            obd_lut.Add(OBD_U0121);
+            obd_lut.Add(OBD_U0122);
+            obd_lut.Add(OBD_U0128);
+            obd_lut.Add(OBD_U0140);
+            // Byte (6,0)
+            obd_lut.Add(OBD_U0426);
+            obd_lut.Add(OBD_U0486);
+        }
+
         //private bool First_Run = true;
         private byte Previous_Car_Indicator = 0;
         private uint Previous_Speed = 0;
@@ -1856,23 +1986,6 @@ namespace Venus
         private const byte MASK_Status_Maintenance = 0x20;
         private const byte MASK_Status_FrontTirePressure = 0x40;
         private const byte MASK_Status_RearTirePressure = 0x80;
-
-        private Color UpdateItemColor(ref bool FirstRunBit, ref byte Previous, byte Current)
-        {
-            Color ret_color;
-
-            if (FirstRunBit == true)
-            {
-                ret_color = BGHighLightColor;
-                FirstRunBit = false;
-            }
-            else
-            {
-                ret_color = (Previous != Current) ? BGHighLightColor : BGNormalColor;
-            }
-            Previous = Current;
-            return ret_color;
-        }
 
         private Color UpdateItemColor(ref bool FirstRunBit, ref uint Previous, uint Current)
         {
@@ -2112,7 +2225,7 @@ namespace Venus
                         // Error DLC
                     }
                     break;
-                /*
+
                                 case 0x5:       // CMD_E
                                     if (DLC == 2)
                                     {
@@ -2205,7 +2318,7 @@ namespace Venus
                                         // Error DLC
                                     }
                                     break;
-                */
+
                 default:
                     break;
             }
@@ -2288,6 +2401,124 @@ namespace Venus
             }
         }
 
+        private void Use_Fixed_DTC_from_HQ(KWP_2000_Process kwp2000)
+        {
+            // byte[] fixed_response_data_abs = { 0x04, 0x50, 0x43, 0xE0, 0x50, 0x45, 0xE0, 0x50, 0x52, 0xA0, 0x50, 0x53, 0xA0 };
+            kwp2000.ABS_DTC_Queue_Add(0x50, 0x43, 0xE0);
+            kwp2000.ABS_DTC_Queue_Add(0x50, 0x45, 0xE0);
+            kwp2000.ABS_DTC_Queue_Add(0x50, 0x52, 0xA0);
+            kwp2000.ABS_DTC_Queue_Add(0x50, 0x53, 0xA0);
+            // byte[] fixed_response_data_obd = { 0x04, 0x01, 0x15, 0x61, 0x40, 0x85, 0x62, 0x02, 0x30, 0x62, 0xC4, 0x86, 0x62 };
+            // P0115: 0x0115
+            // C0085: 0x4085
+            // P0230: 0x0230
+            // U0486: 0xC486
+            kwp2000.OBD_DTC_Queue_Add(0x01, 0x15, 0x61);
+            kwp2000.OBD_DTC_Queue_Add(0x40, 0x85, 0x62);
+            kwp2000.OBD_DTC_Queue_Add(0x02, 0x30, 0x62);
+            kwp2000.OBD_DTC_Queue_Add(0xC4, 0x86, 0x62);
+        }
+        //
+        private void Use_Random_DTC(KWP_2000_Process kwp2000)
+        {
+            Random rs = new Random();
+            Byte DTC_no;
+            DTC_no = (byte)(rs.Next(10));
+            DTC_no = (byte)((DTC_no <= KWP_2000_Process.ReadABSDiagnosticCodesByStatus_MaxNumberOfDTC) ? DTC_no : 0);
+            for (int no = 0; no < DTC_no; no++)
+            {
+                CMD_E_ABS_DTC random_dtc = ABS_DTC_Table.Find_ABS_DTC(rs.Next(ABS_DTC_Table.Count()));
+                kwp2000.ABS_DTC_Queue_Add(random_dtc, (byte)kwp2000.dtc_status_table[rs.Next(kwp2000.dtc_status_table.Length)]);
+            }
+            // for OBD
+            DTC_no = (byte)(rs.Next(10));
+            DTC_no = (byte)((DTC_no <= KWP_2000_Process.ReadOBDDiagnosticCodesByStatus_MaxNumberOfDTC) ? DTC_no : 0);
+            for (int no = 0; no < DTC_no; no++)
+            {
+                CMD_F_OBD_DTC random_dtc = OBD_DTC_Table.Find_OBD_DTC(rs.Next(OBD_DTC_Table.Count()));
+                kwp2000.OBD_DTC_Queue_Add(random_dtc, (byte)kwp2000.dtc_status_table_for_obd[rs.Next(kwp2000.dtc_status_table_for_obd.Length)]);
+            }
+        }
+
+        private void Scan_DTC_from_UI(KWP_2000_Process kwp2000)
+        {
+            // CheckBox lut of UI must be listed accroding to its byte/bit index.
+
+            uint byte_bit_index;
+
+            byte_bit_index = 0;
+            foreach (var item in abs_lut)
+            {
+                if (item.Checked == true)
+                {
+                    // If CheckBox is checked, treat it as Lamp_ON_Failure_Set
+                    kwp2000.ABS_DTC_Queue_Add(ABS_DTC_Table.Find_ABS_DTC((byte_bit_index / 8), (byte_bit_index % 8)), KWP_2000_Process.Lamp_ON_Failure_Set);
+                }
+                byte_bit_index++;
+            }
+
+            byte_bit_index = 0;
+            foreach (var item in obd_lut)
+            {
+                if (item.Checked == true)
+                {
+                    // If CheckBox is checked, treat it as Lamp_ON_Failure_Set
+                    kwp2000.OBD_DTC_Queue_Add(OBD_DTC_Table.Find_OBD_DTC((byte_bit_index / 8), (byte_bit_index % 8)), KWP_2000_Process.Lamp_ON_Failure_Set);
+                }
+                byte_bit_index++;
+            }
+
+        }
+
+        private void Tmr_FetchingUARTInput_Tick(object sender, EventArgs e)
+        {
+            // Regularly polling request message
+            while (MySerialPort.KLineBlockMessageList.Count() > 0)
+            {
+                // Pop 1st KLine Block Message
+                BlockMessage in_message = MySerialPort.KLineBlockMessageList[0];
+                MySerialPort.KLineBlockMessageList.RemoveAt(0);
+
+                // Display debug message on RichTextBox
+                String raw_data_in_string = MySerialPort.KLineRawDataInStringList[0];
+                MySerialPort.KLineRawDataInStringList.RemoveAt(0);
+                DisplayKLineBlockMessage(rtbKLineData, "raw_input: " + raw_data_in_string);
+                DisplayKLineBlockMessage(rtbKLineData, "In - " + in_message.GenerateDebugString());
+
+                // Process input Kline message and generate output KLine message
+                KWP_2000_Process kwp_2000_process = new KWP_2000_Process();
+                BlockMessage out_message = new BlockMessage();
+
+                //Use_Random_DTC(kwp_2000_process);  // Random Test
+                //Use_Fixed_DTC_from_HQ(kwp_2000_process);  // Simulate response from a ECU device
+                Scan_DTC_from_UI(kwp_2000_process);  // Scan Checkbox status and add DTC into queue
+
+                // Generate output block message according to input message and DTC codes
+                kwp_2000_process.ProcessMessage(in_message, ref out_message);
+
+                // Convert output block message to List<byte> so that it can be sent via UART
+                List<byte> output_data;
+                out_message.GenerateSerialOutput(out output_data);
+
+                // NOTE: because we will also receive all data sent by us, we need to tell UART to skip all data to be sent by SendToSerial
+                MySerialPort.Add_ECU_Filtering_Data(output_data);
+                MySerialPort.Enable_ECU_Filtering(true);
+                // Send output KLine message via UART (after some delay)
+                Thread.Sleep((KWP_2000_Process.min_delay_before_response - 1));
+                MySerialPort.SendToSerial(output_data.ToArray());
+
+                // Show output KLine message for debug purpose
+                DisplayKLineBlockMessage(rtbKLineData, "Out - " + out_message.GenerateDebugString());
+            }
+        }
+
+        private void DisplayKLineBlockMessage(RichTextBox rtb, String msg)
+        {
+            String current_time_str = DateTime.Now.ToString("[HH:mm:ss.fff] ");
+            rtb.AppendText(current_time_str + msg + "\n");
+            rtb.ScrollToCaret();
+        }
+
         protected void Close_serialPort1()
         {
             SerialPort1.Dispose();
@@ -2304,6 +2535,13 @@ namespace Venus
         {
             SerialPort3.Dispose();
             SerialPort3.Close();
+        }
+
+        protected void Close_klineserialPort()
+        {
+            MySerialPort.ClosePort();
+            MySerialPort.Dispose();
+            label_Kline_status.Text = "The K-Line already disconnected.";
         }
 
         private void settings_button_Click(object sender, EventArgs e)
@@ -2325,7 +2563,12 @@ namespace Venus
             {
                 Close_serialPort3();
             }
-            
+
+            if (MySerialPort.ClosePort() == true)
+            {
+                Close_klineserialPort();
+            }
+
             if (MYCanReader.Connect() == 1)
             {
                 timer_rec.Enabled = false;
@@ -2346,6 +2589,7 @@ namespace Venus
                     AutoKit_Initial_port();
                     Extend_Initial_port();
                     ConnectCanBus();
+                    ConnectKline();
                 }
             }
             Setting.Dispose();

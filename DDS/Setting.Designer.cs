@@ -60,6 +60,8 @@
             this.textBox_log_folder = new System.Windows.Forms.TextBox();
             this.button_log_folder = new System.Windows.Forms.Button();
             this.folderBrowserDialog_canbuslog = new System.Windows.Forms.FolderBrowserDialog();
+            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.label_kline = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -442,12 +444,32 @@
             this.button_log_folder.UseVisualStyleBackColor = true;
             this.button_log_folder.Click += new System.EventHandler(this.button_log_folder_Click);
             // 
+            // comboBox10
+            // 
+            this.comboBox10.FormattingEnabled = true;
+            this.comboBox10.Location = new System.Drawing.Point(462, 79);
+            this.comboBox10.Name = "comboBox10";
+            this.comboBox10.Size = new System.Drawing.Size(121, 20);
+            this.comboBox10.TabIndex = 8;
+            this.comboBox10.SelectedIndexChanged += new System.EventHandler(this.ComboBox10_SelectedIndexChanged);
+            // 
+            // label_kline
+            // 
+            this.label_kline.AutoSize = true;
+            this.label_kline.Location = new System.Drawing.Point(407, 82);
+            this.label_kline.Name = "label_kline";
+            this.label_kline.Size = new System.Drawing.Size(55, 12);
+            this.label_kline.TabIndex = 7;
+            this.label_kline.Text = "Kline port:";
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 256);
+            this.Controls.Add(this.comboBox10);
             this.Controls.Add(this.textBox_log_folder);
+            this.Controls.Add(this.label_kline);
             this.Controls.Add(this.button_log_folder);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -504,5 +526,7 @@
         private System.Windows.Forms.TextBox textBox_log_folder;
         private System.Windows.Forms.Button button_log_folder;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_canbuslog;
+        private System.Windows.Forms.ComboBox comboBox10;
+        private System.Windows.Forms.Label label_kline;
     }
 }

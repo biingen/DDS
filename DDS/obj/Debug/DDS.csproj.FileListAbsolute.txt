@@ -104,8 +104,28 @@ C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS
 C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\bin\Debug\NationalInstruments.MStudioCLM.dll
 C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\bin\Debug\NationalInstruments.Common.xml
 C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\bin\Debug\NationalInstruments.DAQmx.xml
-C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\DDS.csprojResolveAssemblyReference.cache
 C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\Venus.DDS.resources
 C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\DDS.Properties.Resources.resources
 C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\Venus.Setting.resources
 C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\DDS.csproj.GenerateResource.Cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\DDS.csprojAssemblyReference.cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\DDS.csproj.CoreCompileInputs.cache
+C:\Drive\One\OneDrive - ems.niu.edu.tw\DQA\02_Smart Test\Auto Kit\Backup\DDS\DDS\obj\Debug\DDS.csproj.CopyComplete
+D:\JeremyHsiao\DDS\DDS\bin\Debug\DDS.exe.config
+D:\JeremyHsiao\DDS\DDS\bin\Debug\DDS.exe
+D:\JeremyHsiao\DDS\DDS\bin\Debug\DDS.pdb
+D:\JeremyHsiao\DDS\DDS\bin\Debug\BlueRatLibrary.dll
+D:\JeremyHsiao\DDS\DDS\bin\Debug\MaterialSkin.dll
+D:\JeremyHsiao\DDS\DDS\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+D:\JeremyHsiao\DDS\DDS\bin\Debug\NationalInstruments.MStudioCLM.dll
+D:\JeremyHsiao\DDS\DDS\bin\Debug\NationalInstruments.Common.xml
+D:\JeremyHsiao\DDS\DDS\bin\Debug\NationalInstruments.DAQmx.xml
+D:\JeremyHsiao\DDS\DDS\obj\Debug\DDS.csprojAssemblyReference.cache
+D:\JeremyHsiao\DDS\DDS\obj\Debug\Venus.DDS.resources
+D:\JeremyHsiao\DDS\DDS\obj\Debug\DDS.Properties.Resources.resources
+D:\JeremyHsiao\DDS\DDS\obj\Debug\Venus.Setting.resources
+D:\JeremyHsiao\DDS\DDS\obj\Debug\DDS.csproj.GenerateResource.cache
+D:\JeremyHsiao\DDS\DDS\obj\Debug\DDS.csproj.CoreCompileInputs.cache
+D:\JeremyHsiao\DDS\DDS\obj\Debug\DDS.csproj.CopyComplete
+D:\JeremyHsiao\DDS\DDS\obj\Debug\DDS.exe
+D:\JeremyHsiao\DDS\DDS\obj\Debug\DDS.pdb
