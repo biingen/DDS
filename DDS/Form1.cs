@@ -1987,6 +1987,79 @@ namespace Venus
         private const byte MASK_Status_FrontTirePressure = 0x40;
         private const byte MASK_Status_RearTirePressure = 0x80;
 
+        private const byte MASK_Status_Can_ABS_0x5055 = 0x01;
+        private const byte MASK_Status_Can_ABS_0x5019 = 0x02;
+        private const byte MASK_Status_Can_ABS_0x5017 = 0x04;
+        private const byte MASK_Status_Can_ABS_0x5013 = 0x08;
+        private const byte MASK_Status_Can_ABS_0x5018 = 0x10;
+        private const byte MASK_Status_Can_ABS_0x5014 = 0x20;
+        private const byte MASK_Status_Can_ABS_0x5053 = 0x40;
+        private const byte MASK_Status_Can_ABS_0x5052 = 0x80;
+
+        private const byte MASK_Status_Can_ABS_0x5035 = 0x01;
+        private const byte MASK_Status_Can_ABS_0x5043 = 0x02;
+        private const byte MASK_Status_Can_ABS_0x5045 = 0x04;
+        private const byte MASK_Status_Can_ABS_0x5042 = 0x08;
+        private const byte MASK_Status_Can_ABS_0x5044 = 0x10;
+        private const byte MASK_Status_Can_ABS_0x5025 = 0x20;
+
+        private const byte MASK_Status_Can_OBD_P0503 = 0x01;
+        private const byte MASK_Status_Can_OBD_C0083 = 0x02;
+        private const byte MASK_Status_Can_OBD_C0085 = 0x04;
+        private const byte MASK_Status_Can_OBD_P0105 = 0x08;
+        private const byte MASK_Status_Can_OBD_P0110 = 0x10;
+        private const byte MASK_Status_Can_OBD_P0115 = 0x20;
+        private const byte MASK_Status_Can_OBD_P0120 = 0x40;
+        private const byte MASK_Status_Can_OBD_P0130 = 0x80;
+
+        private const byte MASK_Status_Can_OBD_P0135 = 0x01;
+        private const byte MASK_Status_Can_OBD_P0150 = 0x02;
+        private const byte MASK_Status_Can_OBD_P0155 = 0x04;
+        private const byte MASK_Status_Can_OBD_P0201 = 0x08;
+        private const byte MASK_Status_Can_OBD_P0202 = 0x10;
+        private const byte MASK_Status_Can_OBD_P0217 = 0x20;
+        private const byte MASK_Status_Can_OBD_P0230 = 0x40;
+        private const byte MASK_Status_Can_OBD_P0335 = 0x80;
+
+        private const byte MASK_Status_Can_OBD_P0336 = 0x01;
+        private const byte MASK_Status_Can_OBD_P0351 = 0x02;
+        private const byte MASK_Status_Can_OBD_P0352 = 0x04;
+        private const byte MASK_Status_Can_OBD_P0410 = 0x08;
+        private const byte MASK_Status_Can_OBD_P0480 = 0x10;
+        private const byte MASK_Status_Can_OBD_P0500 = 0x20;
+        private const byte MASK_Status_Can_OBD_P0501 = 0x40;
+        private const byte MASK_Status_Can_OBD_P0505 = 0x80;
+
+        private const byte MASK_Status_Can_OBD_P0512 = 0x01;
+        private const byte MASK_Status_Can_OBD_P0560 = 0x02;
+        private const byte MASK_Status_Can_OBD_P0601 = 0x04;
+        private const byte MASK_Status_Can_OBD_P0604 = 0x08;
+        private const byte MASK_Status_Can_OBD_P0605 = 0x10;
+        private const byte MASK_Status_Can_OBD_P0606 = 0x20;
+        private const byte MASK_Status_Can_OBD_P0620_PIN2 = 0x40;
+        private const byte MASK_Status_Can_OBD_P0620_PIN31 = 0x80;
+
+        private const byte MASK_Status_Can_OBD_P0650 = 0x01;
+        private const byte MASK_Status_Can_OBD_P0655 = 0x02;
+        private const byte MASK_Status_Can_OBD_P0A0F = 0x04;
+        private const byte MASK_Status_Can_OBD_P1300 = 0x08;
+        private const byte MASK_Status_Can_OBD_P1310 = 0x10;
+        private const byte MASK_Status_Can_OBD_P1536 = 0x20;
+        private const byte MASK_Status_Can_OBD_P1607 = 0x40;
+        private const byte MASK_Status_Can_OBD_P1800 = 0x80;
+
+        private const byte MASK_Status_Can_OBD_P2158 = 0x01;
+        private const byte MASK_Status_Can_OBD_P2600 = 0x02;
+        private const byte MASK_Status_Can_OBD_U0001 = 0x04;
+        private const byte MASK_Status_Can_OBD_U0002 = 0x08;
+        private const byte MASK_Status_Can_OBD_U0121 = 0x10;
+        private const byte MASK_Status_Can_OBD_U0122 = 0x20;
+        private const byte MASK_Status_Can_OBD_U0128 = 0x40;
+        private const byte MASK_Status_Can_OBD_U0140 = 0x80;
+
+        private const byte MASK_Status_Can_OBD_U0426 = 0x01;
+        private const byte MASK_Status_Can_OBD_U0486 = 0x02;
+
         private Color UpdateItemColor(ref bool FirstRunBit, ref uint Previous, uint Current)
         {
             Color ret_color;
@@ -2226,98 +2299,98 @@ namespace Venus
                     }
                     break;
 
-                                case 0x5:       // CMD_E
-                                    if (DLC == 2)
-                                    {
-                                        Byte status = DATA[0];
-                                        Can_ABS_0x5055.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_ABS_0x5019.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_ABS_0x5017.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_ABS_0x5013.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_ABS_0x5018.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_ABS_0x5014.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_ABS_0x5053.Checked = ((status & 0x40) != 0) ? true : false;
-                                        Can_ABS_0x5052.Checked = ((status & 0x80) != 0) ? true : false;
-                                        status = DATA[1];
-                                        Can_ABS_0x5035.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_ABS_0x5043.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_ABS_0x5045.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_ABS_0x5042.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_ABS_0x5044.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_ABS_0x5025.Checked = ((status & 0x20) != 0) ? true : false;
-                                    }
-                                    else
-                                    {
-                                        // Error DLC
-                                    }
-                                    break;
+                case 0x5:       // CMD_E
+                    if (DLC == 2)
+                    {
+                        Byte status = DATA[0];
+                        Can_ABS_0x5055.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_ABS_0x5019.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_ABS_0x5017.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_ABS_0x5013.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_ABS_0x5018.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_ABS_0x5014.Checked = ((status & 0x20) != 0) ? true : false;
+                        Can_ABS_0x5053.Checked = ((status & 0x40) != 0) ? true : false;
+                        Can_ABS_0x5052.Checked = ((status & 0x80) != 0) ? true : false;
+                        status = DATA[1];
+                        Can_ABS_0x5035.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_ABS_0x5043.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_ABS_0x5045.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_ABS_0x5042.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_ABS_0x5044.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_ABS_0x5025.Checked = ((status & 0x20) != 0) ? true : false;
+                    }
+                    else
+                    {
+                        // Error DLC
+                    }
+                    break;
 
-                                case 0x6:       // CMD_F
-                                    if (DLC == 7)
-                                    {
-                                        Byte status = DATA[0];
-                                        Can_OBD_P0503.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_OBD_C0083.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_OBD_C0085.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_OBD_P0105.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_OBD_P0110.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_OBD_P0115.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P0120.Checked = ((status & 0x40) != 0) ? true : false;
-                                        Can_OBD_P0130.Checked = ((status & 0x80) != 0) ? true : false;
-                                        status = DATA[1];
-                                        Can_OBD_P0135.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_OBD_P0150.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_OBD_P0155.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_OBD_P0201.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_OBD_P0202.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_OBD_P0217.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P0230.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P0335.Checked = ((status & 0x20) != 0) ? true : false;
-                                        status = DATA[2];
-                                        Can_OBD_P0336.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_OBD_P0351.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_OBD_P0352.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_OBD_P0410.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_OBD_P0480.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_OBD_P0500.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P0501.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P0505.Checked = ((status & 0x20) != 0) ? true : false;
-                                        status = DATA[3];
-                                        Can_OBD_P0512.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_OBD_P0560.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_OBD_P0601.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_OBD_P0604.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_OBD_P0605.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_OBD_P0606.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P0620_PIN2.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P0620_PIN31.Checked = ((status & 0x20) != 0) ? true : false;
-                                        status = DATA[4];
-                                        Can_OBD_P0650.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_OBD_P0655.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_OBD_P0A0F.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_OBD_P1300.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_OBD_P1310.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_OBD_P1536.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P1607.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_P1800.Checked = ((status & 0x20) != 0) ? true : false;
-                                        status = DATA[5];
-                                        Can_OBD_P2158.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_OBD_P2600.Checked = ((status & 0x02) != 0) ? true : false;
-                                        Can_OBD_U0001.Checked = ((status & 0x04) != 0) ? true : false;
-                                        Can_OBD_U0002.Checked = ((status & 0x08) != 0) ? true : false;
-                                        Can_OBD_U0121.Checked = ((status & 0x10) != 0) ? true : false;
-                                        Can_OBD_U0122.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_U0128.Checked = ((status & 0x20) != 0) ? true : false;
-                                        Can_OBD_U0140.Checked = ((status & 0x20) != 0) ? true : false;
-                                        status = DATA[6];
-                                        Can_OBD_U0426.Checked = ((status & 0x01) != 0) ? true : false;
-                                        Can_OBD_U0486.Checked = ((status & 0x02) != 0) ? true : false;
-                                    }
-                                    else
-                                    {
-                                        // Error DLC
-                                    }
-                                    break;
+                case 0x6:       // CMD_F
+                    if (DLC == 7)
+                    {
+                        Byte status = DATA[0];
+                        Can_OBD_P0503.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_OBD_C0083.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_OBD_C0085.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_OBD_P0105.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_OBD_P0110.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_OBD_P0115.Checked = ((status & 0x20) != 0) ? true : false;
+                        Can_OBD_P0120.Checked = ((status & 0x40) != 0) ? true : false;
+                        Can_OBD_P0130.Checked = ((status & 0x80) != 0) ? true : false;
+                        status = DATA[1];
+                        Can_OBD_P0135.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_OBD_P0150.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_OBD_P0155.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_OBD_P0201.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_OBD_P0202.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_OBD_P0217.Checked = ((status & 0x20) != 0) ? true : false;
+                        Can_OBD_P0230.Checked = ((status & 0x40) != 0) ? true : false;
+                        Can_OBD_P0335.Checked = ((status & 0x80) != 0) ? true : false;
+                        status = DATA[2];
+                        Can_OBD_P0336.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_OBD_P0351.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_OBD_P0352.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_OBD_P0410.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_OBD_P0480.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_OBD_P0500.Checked = ((status & 0x20) != 0) ? true : false;
+                        Can_OBD_P0501.Checked = ((status & 0x40) != 0) ? true : false;
+                        Can_OBD_P0505.Checked = ((status & 0x80) != 0) ? true : false;
+                        status = DATA[3];
+                        Can_OBD_P0512.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_OBD_P0560.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_OBD_P0601.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_OBD_P0604.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_OBD_P0605.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_OBD_P0606.Checked = ((status & 0x20) != 0) ? true : false;
+                        Can_OBD_P0620_PIN2.Checked = ((status & 0x40) != 0) ? true : false;
+                        Can_OBD_P0620_PIN31.Checked = ((status & 0x80) != 0) ? true : false;
+                        status = DATA[4];
+                        Can_OBD_P0650.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_OBD_P0655.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_OBD_P0A0F.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_OBD_P1300.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_OBD_P1310.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_OBD_P1536.Checked = ((status & 0x20) != 0) ? true : false;
+                        Can_OBD_P1607.Checked = ((status & 0x40) != 0) ? true : false;
+                        Can_OBD_P1800.Checked = ((status & 0x80) != 0) ? true : false;
+                        status = DATA[5];
+                        Can_OBD_P2158.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_OBD_P2600.Checked = ((status & 0x02) != 0) ? true : false;
+                        Can_OBD_U0001.Checked = ((status & 0x04) != 0) ? true : false;
+                        Can_OBD_U0002.Checked = ((status & 0x08) != 0) ? true : false;
+                        Can_OBD_U0121.Checked = ((status & 0x10) != 0) ? true : false;
+                        Can_OBD_U0122.Checked = ((status & 0x20) != 0) ? true : false;
+                        Can_OBD_U0128.Checked = ((status & 0x40) != 0) ? true : false;
+                        Can_OBD_U0140.Checked = ((status & 0x80) != 0) ? true : false;
+                        status = DATA[6];
+                        Can_OBD_U0426.Checked = ((status & 0x01) != 0) ? true : false;
+                        Can_OBD_U0486.Checked = ((status & 0x02) != 0) ? true : false;
+                    }
+                    else
+                    {
+                        // Error DLC
+                    }
+                    break;
 
                 default:
                     break;
@@ -2470,7 +2543,7 @@ namespace Venus
 
         }
 
-        private void Tmr_FetchingUARTInput_Tick(object sender, EventArgs e)
+        private void tmr_FetchingUARTInput_Tick(object sender, EventArgs e)
         {
             // Regularly polling request message
             while (MySerialPort.KLineBlockMessageList.Count() > 0)

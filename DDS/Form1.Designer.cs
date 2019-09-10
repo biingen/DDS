@@ -381,11 +381,11 @@
             this.Group_CAN_Reader.Controls.Add(this.Group_Driving_Status);
             this.Group_CAN_Reader.Controls.Add(this.Group_Car_Status_Indicator);
             this.Group_CAN_Reader.Controls.Add(this.listBox_Info);
-            this.Group_CAN_Reader.Location = new System.Drawing.Point(1338, 9);
+            this.Group_CAN_Reader.Location = new System.Drawing.Point(973, 92);
             this.Group_CAN_Reader.Margin = new System.Windows.Forms.Padding(2);
             this.Group_CAN_Reader.Name = "Group_CAN_Reader";
             this.Group_CAN_Reader.Padding = new System.Windows.Forms.Padding(2);
-            this.Group_CAN_Reader.Size = new System.Drawing.Size(309, 352);
+            this.Group_CAN_Reader.Size = new System.Drawing.Size(340, 914);
             this.Group_CAN_Reader.TabIndex = 22;
             this.Group_CAN_Reader.TabStop = false;
             this.Group_CAN_Reader.Text = "CAN";
@@ -417,14 +417,14 @@
             this.Group_Driving_Status.Margin = new System.Windows.Forms.Padding(2);
             this.Group_Driving_Status.Name = "Group_Driving_Status";
             this.Group_Driving_Status.Padding = new System.Windows.Forms.Padding(2);
-            this.Group_Driving_Status.Size = new System.Drawing.Size(292, 161);
+            this.Group_Driving_Status.Size = new System.Drawing.Size(322, 161);
             this.Group_Driving_Status.TabIndex = 13;
             this.Group_Driving_Status.TabStop = false;
             this.Group_Driving_Status.Text = "Driving Status";
             // 
             // Value_Fuel_LPK
             // 
-            this.Value_Fuel_LPK.Location = new System.Drawing.Point(52, 86);
+            this.Value_Fuel_LPK.Location = new System.Drawing.Point(82, 86);
             this.Value_Fuel_LPK.Margin = new System.Windows.Forms.Padding(2);
             this.Value_Fuel_LPK.Name = "Value_Fuel_LPK";
             this.Value_Fuel_LPK.ReadOnly = true;
@@ -435,7 +435,7 @@
             // 
             // Value_Battery
             // 
-            this.Value_Battery.Location = new System.Drawing.Point(228, 135);
+            this.Value_Battery.Location = new System.Drawing.Point(254, 135);
             this.Value_Battery.Margin = new System.Windows.Forms.Padding(2);
             this.Value_Battery.Name = "Value_Battery";
             this.Value_Battery.ReadOnly = true;
@@ -447,7 +447,7 @@
             // Label_Battery
             // 
             this.Label_Battery.AutoSize = true;
-            this.Label_Battery.Location = new System.Drawing.Point(155, 136);
+            this.Label_Battery.Location = new System.Drawing.Point(181, 136);
             this.Label_Battery.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label_Battery.Name = "Label_Battery";
             this.Label_Battery.Size = new System.Drawing.Size(39, 12);
@@ -467,7 +467,7 @@
             // 
             // Value_Fuel
             // 
-            this.Value_Fuel.Location = new System.Drawing.Point(228, 111);
+            this.Value_Fuel.Location = new System.Drawing.Point(254, 111);
             this.Value_Fuel.Margin = new System.Windows.Forms.Padding(2);
             this.Value_Fuel.Name = "Value_Fuel";
             this.Value_Fuel.ReadOnly = true;
@@ -489,7 +489,7 @@
             // Label_Fuel
             // 
             this.Label_Fuel.AutoSize = true;
-            this.Label_Fuel.Location = new System.Drawing.Point(155, 112);
+            this.Label_Fuel.Location = new System.Drawing.Point(181, 112);
             this.Label_Fuel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label_Fuel.Name = "Label_Fuel";
             this.Label_Fuel.Size = new System.Drawing.Size(25, 12);
@@ -519,7 +519,7 @@
             // 
             // Value_AveSpeed
             // 
-            this.Value_AveSpeed.Location = new System.Drawing.Point(228, 62);
+            this.Value_AveSpeed.Location = new System.Drawing.Point(254, 62);
             this.Value_AveSpeed.Margin = new System.Windows.Forms.Padding(2);
             this.Value_AveSpeed.Name = "Value_AveSpeed";
             this.Value_AveSpeed.ReadOnly = true;
@@ -542,7 +542,7 @@
             // Label_AveSpeed
             // 
             this.Label_AveSpeed.AutoSize = true;
-            this.Label_AveSpeed.Location = new System.Drawing.Point(155, 64);
+            this.Label_AveSpeed.Location = new System.Drawing.Point(181, 64);
             this.Label_AveSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label_AveSpeed.Name = "Label_AveSpeed";
             this.Label_AveSpeed.Size = new System.Drawing.Size(75, 12);
@@ -561,7 +561,7 @@
             // 
             // Value_MaxSpeed
             // 
-            this.Value_MaxSpeed.Location = new System.Drawing.Point(228, 38);
+            this.Value_MaxSpeed.Location = new System.Drawing.Point(254, 38);
             this.Value_MaxSpeed.Margin = new System.Windows.Forms.Padding(2);
             this.Value_MaxSpeed.Name = "Value_MaxSpeed";
             this.Value_MaxSpeed.ReadOnly = true;
@@ -573,7 +573,7 @@
             // Label_MaxSpeed
             // 
             this.Label_MaxSpeed.AutoSize = true;
-            this.Label_MaxSpeed.Location = new System.Drawing.Point(155, 40);
+            this.Label_MaxSpeed.Location = new System.Drawing.Point(181, 40);
             this.Label_MaxSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label_MaxSpeed.Name = "Label_MaxSpeed";
             this.Label_MaxSpeed.Size = new System.Drawing.Size(57, 12);
@@ -593,7 +593,7 @@
             // 
             // Value_TotalMileage
             // 
-            this.Value_TotalMileage.Location = new System.Drawing.Point(228, 14);
+            this.Value_TotalMileage.Location = new System.Drawing.Point(254, 14);
             this.Value_TotalMileage.Margin = new System.Windows.Forms.Padding(2);
             this.Value_TotalMileage.Name = "Value_TotalMileage";
             this.Value_TotalMileage.ReadOnly = true;
@@ -615,7 +615,7 @@
             // Label_TotalMileage
             // 
             this.Label_TotalMileage.AutoSize = true;
-            this.Label_TotalMileage.Location = new System.Drawing.Point(155, 17);
+            this.Label_TotalMileage.Location = new System.Drawing.Point(181, 17);
             this.Label_TotalMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label_TotalMileage.Name = "Label_TotalMileage";
             this.Label_TotalMileage.Size = new System.Drawing.Size(42, 12);
@@ -657,7 +657,7 @@
             this.Group_Car_Status_Indicator.Margin = new System.Windows.Forms.Padding(2);
             this.Group_Car_Status_Indicator.Name = "Group_Car_Status_Indicator";
             this.Group_Car_Status_Indicator.Padding = new System.Windows.Forms.Padding(2);
-            this.Group_Car_Status_Indicator.Size = new System.Drawing.Size(292, 84);
+            this.Group_Car_Status_Indicator.Size = new System.Drawing.Size(322, 84);
             this.Group_Car_Status_Indicator.TabIndex = 10;
             this.Group_Car_Status_Indicator.TabStop = false;
             this.Group_Car_Status_Indicator.Text = "Car Status Indicator";
@@ -773,7 +773,7 @@
             this.listBox_Info.Location = new System.Drawing.Point(8, 19);
             this.listBox_Info.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_Info.Name = "listBox_Info";
-            this.listBox_Info.Size = new System.Drawing.Size(294, 76);
+            this.listBox_Info.Size = new System.Drawing.Size(322, 76);
             this.listBox_Info.TabIndex = 0;
             // 
             // timer_rec
@@ -807,7 +807,7 @@
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5019);
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5055);
             this.Group_ABS_Error_Code.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Group_ABS_Error_Code.Location = new System.Drawing.Point(898, 92);
+            this.Group_ABS_Error_Code.Location = new System.Drawing.Point(532, 1);
             this.Group_ABS_Error_Code.Margin = new System.Windows.Forms.Padding(2);
             this.Group_ABS_Error_Code.Name = "Group_ABS_Error_Code";
             this.Group_ABS_Error_Code.Padding = new System.Windows.Forms.Padding(2);
@@ -824,6 +824,7 @@
             this.Kline_ABS_0x5025.Name = "Kline_ABS_0x5025";
             this.Kline_ABS_0x5025.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5025.TabIndex = 16;
+            this.Kline_ABS_0x5025.Tag = "WSS generic failure";
             this.Kline_ABS_0x5025.Text = "0x5025";
             this.Kline_ABS_0x5025.UseVisualStyleBackColor = true;
             // 
@@ -835,6 +836,7 @@
             this.Kline_ABS_0x5044.Name = "Kline_ABS_0x5044";
             this.Kline_ABS_0x5044.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5044.TabIndex = 15;
+            this.Kline_ABS_0x5044.Tag = "Rear WSS plausibility failure";
             this.Kline_ABS_0x5044.Text = "0x5044";
             this.Kline_ABS_0x5044.UseVisualStyleBackColor = true;
             // 
@@ -846,6 +848,7 @@
             this.Kline_ABS_0x5052.Name = "Kline_ABS_0x5052";
             this.Kline_ABS_0x5052.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5052.TabIndex = 7;
+            this.Kline_ABS_0x5052.Tag = "Battery voltage fault(Under-Voltage)";
             this.Kline_ABS_0x5052.Text = "0x5052";
             this.Kline_ABS_0x5052.UseVisualStyleBackColor = true;
             // 
@@ -857,6 +860,7 @@
             this.Kline_ABS_0x5042.Name = "Kline_ABS_0x5042";
             this.Kline_ABS_0x5042.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5042.TabIndex = 14;
+            this.Kline_ABS_0x5042.Tag = "Front WSS plausibility failure";
             this.Kline_ABS_0x5042.Text = "0x5042";
             this.Kline_ABS_0x5042.UseVisualStyleBackColor = true;
             // 
@@ -868,6 +872,7 @@
             this.Kline_ABS_0x5053.Name = "Kline_ABS_0x5053";
             this.Kline_ABS_0x5053.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5053.TabIndex = 6;
+            this.Kline_ABS_0x5053.Tag = "Battery voltage fault(Over-Voltage)";
             this.Kline_ABS_0x5053.Text = "0x5053";
             this.Kline_ABS_0x5053.UseVisualStyleBackColor = true;
             // 
@@ -879,6 +884,7 @@
             this.Kline_ABS_0x5045.Name = "Kline_ABS_0x5045";
             this.Kline_ABS_0x5045.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5045.TabIndex = 13;
+            this.Kline_ABS_0x5045.Tag = "Rear WSS ohmic failure";
             this.Kline_ABS_0x5045.Text = "0x5045";
             this.Kline_ABS_0x5045.UseVisualStyleBackColor = true;
             // 
@@ -890,6 +896,7 @@
             this.Kline_ABS_0x5014.Name = "Kline_ABS_0x5014";
             this.Kline_ABS_0x5014.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5014.TabIndex = 5;
+            this.Kline_ABS_0x5014.Tag = "Rear outlet valve failure";
             this.Kline_ABS_0x5014.Text = "0x5014";
             this.Kline_ABS_0x5014.UseVisualStyleBackColor = true;
             // 
@@ -901,6 +908,7 @@
             this.Kline_ABS_0x5043.Name = "Kline_ABS_0x5043";
             this.Kline_ABS_0x5043.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5043.TabIndex = 12;
+            this.Kline_ABS_0x5043.Tag = "Front WSS ohmic failure";
             this.Kline_ABS_0x5043.Text = "0x5043";
             this.Kline_ABS_0x5043.UseVisualStyleBackColor = true;
             // 
@@ -912,6 +920,7 @@
             this.Kline_ABS_0x5018.Name = "Kline_ABS_0x5018";
             this.Kline_ABS_0x5018.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5018.TabIndex = 4;
+            this.Kline_ABS_0x5018.Tag = "Front outlet valve failure";
             this.Kline_ABS_0x5018.Text = "0x5018";
             this.Kline_ABS_0x5018.UseVisualStyleBackColor = true;
             // 
@@ -923,6 +932,7 @@
             this.Kline_ABS_0x5035.Name = "Kline_ABS_0x5035";
             this.Kline_ABS_0x5035.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5035.TabIndex = 11;
+            this.Kline_ABS_0x5035.Tag = "Pump motor failure";
             this.Kline_ABS_0x5035.Text = "0x5035";
             this.Kline_ABS_0x5035.UseVisualStyleBackColor = true;
             // 
@@ -934,6 +944,7 @@
             this.Kline_ABS_0x5013.Name = "Kline_ABS_0x5013";
             this.Kline_ABS_0x5013.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5013.TabIndex = 3;
+            this.Kline_ABS_0x5013.Tag = "Rear inlet valve failure";
             this.Kline_ABS_0x5013.Text = "0x5013";
             this.Kline_ABS_0x5013.UseVisualStyleBackColor = true;
             // 
@@ -945,6 +956,7 @@
             this.Kline_ABS_0x5017.Name = "Kline_ABS_0x5017";
             this.Kline_ABS_0x5017.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5017.TabIndex = 2;
+            this.Kline_ABS_0x5017.Tag = "Front inlet valve failure";
             this.Kline_ABS_0x5017.Text = "0x5017";
             this.Kline_ABS_0x5017.UseVisualStyleBackColor = true;
             // 
@@ -956,6 +968,7 @@
             this.Kline_ABS_0x5019.Name = "Kline_ABS_0x5019";
             this.Kline_ABS_0x5019.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5019.TabIndex = 1;
+            this.Kline_ABS_0x5019.Tag = "Valve relay fault";
             this.Kline_ABS_0x5019.Text = "0x5019";
             this.Kline_ABS_0x5019.UseVisualStyleBackColor = true;
             // 
@@ -967,7 +980,7 @@
             this.Kline_ABS_0x5055.Name = "Kline_ABS_0x5055";
             this.Kline_ABS_0x5055.Size = new System.Drawing.Size(75, 20);
             this.Kline_ABS_0x5055.TabIndex = 0;
-            this.Kline_ABS_0x5055.Tag = "";
+            this.Kline_ABS_0x5055.Tag = "Control unit failure";
             this.Kline_ABS_0x5055.Text = "0x5055";
             this.Kline_ABS_0x5055.UseVisualStyleBackColor = true;
             // 
@@ -1024,7 +1037,7 @@
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_C0083);
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_P0503);
             this.Group_OBD_Error_Code.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Group_OBD_Error_Code.Location = new System.Drawing.Point(991, 92);
+            this.Group_OBD_Error_Code.Location = new System.Drawing.Point(625, 1);
             this.Group_OBD_Error_Code.Margin = new System.Windows.Forms.Padding(2);
             this.Group_OBD_Error_Code.Name = "Group_OBD_Error_Code";
             this.Group_OBD_Error_Code.Padding = new System.Windows.Forms.Padding(2);
@@ -1041,6 +1054,7 @@
             this.Kline_OBD_U0486.Name = "Kline_OBD_U0486";
             this.Kline_OBD_U0486.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0486.TabIndex = 52;
+            this.Kline_OBD_U0486.Tag = "Immobilizer";
             this.Kline_OBD_U0486.Text = "U0486";
             this.Kline_OBD_U0486.UseVisualStyleBackColor = true;
             // 
@@ -1052,6 +1066,7 @@
             this.Kline_OBD_U0426.Name = "Kline_OBD_U0426";
             this.Kline_OBD_U0426.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0426.TabIndex = 51;
+            this.Kline_OBD_U0426.Tag = "Immobilizer";
             this.Kline_OBD_U0426.Text = "U0426";
             this.Kline_OBD_U0426.UseVisualStyleBackColor = true;
             // 
@@ -1063,6 +1078,7 @@
             this.Kline_OBD_U0122.Name = "Kline_OBD_U0122";
             this.Kline_OBD_U0122.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0122.TabIndex = 48;
+            this.Kline_OBD_U0122.Tag = "CAN line diagnosis \"UIN Node\"";
             this.Kline_OBD_U0122.Text = "U0122";
             this.Kline_OBD_U0122.UseVisualStyleBackColor = true;
             // 
@@ -1074,6 +1090,7 @@
             this.Kline_OBD_U0121.Name = "Kline_OBD_U0121";
             this.Kline_OBD_U0121.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0121.TabIndex = 47;
+            this.Kline_OBD_U0121.Tag = "CAN line diagnosis \"ABS Node\"";
             this.Kline_OBD_U0121.Text = "U0121";
             this.Kline_OBD_U0121.UseVisualStyleBackColor = true;
             // 
@@ -1085,6 +1102,7 @@
             this.Kline_OBD_U0002.Name = "Kline_OBD_U0002";
             this.Kline_OBD_U0002.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0002.TabIndex = 46;
+            this.Kline_OBD_U0002.Tag = "\"Mute Node\" CAN line diagnosis(NCM)";
             this.Kline_OBD_U0002.Text = "U0002";
             this.Kline_OBD_U0002.UseVisualStyleBackColor = true;
             // 
@@ -1096,6 +1114,7 @@
             this.Kline_OBD_U0140.Name = "Kline_OBD_U0140";
             this.Kline_OBD_U0140.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0140.TabIndex = 50;
+            this.Kline_OBD_U0140.Tag = "Dashboard Node Absent\r\n";
             this.Kline_OBD_U0140.Text = "U0140";
             this.Kline_OBD_U0140.UseVisualStyleBackColor = true;
             // 
@@ -1107,6 +1126,7 @@
             this.Kline_OBD_U0001.Name = "Kline_OBD_U0001";
             this.Kline_OBD_U0001.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0001.TabIndex = 45;
+            this.Kline_OBD_U0001.Tag = "\"Bus Off\" CAN line diagnosis (NCM)";
             this.Kline_OBD_U0001.Text = "U0001";
             this.Kline_OBD_U0001.UseVisualStyleBackColor = true;
             // 
@@ -1118,6 +1138,7 @@
             this.Kline_OBD_U0128.Name = "Kline_OBD_U0128";
             this.Kline_OBD_U0128.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_U0128.TabIndex = 49;
+            this.Kline_OBD_U0128.Tag = "CAN line diagnosis \"NST Node\"";
             this.Kline_OBD_U0128.Text = "U0128";
             this.Kline_OBD_U0128.UseVisualStyleBackColor = true;
             // 
@@ -1129,6 +1150,7 @@
             this.Kline_OBD_P2600.Name = "Kline_OBD_P2600";
             this.Kline_OBD_P2600.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P2600.TabIndex = 44;
+            this.Kline_OBD_P2600.Tag = "Eletric water pump command";
             this.Kline_OBD_P2600.Text = "P2600";
             this.Kline_OBD_P2600.UseVisualStyleBackColor = true;
             // 
@@ -1140,6 +1162,7 @@
             this.Kline_OBD_P2158.Name = "Kline_OBD_P2158";
             this.Kline_OBD_P2158.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P2158.TabIndex = 43;
+            this.Kline_OBD_P2158.Tag = "Rear vehicle speed sensor / signal from ABS";
             this.Kline_OBD_P2158.Text = "P2158";
             this.Kline_OBD_P2158.UseVisualStyleBackColor = true;
             // 
@@ -1151,6 +1174,7 @@
             this.Kline_OBD_P1800.Name = "Kline_OBD_P1800";
             this.Kline_OBD_P1800.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P1800.TabIndex = 42;
+            this.Kline_OBD_P1800.Tag = "Wheel spoke learn";
             this.Kline_OBD_P1800.Text = "P1800";
             this.Kline_OBD_P1800.UseVisualStyleBackColor = true;
             // 
@@ -1162,6 +1186,7 @@
             this.Kline_OBD_P1607.Name = "Kline_OBD_P1607";
             this.Kline_OBD_P1607.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P1607.TabIndex = 41;
+            this.Kline_OBD_P1607.Tag = "Data buffer full and triggered by special events";
             this.Kline_OBD_P1607.Text = "P1607";
             this.Kline_OBD_P1607.UseVisualStyleBackColor = true;
             // 
@@ -1173,6 +1198,7 @@
             this.Kline_OBD_P1536.Name = "Kline_OBD_P1536";
             this.Kline_OBD_P1536.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P1536.TabIndex = 40;
+            this.Kline_OBD_P1536.Tag = "Tip Over";
             this.Kline_OBD_P1536.Text = "P1536";
             this.Kline_OBD_P1536.UseVisualStyleBackColor = true;
             // 
@@ -1184,6 +1210,7 @@
             this.Kline_OBD_P1310.Name = "Kline_OBD_P1310";
             this.Kline_OBD_P1310.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P1310.TabIndex = 39;
+            this.Kline_OBD_P1310.Tag = "Light Feedback Signal Error State";
             this.Kline_OBD_P1310.Text = "P1310";
             this.Kline_OBD_P1310.UseVisualStyleBackColor = true;
             // 
@@ -1195,6 +1222,7 @@
             this.Kline_OBD_P0620_PIN31.Name = "Kline_OBD_P0620_PIN31";
             this.Kline_OBD_P0620_PIN31.Size = new System.Drawing.Size(115, 20);
             this.Kline_OBD_P0620_PIN31.TabIndex = 34;
+            this.Kline_OBD_P0620_PIN31.Tag = "Alternator \"Boost\" command diagnosis PIN 2";
             this.Kline_OBD_P0620_PIN31.Text = "P0620_PIN31";
             this.Kline_OBD_P0620_PIN31.UseVisualStyleBackColor = true;
             // 
@@ -1206,6 +1234,7 @@
             this.Kline_OBD_P1300.Name = "Kline_OBD_P1300";
             this.Kline_OBD_P1300.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P1300.TabIndex = 38;
+            this.Kline_OBD_P1300.Tag = "Headlights Off relay command";
             this.Kline_OBD_P1300.Text = "P1300";
             this.Kline_OBD_P1300.UseVisualStyleBackColor = true;
             // 
@@ -1217,6 +1246,7 @@
             this.Kline_OBD_P0620_PIN2.Name = "Kline_OBD_P0620_PIN2";
             this.Kline_OBD_P0620_PIN2.Size = new System.Drawing.Size(107, 20);
             this.Kline_OBD_P0620_PIN2.TabIndex = 33;
+            this.Kline_OBD_P0620_PIN2.Tag = "Alternator \"Boost\" command diagnosis PIN 2";
             this.Kline_OBD_P0620_PIN2.Text = "P0620_PIN2";
             this.Kline_OBD_P0620_PIN2.UseVisualStyleBackColor = true;
             // 
@@ -1228,6 +1258,7 @@
             this.Kline_OBD_P0A0F.Name = "Kline_OBD_P0A0F";
             this.Kline_OBD_P0A0F.Size = new System.Drawing.Size(70, 20);
             this.Kline_OBD_P0A0F.TabIndex = 37;
+            this.Kline_OBD_P0A0F.Tag = "Engine start enable lamp command";
             this.Kline_OBD_P0A0F.Text = "P0A0F";
             this.Kline_OBD_P0A0F.UseVisualStyleBackColor = true;
             // 
@@ -1239,6 +1270,7 @@
             this.Kline_OBD_P0606.Name = "Kline_OBD_P0606";
             this.Kline_OBD_P0606.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0606.TabIndex = 32;
+            this.Kline_OBD_P0606.Tag = "Microprocessor error";
             this.Kline_OBD_P0606.Text = "P0606";
             this.Kline_OBD_P0606.UseVisualStyleBackColor = true;
             // 
@@ -1250,6 +1282,7 @@
             this.Kline_OBD_P0655.Name = "Kline_OBD_P0655";
             this.Kline_OBD_P0655.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0655.TabIndex = 36;
+            this.Kline_OBD_P0655.Tag = "Engine Overtemperature Lamp Command";
             this.Kline_OBD_P0655.Text = "P0655";
             this.Kline_OBD_P0655.UseVisualStyleBackColor = true;
             // 
@@ -1261,6 +1294,7 @@
             this.Kline_OBD_P0605.Name = "Kline_OBD_P0605";
             this.Kline_OBD_P0605.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0605.TabIndex = 31;
+            this.Kline_OBD_P0605.Tag = "ROM error (Flash)";
             this.Kline_OBD_P0605.Text = "P0605";
             this.Kline_OBD_P0605.UseVisualStyleBackColor = true;
             // 
@@ -1272,6 +1306,7 @@
             this.Kline_OBD_P0650.Name = "Kline_OBD_P0650";
             this.Kline_OBD_P0650.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0650.TabIndex = 35;
+            this.Kline_OBD_P0650.Tag = "MIL Lamp command";
             this.Kline_OBD_P0650.Text = "P0650";
             this.Kline_OBD_P0650.UseVisualStyleBackColor = true;
             // 
@@ -1283,6 +1318,7 @@
             this.Kline_OBD_P0604.Name = "Kline_OBD_P0604";
             this.Kline_OBD_P0604.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0604.TabIndex = 30;
+            this.Kline_OBD_P0604.Tag = "RAM error";
             this.Kline_OBD_P0604.Text = "P0604";
             this.Kline_OBD_P0604.UseVisualStyleBackColor = true;
             // 
@@ -1294,6 +1330,7 @@
             this.Kline_OBD_P0601.Name = "Kline_OBD_P0601";
             this.Kline_OBD_P0601.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0601.TabIndex = 29;
+            this.Kline_OBD_P0601.Tag = "EEPROM error (Flash emul.)";
             this.Kline_OBD_P0601.Text = "P0601";
             this.Kline_OBD_P0601.UseVisualStyleBackColor = true;
             // 
@@ -1305,6 +1342,7 @@
             this.Kline_OBD_P0560.Name = "Kline_OBD_P0560";
             this.Kline_OBD_P0560.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0560.TabIndex = 28;
+            this.Kline_OBD_P0560.Tag = "Battery Voltage";
             this.Kline_OBD_P0560.Text = "P0560";
             this.Kline_OBD_P0560.UseVisualStyleBackColor = true;
             // 
@@ -1316,6 +1354,7 @@
             this.Kline_OBD_P0512.Name = "Kline_OBD_P0512";
             this.Kline_OBD_P0512.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0512.TabIndex = 27;
+            this.Kline_OBD_P0512.Tag = "Engine Start Button";
             this.Kline_OBD_P0512.Text = "P0512";
             this.Kline_OBD_P0512.UseVisualStyleBackColor = true;
             // 
@@ -1327,6 +1366,7 @@
             this.Kline_OBD_P0500.Name = "Kline_OBD_P0500";
             this.Kline_OBD_P0500.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0500.TabIndex = 24;
+            this.Kline_OBD_P0500.Tag = "Vehicle speed sensor/signal";
             this.Kline_OBD_P0500.Text = "P0500";
             this.Kline_OBD_P0500.UseVisualStyleBackColor = true;
             // 
@@ -1338,6 +1378,7 @@
             this.Kline_OBD_P0480.Name = "Kline_OBD_P0480";
             this.Kline_OBD_P0480.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0480.TabIndex = 23;
+            this.Kline_OBD_P0480.Tag = "Cooling fan relay command";
             this.Kline_OBD_P0480.Text = "P0480";
             this.Kline_OBD_P0480.UseVisualStyleBackColor = true;
             // 
@@ -1349,6 +1390,7 @@
             this.Kline_OBD_P0410.Name = "Kline_OBD_P0410";
             this.Kline_OBD_P0410.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0410.TabIndex = 22;
+            this.Kline_OBD_P0410.Tag = "Secondary Air Valve";
             this.Kline_OBD_P0410.Text = "P0410";
             this.Kline_OBD_P0410.UseVisualStyleBackColor = true;
             // 
@@ -1360,6 +1402,7 @@
             this.Kline_OBD_P0505.Name = "Kline_OBD_P0505";
             this.Kline_OBD_P0505.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0505.TabIndex = 26;
+            this.Kline_OBD_P0505.Tag = "Idle control / stepper motor control";
             this.Kline_OBD_P0505.Text = "P0505";
             this.Kline_OBD_P0505.UseVisualStyleBackColor = true;
             // 
@@ -1371,6 +1414,7 @@
             this.Kline_OBD_P0352.Name = "Kline_OBD_P0352";
             this.Kline_OBD_P0352.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0352.TabIndex = 21;
+            this.Kline_OBD_P0352.Tag = "Ignition coil 2 circuit";
             this.Kline_OBD_P0352.Text = "P0352";
             this.Kline_OBD_P0352.UseVisualStyleBackColor = true;
             // 
@@ -1382,6 +1426,7 @@
             this.Kline_OBD_P0501.Name = "Kline_OBD_P0501";
             this.Kline_OBD_P0501.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0501.TabIndex = 25;
+            this.Kline_OBD_P0501.Tag = "Front vehicle speed sensor/signal from ABS";
             this.Kline_OBD_P0501.Text = "P0501";
             this.Kline_OBD_P0501.UseVisualStyleBackColor = true;
             // 
@@ -1393,6 +1438,7 @@
             this.Kline_OBD_P0351.Name = "Kline_OBD_P0351";
             this.Kline_OBD_P0351.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0351.TabIndex = 20;
+            this.Kline_OBD_P0351.Tag = "Ignition coil 1 circuit";
             this.Kline_OBD_P0351.Text = "P0351";
             this.Kline_OBD_P0351.UseVisualStyleBackColor = true;
             // 
@@ -1404,6 +1450,7 @@
             this.Kline_OBD_P0336.Name = "Kline_OBD_P0336";
             this.Kline_OBD_P0336.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0336.TabIndex = 19;
+            this.Kline_OBD_P0336.Tag = "Engine speed sensor - Functional";
             this.Kline_OBD_P0336.Text = "P0336";
             this.Kline_OBD_P0336.UseVisualStyleBackColor = true;
             // 
@@ -1415,6 +1462,7 @@
             this.Kline_OBD_P0335.Name = "Kline_OBD_P0335";
             this.Kline_OBD_P0335.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0335.TabIndex = 18;
+            this.Kline_OBD_P0335.Tag = "Engine speed sensor - Electric";
             this.Kline_OBD_P0335.Text = "P0335";
             this.Kline_OBD_P0335.UseVisualStyleBackColor = true;
             // 
@@ -1426,6 +1474,7 @@
             this.Kline_OBD_P0230.Name = "Kline_OBD_P0230";
             this.Kline_OBD_P0230.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0230.TabIndex = 17;
+            this.Kline_OBD_P0230.Tag = "Fuel Pump/Load Relay Command";
             this.Kline_OBD_P0230.Text = "P0230";
             this.Kline_OBD_P0230.UseVisualStyleBackColor = true;
             // 
@@ -1437,6 +1486,7 @@
             this.Kline_OBD_P0217.Name = "Kline_OBD_P0217";
             this.Kline_OBD_P0217.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0217.TabIndex = 16;
+            this.Kline_OBD_P0217.Tag = "Engine OverTemperature State Recognition";
             this.Kline_OBD_P0217.Text = "P0217";
             this.Kline_OBD_P0217.UseVisualStyleBackColor = true;
             // 
@@ -1448,6 +1498,7 @@
             this.Kline_OBD_P0202.Name = "Kline_OBD_P0202";
             this.Kline_OBD_P0202.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0202.TabIndex = 15;
+            this.Kline_OBD_P0202.Tag = "Cylinder 2 Injector Command";
             this.Kline_OBD_P0202.Text = "P0202";
             this.Kline_OBD_P0202.UseVisualStyleBackColor = true;
             // 
@@ -1459,6 +1510,7 @@
             this.Kline_OBD_P0130.Name = "Kline_OBD_P0130";
             this.Kline_OBD_P0130.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0130.TabIndex = 7;
+            this.Kline_OBD_P0130.Tag = "Oxygen Sensor 1";
             this.Kline_OBD_P0130.Text = "P0130";
             this.Kline_OBD_P0130.UseVisualStyleBackColor = true;
             // 
@@ -1470,6 +1522,7 @@
             this.Kline_OBD_P0201.Name = "Kline_OBD_P0201";
             this.Kline_OBD_P0201.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0201.TabIndex = 14;
+            this.Kline_OBD_P0201.Tag = "Cylinder 1 Injector Command";
             this.Kline_OBD_P0201.Text = "P0201";
             this.Kline_OBD_P0201.UseVisualStyleBackColor = true;
             // 
@@ -1481,6 +1534,7 @@
             this.Kline_OBD_P0120.Name = "Kline_OBD_P0120";
             this.Kline_OBD_P0120.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0120.TabIndex = 6;
+            this.Kline_OBD_P0120.Tag = "Throttle Position Potentiometer Sensor";
             this.Kline_OBD_P0120.Text = "P0120";
             this.Kline_OBD_P0120.UseVisualStyleBackColor = true;
             // 
@@ -1492,6 +1546,7 @@
             this.Kline_OBD_P0155.Name = "Kline_OBD_P0155";
             this.Kline_OBD_P0155.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0155.TabIndex = 13;
+            this.Kline_OBD_P0155.Tag = "Oxygen Sensor 2 Heater Circuit";
             this.Kline_OBD_P0155.Text = "P0155";
             this.Kline_OBD_P0155.UseVisualStyleBackColor = true;
             // 
@@ -1503,6 +1558,7 @@
             this.Kline_OBD_P0115.Name = "Kline_OBD_P0115";
             this.Kline_OBD_P0115.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0115.TabIndex = 5;
+            this.Kline_OBD_P0115.Tag = "Engine Temperature Sensor";
             this.Kline_OBD_P0115.Text = "P0115";
             this.Kline_OBD_P0115.UseVisualStyleBackColor = true;
             // 
@@ -1514,6 +1570,7 @@
             this.Kline_OBD_P0150.Name = "Kline_OBD_P0150";
             this.Kline_OBD_P0150.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0150.TabIndex = 12;
+            this.Kline_OBD_P0150.Tag = "Oxygen Sensor 2";
             this.Kline_OBD_P0150.Text = "P0150";
             this.Kline_OBD_P0150.UseVisualStyleBackColor = true;
             // 
@@ -1525,6 +1582,7 @@
             this.Kline_OBD_P0110.Name = "Kline_OBD_P0110";
             this.Kline_OBD_P0110.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0110.TabIndex = 4;
+            this.Kline_OBD_P0110.Tag = "Air Temperture Sensor";
             this.Kline_OBD_P0110.Text = "P0110";
             this.Kline_OBD_P0110.UseVisualStyleBackColor = true;
             // 
@@ -1536,6 +1594,7 @@
             this.Kline_OBD_P0135.Name = "Kline_OBD_P0135";
             this.Kline_OBD_P0135.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0135.TabIndex = 11;
+            this.Kline_OBD_P0135.Tag = "Oxygen Sensor 1 Heater Circuit";
             this.Kline_OBD_P0135.Text = "P0135";
             this.Kline_OBD_P0135.UseVisualStyleBackColor = true;
             // 
@@ -1547,6 +1606,7 @@
             this.Kline_OBD_P0105.Name = "Kline_OBD_P0105";
             this.Kline_OBD_P0105.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0105.TabIndex = 3;
+            this.Kline_OBD_P0105.Tag = "Pressure Sensor ";
             this.Kline_OBD_P0105.Text = "P0105";
             this.Kline_OBD_P0105.UseVisualStyleBackColor = true;
             // 
@@ -1569,6 +1629,7 @@
             this.Kline_OBD_C0083.Name = "Kline_OBD_C0083";
             this.Kline_OBD_C0083.Size = new System.Drawing.Size(69, 20);
             this.Kline_OBD_C0083.TabIndex = 1;
+            this.Kline_OBD_C0083.Tag = "Tyres Pressure Lamp";
             this.Kline_OBD_C0083.Text = "C0083";
             this.Kline_OBD_C0083.UseVisualStyleBackColor = true;
             // 
@@ -1580,20 +1641,21 @@
             this.Kline_OBD_P0503.Name = "Kline_OBD_P0503";
             this.Kline_OBD_P0503.Size = new System.Drawing.Size(67, 20);
             this.Kline_OBD_P0503.TabIndex = 0;
+            this.Kline_OBD_P0503.Tag = "Font DX vehicle speed sensor/signal(vehicle is equipped with NST node)";
             this.Kline_OBD_P0503.Text = "P0503";
             this.Kline_OBD_P0503.UseVisualStyleBackColor = true;
             // 
             // tmr_FetchingUARTInput
             // 
             this.tmr_FetchingUARTInput.Interval = 250;
-            this.tmr_FetchingUARTInput.Tick += new System.EventHandler(this.Tmr_FetchingUARTInput_Tick);
+            this.tmr_FetchingUARTInput.Tick += new System.EventHandler(this.tmr_FetchingUARTInput_Tick);
             // 
             // rtbKLineData
             // 
-            this.rtbKLineData.Location = new System.Drawing.Point(896, 11);
+            this.rtbKLineData.Location = new System.Drawing.Point(973, 11);
             this.rtbKLineData.Name = "rtbKLineData";
             this.rtbKLineData.ReadOnly = true;
-            this.rtbKLineData.Size = new System.Drawing.Size(408, 76);
+            this.rtbKLineData.Size = new System.Drawing.Size(340, 76);
             this.rtbKLineData.TabIndex = 28;
             this.rtbKLineData.Text = "";
             // 
@@ -1603,7 +1665,7 @@
             this.Group_DTC_data_option.Controls.Add(this.DTC_option_first_six);
             this.Group_DTC_data_option.Enabled = false;
             this.Group_DTC_data_option.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Group_DTC_data_option.Location = new System.Drawing.Point(1309, 11);
+            this.Group_DTC_data_option.Location = new System.Drawing.Point(395, 1);
             this.Group_DTC_data_option.Margin = new System.Windows.Forms.Padding(2);
             this.Group_DTC_data_option.Name = "Group_DTC_data_option";
             this.Group_DTC_data_option.Padding = new System.Windows.Forms.Padding(2);
@@ -1698,8 +1760,8 @@
             this.groupBox1.Controls.Add(this.Can_OBD_C0085);
             this.groupBox1.Controls.Add(this.Can_OBD_C0083);
             this.groupBox1.Controls.Add(this.Can_OBD_P0503);
-            this.groupBox1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox1.Location = new System.Drawing.Point(1436, 365);
+            this.groupBox1.Font = new System.Drawing.Font("新細明體", 9F);
+            this.groupBox1.Location = new System.Drawing.Point(1071, 448);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -1715,7 +1777,7 @@
             this.Can_OBD_U0486.Location = new System.Drawing.Point(165, 39);
             this.Can_OBD_U0486.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0486.Name = "Can_OBD_U0486";
-            this.Can_OBD_U0486.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0486.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0486.TabIndex = 52;
             this.Can_OBD_U0486.TabStop = true;
             this.Can_OBD_U0486.Text = "U0486";
@@ -1728,7 +1790,7 @@
             this.Can_OBD_U0426.Location = new System.Drawing.Point(165, 19);
             this.Can_OBD_U0426.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0426.Name = "Can_OBD_U0426";
-            this.Can_OBD_U0426.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0426.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0426.TabIndex = 51;
             this.Can_OBD_U0426.TabStop = true;
             this.Can_OBD_U0426.Text = "U0426";
@@ -1741,7 +1803,7 @@
             this.Can_OBD_U0122.Location = new System.Drawing.Point(85, 441);
             this.Can_OBD_U0122.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0122.Name = "Can_OBD_U0122";
-            this.Can_OBD_U0122.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0122.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0122.TabIndex = 48;
             this.Can_OBD_U0122.TabStop = true;
             this.Can_OBD_U0122.Text = "U0122";
@@ -1754,7 +1816,7 @@
             this.Can_OBD_U0121.Location = new System.Drawing.Point(85, 421);
             this.Can_OBD_U0121.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0121.Name = "Can_OBD_U0121";
-            this.Can_OBD_U0121.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0121.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0121.TabIndex = 47;
             this.Can_OBD_U0121.TabStop = true;
             this.Can_OBD_U0121.Text = "U0121";
@@ -1767,7 +1829,7 @@
             this.Can_OBD_U0002.Location = new System.Drawing.Point(85, 401);
             this.Can_OBD_U0002.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0002.Name = "Can_OBD_U0002";
-            this.Can_OBD_U0002.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0002.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0002.TabIndex = 46;
             this.Can_OBD_U0002.TabStop = true;
             this.Can_OBD_U0002.Text = "U0002";
@@ -1780,7 +1842,7 @@
             this.Can_OBD_U0140.Location = new System.Drawing.Point(85, 481);
             this.Can_OBD_U0140.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0140.Name = "Can_OBD_U0140";
-            this.Can_OBD_U0140.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0140.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0140.TabIndex = 50;
             this.Can_OBD_U0140.TabStop = true;
             this.Can_OBD_U0140.Text = "U0140";
@@ -1793,7 +1855,7 @@
             this.Can_OBD_U0001.Location = new System.Drawing.Point(85, 381);
             this.Can_OBD_U0001.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0001.Name = "Can_OBD_U0001";
-            this.Can_OBD_U0001.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0001.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0001.TabIndex = 45;
             this.Can_OBD_U0001.TabStop = true;
             this.Can_OBD_U0001.Text = "U0001";
@@ -1806,7 +1868,7 @@
             this.Can_OBD_U0128.Location = new System.Drawing.Point(85, 461);
             this.Can_OBD_U0128.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_U0128.Name = "Can_OBD_U0128";
-            this.Can_OBD_U0128.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_U0128.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_U0128.TabIndex = 49;
             this.Can_OBD_U0128.TabStop = true;
             this.Can_OBD_U0128.Text = "U0128";
@@ -1819,7 +1881,7 @@
             this.Can_OBD_P2600.Location = new System.Drawing.Point(85, 361);
             this.Can_OBD_P2600.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P2600.Name = "Can_OBD_P2600";
-            this.Can_OBD_P2600.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P2600.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P2600.TabIndex = 44;
             this.Can_OBD_P2600.TabStop = true;
             this.Can_OBD_P2600.Text = "P2600";
@@ -1832,7 +1894,7 @@
             this.Can_OBD_P2158.Location = new System.Drawing.Point(85, 341);
             this.Can_OBD_P2158.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P2158.Name = "Can_OBD_P2158";
-            this.Can_OBD_P2158.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P2158.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P2158.TabIndex = 43;
             this.Can_OBD_P2158.TabStop = true;
             this.Can_OBD_P2158.Text = "P2158";
@@ -1845,7 +1907,7 @@
             this.Can_OBD_P1800.Location = new System.Drawing.Point(85, 320);
             this.Can_OBD_P1800.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P1800.Name = "Can_OBD_P1800";
-            this.Can_OBD_P1800.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P1800.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P1800.TabIndex = 42;
             this.Can_OBD_P1800.TabStop = true;
             this.Can_OBD_P1800.Text = "P1800";
@@ -1858,7 +1920,7 @@
             this.Can_OBD_P1607.Location = new System.Drawing.Point(85, 300);
             this.Can_OBD_P1607.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P1607.Name = "Can_OBD_P1607";
-            this.Can_OBD_P1607.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P1607.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P1607.TabIndex = 41;
             this.Can_OBD_P1607.TabStop = true;
             this.Can_OBD_P1607.Text = "P1607";
@@ -1871,7 +1933,7 @@
             this.Can_OBD_P1536.Location = new System.Drawing.Point(85, 280);
             this.Can_OBD_P1536.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P1536.Name = "Can_OBD_P1536";
-            this.Can_OBD_P1536.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P1536.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P1536.TabIndex = 40;
             this.Can_OBD_P1536.TabStop = true;
             this.Can_OBD_P1536.Text = "P1536";
@@ -1884,7 +1946,7 @@
             this.Can_OBD_P1310.Location = new System.Drawing.Point(85, 260);
             this.Can_OBD_P1310.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P1310.Name = "Can_OBD_P1310";
-            this.Can_OBD_P1310.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P1310.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P1310.TabIndex = 39;
             this.Can_OBD_P1310.TabStop = true;
             this.Can_OBD_P1310.Text = "P1310";
@@ -1897,7 +1959,7 @@
             this.Can_OBD_P0620_PIN31.Location = new System.Drawing.Point(85, 160);
             this.Can_OBD_P0620_PIN31.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0620_PIN31.Name = "Can_OBD_P0620_PIN31";
-            this.Can_OBD_P0620_PIN31.Size = new System.Drawing.Size(114, 20);
+            this.Can_OBD_P0620_PIN31.Size = new System.Drawing.Size(89, 16);
             this.Can_OBD_P0620_PIN31.TabIndex = 34;
             this.Can_OBD_P0620_PIN31.TabStop = true;
             this.Can_OBD_P0620_PIN31.Text = "P0620_PIN31";
@@ -1910,7 +1972,7 @@
             this.Can_OBD_P1300.Location = new System.Drawing.Point(85, 240);
             this.Can_OBD_P1300.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P1300.Name = "Can_OBD_P1300";
-            this.Can_OBD_P1300.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P1300.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P1300.TabIndex = 38;
             this.Can_OBD_P1300.TabStop = true;
             this.Can_OBD_P1300.Text = "P1300";
@@ -1923,7 +1985,7 @@
             this.Can_OBD_P0620_PIN2.Location = new System.Drawing.Point(85, 140);
             this.Can_OBD_P0620_PIN2.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0620_PIN2.Name = "Can_OBD_P0620_PIN2";
-            this.Can_OBD_P0620_PIN2.Size = new System.Drawing.Size(106, 20);
+            this.Can_OBD_P0620_PIN2.Size = new System.Drawing.Size(83, 16);
             this.Can_OBD_P0620_PIN2.TabIndex = 33;
             this.Can_OBD_P0620_PIN2.TabStop = true;
             this.Can_OBD_P0620_PIN2.Text = "P0620_PIN2";
@@ -1936,7 +1998,7 @@
             this.Can_OBD_P0A0F.Location = new System.Drawing.Point(85, 220);
             this.Can_OBD_P0A0F.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0A0F.Name = "Can_OBD_P0A0F";
-            this.Can_OBD_P0A0F.Size = new System.Drawing.Size(69, 20);
+            this.Can_OBD_P0A0F.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_P0A0F.TabIndex = 37;
             this.Can_OBD_P0A0F.TabStop = true;
             this.Can_OBD_P0A0F.Text = "P0A0F";
@@ -1949,7 +2011,7 @@
             this.Can_OBD_P0606.Location = new System.Drawing.Point(85, 120);
             this.Can_OBD_P0606.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0606.Name = "Can_OBD_P0606";
-            this.Can_OBD_P0606.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0606.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0606.TabIndex = 32;
             this.Can_OBD_P0606.TabStop = true;
             this.Can_OBD_P0606.Text = "P0606";
@@ -1962,7 +2024,7 @@
             this.Can_OBD_P0655.Location = new System.Drawing.Point(85, 200);
             this.Can_OBD_P0655.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0655.Name = "Can_OBD_P0655";
-            this.Can_OBD_P0655.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0655.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0655.TabIndex = 36;
             this.Can_OBD_P0655.TabStop = true;
             this.Can_OBD_P0655.Text = "P0655";
@@ -1975,7 +2037,7 @@
             this.Can_OBD_P0605.Location = new System.Drawing.Point(85, 100);
             this.Can_OBD_P0605.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0605.Name = "Can_OBD_P0605";
-            this.Can_OBD_P0605.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0605.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0605.TabIndex = 31;
             this.Can_OBD_P0605.TabStop = true;
             this.Can_OBD_P0605.Text = "P0605";
@@ -1988,7 +2050,7 @@
             this.Can_OBD_P0650.Location = new System.Drawing.Point(85, 180);
             this.Can_OBD_P0650.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0650.Name = "Can_OBD_P0650";
-            this.Can_OBD_P0650.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0650.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0650.TabIndex = 35;
             this.Can_OBD_P0650.TabStop = true;
             this.Can_OBD_P0650.Text = "P0650";
@@ -2001,7 +2063,7 @@
             this.Can_OBD_P0604.Location = new System.Drawing.Point(85, 80);
             this.Can_OBD_P0604.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0604.Name = "Can_OBD_P0604";
-            this.Can_OBD_P0604.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0604.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0604.TabIndex = 30;
             this.Can_OBD_P0604.TabStop = true;
             this.Can_OBD_P0604.Text = "P0604";
@@ -2014,7 +2076,7 @@
             this.Can_OBD_P0601.Location = new System.Drawing.Point(85, 60);
             this.Can_OBD_P0601.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0601.Name = "Can_OBD_P0601";
-            this.Can_OBD_P0601.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0601.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0601.TabIndex = 29;
             this.Can_OBD_P0601.TabStop = true;
             this.Can_OBD_P0601.Text = "P0601";
@@ -2027,7 +2089,7 @@
             this.Can_OBD_P0560.Location = new System.Drawing.Point(85, 39);
             this.Can_OBD_P0560.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0560.Name = "Can_OBD_P0560";
-            this.Can_OBD_P0560.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0560.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0560.TabIndex = 28;
             this.Can_OBD_P0560.TabStop = true;
             this.Can_OBD_P0560.Text = "P0560";
@@ -2040,7 +2102,7 @@
             this.Can_OBD_P0512.Location = new System.Drawing.Point(85, 19);
             this.Can_OBD_P0512.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0512.Name = "Can_OBD_P0512";
-            this.Can_OBD_P0512.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0512.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0512.TabIndex = 27;
             this.Can_OBD_P0512.TabStop = true;
             this.Can_OBD_P0512.Text = "P0512";
@@ -2053,7 +2115,7 @@
             this.Can_OBD_P0500.Location = new System.Drawing.Point(10, 441);
             this.Can_OBD_P0500.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0500.Name = "Can_OBD_P0500";
-            this.Can_OBD_P0500.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0500.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0500.TabIndex = 24;
             this.Can_OBD_P0500.TabStop = true;
             this.Can_OBD_P0500.Text = "P0500";
@@ -2066,7 +2128,7 @@
             this.Can_OBD_P0480.Location = new System.Drawing.Point(10, 421);
             this.Can_OBD_P0480.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0480.Name = "Can_OBD_P0480";
-            this.Can_OBD_P0480.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0480.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0480.TabIndex = 23;
             this.Can_OBD_P0480.TabStop = true;
             this.Can_OBD_P0480.Text = "P0480";
@@ -2079,7 +2141,7 @@
             this.Can_OBD_P0410.Location = new System.Drawing.Point(10, 401);
             this.Can_OBD_P0410.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0410.Name = "Can_OBD_P0410";
-            this.Can_OBD_P0410.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0410.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0410.TabIndex = 22;
             this.Can_OBD_P0410.TabStop = true;
             this.Can_OBD_P0410.Text = "P0410";
@@ -2092,7 +2154,7 @@
             this.Can_OBD_P0505.Location = new System.Drawing.Point(10, 481);
             this.Can_OBD_P0505.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0505.Name = "Can_OBD_P0505";
-            this.Can_OBD_P0505.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0505.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0505.TabIndex = 26;
             this.Can_OBD_P0505.TabStop = true;
             this.Can_OBD_P0505.Text = "P0505";
@@ -2105,7 +2167,7 @@
             this.Can_OBD_P0352.Location = new System.Drawing.Point(10, 381);
             this.Can_OBD_P0352.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0352.Name = "Can_OBD_P0352";
-            this.Can_OBD_P0352.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0352.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0352.TabIndex = 21;
             this.Can_OBD_P0352.TabStop = true;
             this.Can_OBD_P0352.Text = "P0352";
@@ -2118,7 +2180,7 @@
             this.Can_OBD_P0501.Location = new System.Drawing.Point(10, 461);
             this.Can_OBD_P0501.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0501.Name = "Can_OBD_P0501";
-            this.Can_OBD_P0501.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0501.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0501.TabIndex = 25;
             this.Can_OBD_P0501.TabStop = true;
             this.Can_OBD_P0501.Text = "P0501";
@@ -2131,7 +2193,7 @@
             this.Can_OBD_P0351.Location = new System.Drawing.Point(10, 361);
             this.Can_OBD_P0351.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0351.Name = "Can_OBD_P0351";
-            this.Can_OBD_P0351.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0351.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0351.TabIndex = 20;
             this.Can_OBD_P0351.TabStop = true;
             this.Can_OBD_P0351.Text = "P0351";
@@ -2144,7 +2206,7 @@
             this.Can_OBD_P0336.Location = new System.Drawing.Point(10, 341);
             this.Can_OBD_P0336.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0336.Name = "Can_OBD_P0336";
-            this.Can_OBD_P0336.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0336.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0336.TabIndex = 19;
             this.Can_OBD_P0336.TabStop = true;
             this.Can_OBD_P0336.Text = "P0336";
@@ -2157,7 +2219,7 @@
             this.Can_OBD_P0335.Location = new System.Drawing.Point(10, 320);
             this.Can_OBD_P0335.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0335.Name = "Can_OBD_P0335";
-            this.Can_OBD_P0335.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0335.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0335.TabIndex = 18;
             this.Can_OBD_P0335.TabStop = true;
             this.Can_OBD_P0335.Text = "P0335";
@@ -2170,7 +2232,7 @@
             this.Can_OBD_P0230.Location = new System.Drawing.Point(10, 300);
             this.Can_OBD_P0230.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0230.Name = "Can_OBD_P0230";
-            this.Can_OBD_P0230.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0230.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0230.TabIndex = 17;
             this.Can_OBD_P0230.TabStop = true;
             this.Can_OBD_P0230.Text = "P0230";
@@ -2183,7 +2245,7 @@
             this.Can_OBD_P0217.Location = new System.Drawing.Point(10, 280);
             this.Can_OBD_P0217.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0217.Name = "Can_OBD_P0217";
-            this.Can_OBD_P0217.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0217.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0217.TabIndex = 16;
             this.Can_OBD_P0217.TabStop = true;
             this.Can_OBD_P0217.Text = "P0217";
@@ -2196,7 +2258,7 @@
             this.Can_OBD_P0202.Location = new System.Drawing.Point(10, 260);
             this.Can_OBD_P0202.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0202.Name = "Can_OBD_P0202";
-            this.Can_OBD_P0202.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0202.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0202.TabIndex = 15;
             this.Can_OBD_P0202.TabStop = true;
             this.Can_OBD_P0202.Text = "P0202";
@@ -2209,7 +2271,7 @@
             this.Can_OBD_P0130.Location = new System.Drawing.Point(10, 160);
             this.Can_OBD_P0130.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0130.Name = "Can_OBD_P0130";
-            this.Can_OBD_P0130.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0130.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0130.TabIndex = 7;
             this.Can_OBD_P0130.TabStop = true;
             this.Can_OBD_P0130.Text = "P0130";
@@ -2222,7 +2284,7 @@
             this.Can_OBD_P0201.Location = new System.Drawing.Point(10, 240);
             this.Can_OBD_P0201.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0201.Name = "Can_OBD_P0201";
-            this.Can_OBD_P0201.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0201.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0201.TabIndex = 14;
             this.Can_OBD_P0201.TabStop = true;
             this.Can_OBD_P0201.Text = "P0201";
@@ -2235,7 +2297,7 @@
             this.Can_OBD_P0120.Location = new System.Drawing.Point(10, 140);
             this.Can_OBD_P0120.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0120.Name = "Can_OBD_P0120";
-            this.Can_OBD_P0120.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0120.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0120.TabIndex = 6;
             this.Can_OBD_P0120.TabStop = true;
             this.Can_OBD_P0120.Text = "P0120";
@@ -2248,7 +2310,7 @@
             this.Can_OBD_P0155.Location = new System.Drawing.Point(10, 220);
             this.Can_OBD_P0155.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0155.Name = "Can_OBD_P0155";
-            this.Can_OBD_P0155.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0155.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0155.TabIndex = 13;
             this.Can_OBD_P0155.TabStop = true;
             this.Can_OBD_P0155.Text = "P0155";
@@ -2261,7 +2323,7 @@
             this.Can_OBD_P0115.Location = new System.Drawing.Point(10, 120);
             this.Can_OBD_P0115.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0115.Name = "Can_OBD_P0115";
-            this.Can_OBD_P0115.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0115.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0115.TabIndex = 5;
             this.Can_OBD_P0115.TabStop = true;
             this.Can_OBD_P0115.Text = "P0115";
@@ -2274,7 +2336,7 @@
             this.Can_OBD_P0150.Location = new System.Drawing.Point(10, 200);
             this.Can_OBD_P0150.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0150.Name = "Can_OBD_P0150";
-            this.Can_OBD_P0150.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0150.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0150.TabIndex = 12;
             this.Can_OBD_P0150.TabStop = true;
             this.Can_OBD_P0150.Text = "P0150";
@@ -2287,7 +2349,7 @@
             this.Can_OBD_P0110.Location = new System.Drawing.Point(10, 100);
             this.Can_OBD_P0110.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0110.Name = "Can_OBD_P0110";
-            this.Can_OBD_P0110.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0110.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0110.TabIndex = 4;
             this.Can_OBD_P0110.TabStop = true;
             this.Can_OBD_P0110.Text = "P0110";
@@ -2300,7 +2362,7 @@
             this.Can_OBD_P0135.Location = new System.Drawing.Point(10, 180);
             this.Can_OBD_P0135.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0135.Name = "Can_OBD_P0135";
-            this.Can_OBD_P0135.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0135.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0135.TabIndex = 11;
             this.Can_OBD_P0135.TabStop = true;
             this.Can_OBD_P0135.Text = "P0135";
@@ -2313,7 +2375,7 @@
             this.Can_OBD_P0105.Location = new System.Drawing.Point(10, 80);
             this.Can_OBD_P0105.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0105.Name = "Can_OBD_P0105";
-            this.Can_OBD_P0105.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0105.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0105.TabIndex = 3;
             this.Can_OBD_P0105.TabStop = true;
             this.Can_OBD_P0105.Text = "P0105";
@@ -2326,7 +2388,7 @@
             this.Can_OBD_C0085.Location = new System.Drawing.Point(10, 60);
             this.Can_OBD_C0085.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_C0085.Name = "Can_OBD_C0085";
-            this.Can_OBD_C0085.Size = new System.Drawing.Size(68, 20);
+            this.Can_OBD_C0085.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_C0085.TabIndex = 2;
             this.Can_OBD_C0085.TabStop = true;
             this.Can_OBD_C0085.Text = "C0085";
@@ -2339,7 +2401,7 @@
             this.Can_OBD_C0083.Location = new System.Drawing.Point(10, 39);
             this.Can_OBD_C0083.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_C0083.Name = "Can_OBD_C0083";
-            this.Can_OBD_C0083.Size = new System.Drawing.Size(68, 20);
+            this.Can_OBD_C0083.Size = new System.Drawing.Size(55, 16);
             this.Can_OBD_C0083.TabIndex = 1;
             this.Can_OBD_C0083.TabStop = true;
             this.Can_OBD_C0083.Text = "C0083";
@@ -2352,7 +2414,7 @@
             this.Can_OBD_P0503.Location = new System.Drawing.Point(10, 19);
             this.Can_OBD_P0503.Margin = new System.Windows.Forms.Padding(2);
             this.Can_OBD_P0503.Name = "Can_OBD_P0503";
-            this.Can_OBD_P0503.Size = new System.Drawing.Size(66, 20);
+            this.Can_OBD_P0503.Size = new System.Drawing.Size(53, 16);
             this.Can_OBD_P0503.TabIndex = 0;
             this.Can_OBD_P0503.TabStop = true;
             this.Can_OBD_P0503.Text = "P0503";
@@ -2374,8 +2436,8 @@
             this.groupBox2.Controls.Add(this.Can_ABS_0x5017);
             this.groupBox2.Controls.Add(this.Can_ABS_0x5019);
             this.groupBox2.Controls.Add(this.Can_ABS_0x5055);
-            this.groupBox2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox2.Location = new System.Drawing.Point(1338, 365);
+            this.groupBox2.Font = new System.Drawing.Font("新細明體", 9F);
+            this.groupBox2.Location = new System.Drawing.Point(973, 448);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -2391,7 +2453,7 @@
             this.Can_ABS_0x5025.Location = new System.Drawing.Point(10, 280);
             this.Can_ABS_0x5025.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5025.Name = "Can_ABS_0x5025";
-            this.Can_ABS_0x5025.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5025.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5025.TabIndex = 16;
             this.Can_ABS_0x5025.TabStop = true;
             this.Can_ABS_0x5025.Text = "0x5025";
@@ -2404,7 +2466,7 @@
             this.Can_ABS_0x5044.Location = new System.Drawing.Point(10, 260);
             this.Can_ABS_0x5044.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5044.Name = "Can_ABS_0x5044";
-            this.Can_ABS_0x5044.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5044.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5044.TabIndex = 15;
             this.Can_ABS_0x5044.TabStop = true;
             this.Can_ABS_0x5044.Text = "0x5044";
@@ -2417,7 +2479,7 @@
             this.Can_ABS_0x5052.Location = new System.Drawing.Point(10, 160);
             this.Can_ABS_0x5052.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5052.Name = "Can_ABS_0x5052";
-            this.Can_ABS_0x5052.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5052.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5052.TabIndex = 7;
             this.Can_ABS_0x5052.TabStop = true;
             this.Can_ABS_0x5052.Text = "0x5052";
@@ -2430,7 +2492,7 @@
             this.Can_ABS_0x5042.Location = new System.Drawing.Point(10, 240);
             this.Can_ABS_0x5042.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5042.Name = "Can_ABS_0x5042";
-            this.Can_ABS_0x5042.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5042.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5042.TabIndex = 14;
             this.Can_ABS_0x5042.TabStop = true;
             this.Can_ABS_0x5042.Text = "0x5042";
@@ -2443,7 +2505,7 @@
             this.Can_ABS_0x5053.Location = new System.Drawing.Point(10, 140);
             this.Can_ABS_0x5053.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5053.Name = "Can_ABS_0x5053";
-            this.Can_ABS_0x5053.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5053.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5053.TabIndex = 6;
             this.Can_ABS_0x5053.TabStop = true;
             this.Can_ABS_0x5053.Text = "0x5053";
@@ -2456,7 +2518,7 @@
             this.Can_ABS_0x5045.Location = new System.Drawing.Point(10, 220);
             this.Can_ABS_0x5045.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5045.Name = "Can_ABS_0x5045";
-            this.Can_ABS_0x5045.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5045.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5045.TabIndex = 13;
             this.Can_ABS_0x5045.TabStop = true;
             this.Can_ABS_0x5045.Text = "0x5045";
@@ -2469,7 +2531,7 @@
             this.Can_ABS_0x5014.Location = new System.Drawing.Point(10, 120);
             this.Can_ABS_0x5014.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5014.Name = "Can_ABS_0x5014";
-            this.Can_ABS_0x5014.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5014.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5014.TabIndex = 5;
             this.Can_ABS_0x5014.TabStop = true;
             this.Can_ABS_0x5014.Text = "0x5014";
@@ -2482,7 +2544,7 @@
             this.Can_ABS_0x5043.Location = new System.Drawing.Point(10, 200);
             this.Can_ABS_0x5043.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5043.Name = "Can_ABS_0x5043";
-            this.Can_ABS_0x5043.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5043.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5043.TabIndex = 12;
             this.Can_ABS_0x5043.TabStop = true;
             this.Can_ABS_0x5043.Text = "0x5043";
@@ -2495,7 +2557,7 @@
             this.Can_ABS_0x5018.Location = new System.Drawing.Point(10, 100);
             this.Can_ABS_0x5018.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5018.Name = "Can_ABS_0x5018";
-            this.Can_ABS_0x5018.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5018.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5018.TabIndex = 4;
             this.Can_ABS_0x5018.TabStop = true;
             this.Can_ABS_0x5018.Text = "0x5018";
@@ -2508,7 +2570,7 @@
             this.Can_ABS_0x5035.Location = new System.Drawing.Point(10, 180);
             this.Can_ABS_0x5035.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5035.Name = "Can_ABS_0x5035";
-            this.Can_ABS_0x5035.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5035.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5035.TabIndex = 11;
             this.Can_ABS_0x5035.TabStop = true;
             this.Can_ABS_0x5035.Text = "0x5035";
@@ -2521,7 +2583,7 @@
             this.Can_ABS_0x5013.Location = new System.Drawing.Point(10, 80);
             this.Can_ABS_0x5013.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5013.Name = "Can_ABS_0x5013";
-            this.Can_ABS_0x5013.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5013.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5013.TabIndex = 3;
             this.Can_ABS_0x5013.TabStop = true;
             this.Can_ABS_0x5013.Text = "0x5013";
@@ -2534,7 +2596,7 @@
             this.Can_ABS_0x5017.Location = new System.Drawing.Point(10, 60);
             this.Can_ABS_0x5017.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5017.Name = "Can_ABS_0x5017";
-            this.Can_ABS_0x5017.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5017.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5017.TabIndex = 2;
             this.Can_ABS_0x5017.TabStop = true;
             this.Can_ABS_0x5017.Text = "0x5017";
@@ -2547,7 +2609,7 @@
             this.Can_ABS_0x5019.Location = new System.Drawing.Point(10, 39);
             this.Can_ABS_0x5019.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5019.Name = "Can_ABS_0x5019";
-            this.Can_ABS_0x5019.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5019.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5019.TabIndex = 1;
             this.Can_ABS_0x5019.TabStop = true;
             this.Can_ABS_0x5019.Text = "0x5019";
@@ -2560,7 +2622,7 @@
             this.Can_ABS_0x5055.Location = new System.Drawing.Point(10, 19);
             this.Can_ABS_0x5055.Margin = new System.Windows.Forms.Padding(2);
             this.Can_ABS_0x5055.Name = "Can_ABS_0x5055";
-            this.Can_ABS_0x5055.Size = new System.Drawing.Size(74, 20);
+            this.Can_ABS_0x5055.Size = new System.Drawing.Size(59, 16);
             this.Can_ABS_0x5055.TabIndex = 0;
             this.Can_ABS_0x5055.TabStop = true;
             this.Can_ABS_0x5055.Text = "0x5055";
@@ -2571,7 +2633,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1460, 735);
+            this.ClientSize = new System.Drawing.Size(1355, 856);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label_Kline_status);

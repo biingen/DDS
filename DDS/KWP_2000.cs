@@ -39,8 +39,8 @@ namespace KWP_2000
         public const int min_delay_before_response = ProcessBlockMessage.P2_Time_min;
         public const byte RETURN_SID_OR_VALUE = 0x40;
         public const byte NEGATIVE_RESPONSE_SID = 0x7F;
-        public const int ReadABSDiagnosticCodesByStatus_MaxNumberOfDTC = 6;
-        public const int ReadOBDDiagnosticCodesByStatus_MaxNumberOfDTC = 12;
+        public const int ReadABSDiagnosticCodesByStatus_MaxNumberOfDTC = 15;
+        public const int ReadOBDDiagnosticCodesByStatus_MaxNumberOfDTC = 51;
 
         enum ENUM_SID
         {
