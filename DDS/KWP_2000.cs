@@ -69,6 +69,8 @@ namespace KWP_2000
             {
                 bRet = ProcessMessage_OBD(in_msg, ref out_msg);
             }
+            OBD_DTC_Data_Queue.Clear();
+            ABS_DTC_Data_Queue.Clear();
             return bRet;
         }
 
