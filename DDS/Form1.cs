@@ -90,14 +90,15 @@ namespace Venus
             KlinetoolTip.SetToolTip(Kline_ABS_0x5014, Kline_ABS_0x5014.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_ABS_0x5053, Kline_ABS_0x5053.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_ABS_0x5052, Kline_ABS_0x5052.Tag.ToString());
+
             KlinetoolTip.SetToolTip(Kline_ABS_0x5035, Kline_ABS_0x5035.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_ABS_0x5043, Kline_ABS_0x5043.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_ABS_0x5045, Kline_ABS_0x5045.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_ABS_0x5042, Kline_ABS_0x5042.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_ABS_0x5044, Kline_ABS_0x5044.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_ABS_0x5025, Kline_ABS_0x5025.Tag.ToString());
+            
             //OBD
-
             KlinetoolTip.SetToolTip(Kline_OBD_P0503, Kline_OBD_P0503.Tag.ToString());
             KlinetoolTip.SetToolTip(Kline_OBD_C0083, Kline_OBD_C0083.Tag.ToString()); 
             KlinetoolTip.SetToolTip(Kline_OBD_C0085, Kline_OBD_C0085.Tag.ToString());
@@ -1927,10 +1928,10 @@ namespace Venus
         protected void ConnectKline()
         {
             string Kline_Exist = ini12.INIRead(Config_Path, "K_Line", "Exist", "");
+            string curItem = ini12.INIRead(Config_Path, "K_Line", "PortName", "");
 
-            if (Kline_Exist == "1")
+            if (Kline_Exist == "1" && curItem != "")
             {
-                string curItem = ini12.INIRead(Config_Path, "K_Line", "PortName", "");
                 if (MySerialPort.OpenPort(curItem) == true)
                 {
                     //BlueRat_UART_Exception_status = false;
@@ -2714,7 +2715,7 @@ namespace Venus
                 Close_serialPort3();
             }
 
-            if (MySerialPort.ClosePort() == true)
+            if (MySerialPort.IsPortOpened() == true)
             {
                 Close_klineserialPort();
             }
