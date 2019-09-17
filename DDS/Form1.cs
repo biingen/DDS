@@ -79,6 +79,82 @@ namespace Venus
         public DDS()
         {
             InitializeComponent();
+
+            ToolTip KlinetoolTip = new ToolTip();
+            //ABS
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5055, Kline_ABS_0x5055.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5019, Kline_ABS_0x5019.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5017, Kline_ABS_0x5017.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5013, Kline_ABS_0x5013.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5018, Kline_ABS_0x5018.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5014, Kline_ABS_0x5014.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5053, Kline_ABS_0x5053.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5052, Kline_ABS_0x5052.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5035, Kline_ABS_0x5035.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5043, Kline_ABS_0x5043.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5045, Kline_ABS_0x5045.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5042, Kline_ABS_0x5042.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5044, Kline_ABS_0x5044.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_ABS_0x5025, Kline_ABS_0x5025.Tag.ToString());
+            //OBD
+
+            KlinetoolTip.SetToolTip(Kline_OBD_P0503, Kline_OBD_P0503.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_C0083, Kline_OBD_C0083.Tag.ToString()); 
+            KlinetoolTip.SetToolTip(Kline_OBD_C0085, Kline_OBD_C0085.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0105, Kline_OBD_P0105.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0110, Kline_OBD_P0110.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0115, Kline_OBD_P0115.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0120, Kline_OBD_P0120.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0130, Kline_OBD_P0503.Tag.ToString());
+
+            KlinetoolTip.SetToolTip(Kline_OBD_P0135, Kline_OBD_P0135.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0150, Kline_OBD_P0150.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0155, Kline_OBD_P0155.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0201, Kline_OBD_P0201.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0202, Kline_OBD_P0202.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0217, Kline_OBD_P0217.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0230, Kline_OBD_P0230.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0335, Kline_OBD_P0335.Tag.ToString());
+
+            KlinetoolTip.SetToolTip(Kline_OBD_P0336, Kline_OBD_P0336.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0351, Kline_OBD_P0351.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0352, Kline_OBD_P0352.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0410, Kline_OBD_P0410.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0480, Kline_OBD_P0480.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0500, Kline_OBD_P0500.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0501, Kline_OBD_P0501.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0505, Kline_OBD_P0505.Tag.ToString());
+
+            KlinetoolTip.SetToolTip(Kline_OBD_P0512, Kline_OBD_P0512.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0560, Kline_OBD_P0560.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0601, Kline_OBD_P0601.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0604, Kline_OBD_P0604.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0605, Kline_OBD_P0605.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0606, Kline_OBD_P0606.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0620_PIN2, Kline_OBD_P0620_PIN2.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0620_PIN31, Kline_OBD_P0620_PIN31.Tag.ToString());
+
+            KlinetoolTip.SetToolTip(Kline_OBD_P0650, Kline_OBD_P0650.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0655, Kline_OBD_P0655.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P0A0F, Kline_OBD_P0A0F.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P1300, Kline_OBD_P1300.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P1310, Kline_OBD_P1310.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P1536, Kline_OBD_P1536.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P1607, Kline_OBD_P1607.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P1800, Kline_OBD_P1800.Tag.ToString());
+
+            KlinetoolTip.SetToolTip(Kline_OBD_P2158, Kline_OBD_P2158.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_P2600, Kline_OBD_P2600.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_U0001, Kline_OBD_U0001.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_U0002, Kline_OBD_U0002.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_U0121, Kline_OBD_U0121.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_U0122, Kline_OBD_U0122.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_U0128, Kline_OBD_U0128.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_U0140, Kline_OBD_U0140.Tag.ToString());
+
+            KlinetoolTip.SetToolTip(Kline_OBD_U0426, Kline_OBD_U0426.Tag.ToString());
+            KlinetoolTip.SetToolTip(Kline_OBD_U0486, Kline_OBD_U0486.Tag.ToString());
+
         }
 
         private void DDS_Load(object sender, EventArgs e)
@@ -2597,6 +2673,7 @@ namespace Venus
             SerialPort1.Dispose();
             SerialPort1.Close();
         }
+
 
         protected void Close_serialPort2()
         {

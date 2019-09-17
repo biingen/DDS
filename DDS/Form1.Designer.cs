@@ -1618,6 +1618,7 @@
             this.Kline_OBD_C0085.Name = "Kline_OBD_C0085";
             this.Kline_OBD_C0085.Size = new System.Drawing.Size(69, 20);
             this.Kline_OBD_C0085.TabIndex = 2;
+            this.Kline_OBD_C0085.Tag = "ASR Lamp Command";
             this.Kline_OBD_C0085.Text = "C0085";
             this.Kline_OBD_C0085.UseVisualStyleBackColor = true;
             // 
