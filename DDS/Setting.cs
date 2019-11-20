@@ -11,7 +11,7 @@ using jini;
 using System.IO;
 using System.Threading;
 
-namespace Venus
+namespace DDS
 {
     public partial class Setting : Form
     {

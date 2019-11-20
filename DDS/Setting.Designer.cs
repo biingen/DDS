@@ -1,4 +1,4 @@
-﻿namespace Venus
+﻿namespace DDS
 {
     partial class Setting
     {

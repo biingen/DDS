@@ -26,9 +26,9 @@ using KWP_2000;
 using DTC_ABS;
 using DTC_OBD;
 
-namespace Venus
+namespace DDS
 {
-    public partial class DDS : Form
+    public partial class Main : Form
     {
         private string Script_Path = Application.StartupPath + "\\Script.ini";
         private string Config_Path = Application.StartupPath + "\\Config.ini";
@@ -76,7 +76,7 @@ namespace Venus
 
         private CAN_Reader MYCanReader = new CAN_Reader();
         
-        public DDS()
+        public Main()
         {
             InitializeComponent();
 

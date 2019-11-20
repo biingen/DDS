@@ -1,6 +1,6 @@
-﻿namespace Venus
+﻿namespace DDS
 {
-    partial class DDS
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DDS));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.SerialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.setting_button = new System.Windows.Forms.Button();
             this.SerialPort2 = new System.IO.Ports.SerialPort(this.components);
