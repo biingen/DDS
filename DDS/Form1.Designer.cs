@@ -51,14 +51,17 @@
             this.Remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Autokit_serialPort = new System.IO.Ports.SerialPort(this.components);
             this.label_autokit_status = new System.Windows.Forms.Label();
+            this.button_Start = new System.Windows.Forms.Button();
+            this.textBox_MonitorID = new System.Windows.Forms.TextBox();
+            this.comboBox_Serialport = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // setting_button
             // 
-            this.setting_button.Location = new System.Drawing.Point(201, 9);
+            this.setting_button.Location = new System.Drawing.Point(496, 12);
             this.setting_button.Name = "setting_button";
-            this.setting_button.Size = new System.Drawing.Size(59, 32);
+            this.setting_button.Size = new System.Drawing.Size(59, 26);
             this.setting_button.TabIndex = 16;
             this.setting_button.Text = "Setting";
             this.setting_button.UseVisualStyleBackColor = true;
@@ -82,7 +85,7 @@
             this.Column12,
             this.Column13,
             this.Remark});
-            this.dataGridView1.Location = new System.Drawing.Point(293, 9);
+            this.dataGridView1.Location = new System.Drawing.Point(1289, 9);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -195,12 +198,48 @@
             this.label_autokit_status.TabIndex = 21;
             this.label_autokit_status.Text = "Autokit status";
             // 
+            // button_Start
+            // 
+            this.button_Start.Location = new System.Drawing.Point(561, 12);
+            this.button_Start.Name = "button_Start";
+            this.button_Start.Size = new System.Drawing.Size(57, 26);
+            this.button_Start.TabIndex = 24;
+            this.button_Start.Text = "Start";
+            this.button_Start.UseVisualStyleBackColor = true;
+            this.button_Start.Click += new System.EventHandler(this.button_Start_Click);
+            // 
+            // textBox_MonitorID
+            // 
+            this.textBox_MonitorID.Location = new System.Drawing.Point(425, 12);
+            this.textBox_MonitorID.Name = "textBox_MonitorID";
+            this.textBox_MonitorID.Size = new System.Drawing.Size(65, 22);
+            this.textBox_MonitorID.TabIndex = 25;
+            this.textBox_MonitorID.TextChanged += new System.EventHandler(this.textBox_MonitorID_TextChanged);
+            // 
+            // comboBox_Serialport
+            // 
+            this.comboBox_Serialport.FormattingEnabled = true;
+            this.comboBox_Serialport.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"});
+            this.comboBox_Serialport.Location = new System.Drawing.Point(364, 12);
+            this.comboBox_Serialport.Name = "comboBox_Serialport";
+            this.comboBox_Serialport.Size = new System.Drawing.Size(55, 20);
+            this.comboBox_Serialport.TabIndex = 26;
+            this.comboBox_Serialport.SelectedIndexChanged += new System.EventHandler(this.comboBox_Serialport_SelectedIndexChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1355, 856);
+            this.Controls.Add(this.comboBox_Serialport);
+            this.Controls.Add(this.textBox_MonitorID);
+            this.Controls.Add(this.button_Start);
             this.Controls.Add(this.label_autokit_status);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.setting_button);
@@ -236,6 +275,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remark;
+        private System.Windows.Forms.Button button_Start;
+        private System.Windows.Forms.TextBox textBox_MonitorID;
+        private System.Windows.Forms.ComboBox comboBox_Serialport;
     }
 }
 
