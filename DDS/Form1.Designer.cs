@@ -54,6 +54,7 @@
             this.button_Start = new System.Windows.Forms.Button();
             this.textBox_MonitorID = new System.Windows.Forms.TextBox();
             this.comboBox_Serialport = new System.Windows.Forms.ComboBox();
+            this.textBox_times = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,7 +211,7 @@
             // 
             // textBox_MonitorID
             // 
-            this.textBox_MonitorID.Location = new System.Drawing.Point(425, 12);
+            this.textBox_MonitorID.Location = new System.Drawing.Point(356, 12);
             this.textBox_MonitorID.Name = "textBox_MonitorID";
             this.textBox_MonitorID.Size = new System.Drawing.Size(65, 22);
             this.textBox_MonitorID.TabIndex = 25;
@@ -225,11 +226,19 @@
             "C",
             "D",
             "E"});
-            this.comboBox_Serialport.Location = new System.Drawing.Point(364, 12);
+            this.comboBox_Serialport.Location = new System.Drawing.Point(295, 12);
             this.comboBox_Serialport.Name = "comboBox_Serialport";
             this.comboBox_Serialport.Size = new System.Drawing.Size(55, 20);
             this.comboBox_Serialport.TabIndex = 26;
             this.comboBox_Serialport.SelectedIndexChanged += new System.EventHandler(this.comboBox_Serialport_SelectedIndexChanged);
+            // 
+            // textBox_times
+            // 
+            this.textBox_times.Location = new System.Drawing.Point(425, 12);
+            this.textBox_times.Name = "textBox_times";
+            this.textBox_times.Size = new System.Drawing.Size(65, 22);
+            this.textBox_times.TabIndex = 27;
+            this.textBox_times.TextChanged += new System.EventHandler(this.textBox_times_TextChanged);
             // 
             // Main
             // 
@@ -237,6 +246,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1355, 856);
+            this.Controls.Add(this.textBox_times);
             this.Controls.Add(this.comboBox_Serialport);
             this.Controls.Add(this.textBox_MonitorID);
             this.Controls.Add(this.button_Start);
@@ -278,6 +288,7 @@
         private System.Windows.Forms.Button button_Start;
         private System.Windows.Forms.TextBox textBox_MonitorID;
         private System.Windows.Forms.ComboBox comboBox_Serialport;
+        private System.Windows.Forms.TextBox textBox_times;
     }
 }
 
