@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using jini;
 using System.IO.Ports;
-using NationalInstruments.DAQmx;
 using System.IO;
 using System.Windows;
 using MaterialSkin.Controls;
@@ -552,10 +551,11 @@ namespace DDS
             }
             if (status != "")
             {
-                int value = Convert.ToInt32(status, 16);
-                byte high_value = Convert.ToByte(value >> 8 & 0xFF);
+                int Decimal = Convert.ToInt32(status);
+                int Hexadecimal = Convert.ToInt32(Convert.ToString(Decimal, 16), 16);
+                byte high_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);
                 InputBuffer[4] = high_value;
-                byte low_value = Convert.ToByte(value & 0xFF);
+                byte low_value = Convert.ToByte(Hexadecimal & 0xFF);
                 InputBuffer[5] = low_value;
             }
             Byte[] crc = CRC16.ToModbus(InputBuffer);
@@ -619,10 +619,11 @@ namespace DDS
             }
             if (frequency != "")
             {
-                int value = Convert.ToInt32(frequency, 16);
-                byte high_value = Convert.ToByte(value >> 8 & 0xFF);
+                int Decimal = Convert.ToInt32(frequency);
+                int Hexadecimal = Convert.ToInt32(Convert.ToString(Decimal, 16), 16);
+                byte high_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);
                 InputBuffer[4] = high_value;
-                byte low_value = Convert.ToByte(value & 0xFF);
+                byte low_value = Convert.ToByte(Hexadecimal & 0xFF);
                 InputBuffer[5] = low_value;
             }
             Byte[] crc = CRC16.ToModbus(InputBuffer);
@@ -785,6 +786,7 @@ namespace DDS
                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv", true))
                 {
                     file.Write(output_log);
+                    output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
                 }
             }
         }
