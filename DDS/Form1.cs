@@ -505,7 +505,7 @@ namespace DDS
         void AutoKit_RS232_one_Bar_button_Click(object sender, EventArgs e)
         {
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_RS232_one_Bar_button_", ""));
-            if (AutoKit_RS232_one_Bar_textbox[index].Text != "" && int.Parse(AutoKit_RS232_one_Bar_textbox[index].Text) <= int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Max", "")))
+            if (AutoKit_RS232_one_Bar_textbox[index].Text != "")
                 AutoKit_RS232_Control("oneBar", index, AutoKit_RS232_one_Bar_textbox[index].Text, AutoKit_RS232_one_Bar_textbox[index].Text);
             Thread.Sleep(50);
         }
