@@ -27,15 +27,8 @@ namespace DDS
         private string Script_Path = Application.StartupPath + "\\Script.ini";
         private string Config_Path = Application.StartupPath + "\\Config.ini";
 
-        private BlueRat MyBlueRat = new BlueRat();
         private int Location_X = 25, Location_Y = 50;
-        private double AutoKit_Output_value = 0, AutoKit_Initial = 0; 
         String output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
-        bool status = false;
-
-        public static List<string> VID = new List<string> { };
-        public static List<string> PID = new List<string> { };
-        public static List<string> AutoBoxComport = new List<string> { };
 
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_on_button;
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_off_button;
@@ -52,217 +45,8 @@ namespace DDS
 
         private void DDS_Load(object sender, EventArgs e)
         {
-            USB_Read();
-            AutoKit_Initial_port();
-            Extend_Initial_port();
             CSVtoINIfile();
             Default_Env();
-        }
-
-        #region -- 讀取USB裝置 --
-        public void USB_Read()
-        {
-            //預設AutoBox沒接上
-            ini12.INIWrite(Config_Path, "AutoKit", "Exist", "0");
-            ini12.INIWrite(Config_Path, "AutoKit", "PortName", "");
-            ini12.INIWrite(Config_Path, "NI_6501", "Exist", "0");
-            ini12.INIWrite(Config_Path, "K_Line", "Exist", "0");
-
-            ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity");
-            ManagementObjectCollection collection = search.Get();
-            var usbList = from u in collection.Cast<ManagementBaseObject>()
-                          select new
-                          {
-                              id = u.GetPropertyValue("DeviceID"),
-                              name = u.GetPropertyValue("Name"),
-                              description = u.GetPropertyValue("Description"),
-                              status = u.GetPropertyValue("Status"),
-                              system = u.GetPropertyValue("SystemName"),
-                              caption = u.GetPropertyValue("Caption"),
-                              pnp = u.GetPropertyValue("PNPDeviceID"),
-                          };
-
-            foreach (var usbDevice in usbList)
-            {
-                string deviceId = (string)usbDevice.id;
-                string deviceTp = (string)usbDevice.name;
-                string deviecDescription = (string)usbDevice.description;
-
-                string deviceStatus = (string)usbDevice.status;
-                string deviceSystem = (string)usbDevice.system;
-                string deviceCaption = (string)usbDevice.caption;
-                string devicePnp = (string)usbDevice.pnp;
-
-                if (deviecDescription != null)
-                {
-                    #region 偵測相機
-                    if (deviecDescription.IndexOf("USB 視訊裝置", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        deviecDescription.IndexOf("USB 视频设备", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        deviceTp.IndexOf("Webcam", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        deviceTp.IndexOf("Camera", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        if (deviceId.IndexOf("VID_", StringComparison.OrdinalIgnoreCase) >= 0)
-                        {
-                            int vidIndex = deviceId.IndexOf("VID_");
-                            string startingAtVid = deviceId.Substring(vidIndex + 4); // + 4 to remove "VID_"
-                            string vid = startingAtVid.Substring(0, 4); // vid is four characters long
-                            VID.Add(vid);
-                        }
-
-                        if (deviceId.IndexOf("PID_", StringComparison.OrdinalIgnoreCase) >= 0)
-                        {
-                            int pidIndex = deviceId.IndexOf("PID_");
-                            string startingAtPid = deviceId.Substring(pidIndex + 4); // + 4 to remove "PID_"
-                            string pid = startingAtPid.Substring(0, 4); // pid is four characters long
-                            PID.Add(pid);
-                        }
-
-                        Console.WriteLine("-----------------Camera------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        //Camera存在
-                        ini12.INIWrite(Config_Path, "Camera", "Exist", "1");
-                    }
-                    #endregion
-
-                    #region 偵測AutoBox2
-                    if (deviceId.IndexOf("&0&5", StringComparison.OrdinalIgnoreCase) >= 0 &&
-                        deviceId.IndexOf("USB\\VID_067B&PID_2303\\", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        Console.WriteLine("-----------------AutoBox2------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        int FirstIndex = deviceTp.IndexOf("(");
-                        string AutoBoxPortSubstring = deviceTp.Substring(FirstIndex + 1);
-                        string AutoBoxPort = AutoBoxPortSubstring.Substring(0);
-
-                        int AutoBoxPortLengh = AutoBoxPort.Length;
-                        string AutoBoxPortFinal = AutoBoxPort.Remove(AutoBoxPortLengh - 1);
-
-                        if (AutoBoxPortSubstring.Substring(0, 3) == "COM")
-                        {
-                            ini12.INIWrite(Config_Path, "AutoKit", "Exist", "1");
-                            ini12.INIWrite(Config_Path, "AutoKit", "PortName", AutoBoxPortFinal);
-                        }
-                    }
-                    #endregion
-
-                    #region 偵測NI_USB-6501
-                    if (deviceId.IndexOf("USB\\VID_3923&PID_718A\\", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        Console.WriteLine("-----------------NI_USB-6501------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        ini12.INIWrite(Config_Path, "NI_6501", "Exist", "1");
-                    }
-                    #endregion
-
-                    #region 偵測K-Line
-                    if (deviceId.IndexOf("USB\\VID_0403&PID_6001\\", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        Console.WriteLine("-----------------FTDI K-Line------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        ini12.INIWrite(Config_Path, "K_Line", "Exist", "1");
-                    }
-                    #endregion
-                }
-            }
-        }
-        #endregion
-
-        private void AutoKit_Initial_port()
-        {
-            const int max_retry = 10;
-
-            string AutoKit_Exist = ini12.INIRead(Config_Path, "AutoKit", "Exist", "");
-            if (AutoKit_Exist == "1")
-            {
-                string com_port_name = ini12.INIRead(Config_Path, "AutoKit", "PortName", "");
-                bool Connection_OK = false;
-                int retry = max_retry;
-
-                do
-                {
-                    Connection_OK = MyBlueRat.Connect(com_port_name);
-                    if (MyBlueRat.Connect(com_port_name))
-                    {
-                        // 在第一次/或長時間未使用之後,要開始使用BlueRat跑Schedule之前,建議執行這一行,確保BlueRat的起始狀態一致 -- 正常情況下不執行並不影響BlueRat運行,但為了找問題方便,還是請務必執行
-                        MyBlueRat.Force_Init_BlueRat();
-                        MyBlueRat.Reset_SX1509();
-
-                        byte SX1509_detect_status;
-                        SX1509_detect_status = MyBlueRat.TEST_Detect_SX1509();
-
-                        if (SX1509_detect_status != 3)
-                        {
-                            label_autokit_status.Text = "Autokit can't connect the extend board.";
-                            // Error, need to check SX1509 connection
-                            return;
-                        }
-                        else
-                            label_autokit_status.Text = "Autokit can connect the extend board.";
-                    }
-                    else
-                    {
-                        retry--;
-                        Thread.Sleep(500);
-                        List<string> bluerat_com = BlueRat.FindAllBlueRat();
-                        label_autokit_status.Text = "Autokit retry " + (max_retry - retry) + " times to connect the extend board.";
-                    }
-                }
-                while ((Connection_OK != true) && (retry > 0));
-            }
-        }
-
-        private void Extend_Initial_port()
-        {
-            string SerialPort1_Exist = ini12.INIRead(Config_Path, "serialPort1", "Exist", "");
-            string SerialPort2_Exist = ini12.INIRead(Config_Path, "serialPort2", "Exist", "");
-            string SerialPort3_Exist = ini12.INIRead(Config_Path, "serialPort3", "Exist", "");
-
-            if (SerialPort1_Exist == "1")
-            {
-                Open_serialPort1();
-            }
-
-            if (SerialPort2_Exist == "1")
-            {
-                Open_serialPort2();
-            }
-
-            if (SerialPort3_Exist == "1")
-            {
-                Open_serialPort3();
-            }
         }
 
         private void CSVtoINIfile()
@@ -462,7 +246,6 @@ namespace DDS
 
         void AutoKit_GPIO_icon_on_button_Click(object sender, EventArgs e)
         {
-            AutoKit_Initial = 1;
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_on_button_", ""));
             AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_On", "");
             AutoKit_GPIO_icon_on_button[index].Enabled = false;
@@ -473,7 +256,6 @@ namespace DDS
 
         void AutoKit_GPIO_icon_off_button_Click(object sender, EventArgs e)
         {
-            AutoKit_Initial = 1;
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_off_button_", ""));
             AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_Off", "");
             AutoKit_GPIO_icon_on_button[index].Enabled = true;
@@ -722,23 +504,19 @@ namespace DDS
             SerialPort3.Close();
         }
 
-        private void button_Start_Click(object sender, EventArgs e)
+        private void button_Save_Click(object sender, EventArgs e)
         {
-            status = !status;
-            if (status == true)
+            DateTime myDate = DateTime.Now;
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv", true))
             {
-                button_Start.Text = "Stop";
+                file.Write(output_log);
+                output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
             }
-            else
-            {
-                button_Start.Text = "Start";
-                DateTime myDate = DateTime.Now;
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv", true))
-                {
-                    file.Write(output_log);
-                    output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
-                }
-            }
+        }
+
+        private void button_clear_Click(object sender, EventArgs e)
+        {
+            output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
         }
 
         private void settings_button_Click(object sender, EventArgs e)
@@ -767,12 +545,6 @@ namespace DDS
                 {
                     MessageBox.Show("Please wait, DSS will restart.");
                     Application.Restart();
-                }
-                else 
-                {
-                    USB_Read();
-                    AutoKit_Initial_port();
-                    Extend_Initial_port();
                 }
             }
             Setting.Dispose();
