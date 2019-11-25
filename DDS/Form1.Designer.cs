@@ -63,7 +63,7 @@
             // 
             // setting_button
             // 
-            this.setting_button.Location = new System.Drawing.Point(549, 10);
+            this.setting_button.Location = new System.Drawing.Point(665, 10);
             this.setting_button.Name = "setting_button";
             this.setting_button.Size = new System.Drawing.Size(59, 26);
             this.setting_button.TabIndex = 16;
@@ -89,7 +89,7 @@
             this.Column12,
             this.Column13,
             this.Remark});
-            this.dataGridView1.Location = new System.Drawing.Point(676, 6);
+            this.dataGridView1.Location = new System.Drawing.Point(86, 10);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -204,7 +204,7 @@
             // 
             // button_Start
             // 
-            this.button_Start.Location = new System.Drawing.Point(614, 10);
+            this.button_Start.Location = new System.Drawing.Point(600, 10);
             this.button_Start.Name = "button_Start";
             this.button_Start.Size = new System.Drawing.Size(57, 26);
             this.button_Start.TabIndex = 24;
@@ -214,7 +214,7 @@
             // 
             // textBox_MonitorID
             // 
-            this.textBox_MonitorID.Location = new System.Drawing.Point(350, 13);
+            this.textBox_MonitorID.Location = new System.Drawing.Point(405, 13);
             this.textBox_MonitorID.Name = "textBox_MonitorID";
             this.textBox_MonitorID.Size = new System.Drawing.Size(65, 22);
             this.textBox_MonitorID.TabIndex = 25;
@@ -229,7 +229,7 @@
             "C",
             "D",
             "E"});
-            this.comboBox_Serialport.Location = new System.Drawing.Point(224, 14);
+            this.comboBox_Serialport.Location = new System.Drawing.Point(279, 14);
             this.comboBox_Serialport.Name = "comboBox_Serialport";
             this.comboBox_Serialport.Size = new System.Drawing.Size(55, 20);
             this.comboBox_Serialport.TabIndex = 26;
@@ -237,7 +237,7 @@
             // 
             // textBox_times
             // 
-            this.textBox_times.Location = new System.Drawing.Point(463, 12);
+            this.textBox_times.Location = new System.Drawing.Point(518, 12);
             this.textBox_times.Name = "textBox_times";
             this.textBox_times.Size = new System.Drawing.Size(65, 22);
             this.textBox_times.TabIndex = 27;
@@ -246,7 +246,7 @@
             // label_comport
             // 
             this.label_comport.AutoSize = true;
-            this.label_comport.Location = new System.Drawing.Point(172, 19);
+            this.label_comport.Location = new System.Drawing.Point(227, 19);
             this.label_comport.Name = "label_comport";
             this.label_comport.Size = new System.Drawing.Size(50, 12);
             this.label_comport.TabIndex = 28;
@@ -255,7 +255,7 @@
             // label_monitorid
             // 
             this.label_monitorid.AutoSize = true;
-            this.label_monitorid.Location = new System.Drawing.Point(285, 19);
+            this.label_monitorid.Location = new System.Drawing.Point(340, 19);
             this.label_monitorid.Name = "label_monitorid";
             this.label_monitorid.Size = new System.Drawing.Size(61, 12);
             this.label_monitorid.TabIndex = 29;
@@ -264,7 +264,7 @@
             // label_times
             // 
             this.label_times.AutoSize = true;
-            this.label_times.Location = new System.Drawing.Point(423, 17);
+            this.label_times.Location = new System.Drawing.Point(478, 17);
             this.label_times.Name = "label_times";
             this.label_times.Size = new System.Drawing.Size(36, 12);
             this.label_times.TabIndex = 30;
@@ -275,7 +275,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(742, 749);
+            this.ClientSize = new System.Drawing.Size(736, 749);
             this.Controls.Add(this.label_times);
             this.Controls.Add(this.label_monitorid);
             this.Controls.Add(this.label_comport);
