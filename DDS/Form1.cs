@@ -41,7 +41,6 @@ namespace DDS
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_off_button;
         System.Windows.Forms.Label[] AutoKit_GPIO_icon_remark;
 
-
         System.Windows.Forms.HScrollBar[] AutoKit_RS232_one_Bar_hscorllbar;
         System.Windows.Forms.TextBox[] AutoKit_RS232_one_Bar_textbox;
         System.Windows.Forms.Button[] AutoKit_RS232_one_Bar_button;
@@ -338,13 +337,10 @@ namespace DDS
 
         private void Default_Env()
         {
-            string monitor = ini12.INIRead(Script_Path, "Config", "MonitorID", "");
-            string port = ini12.INIRead(Script_Path, "Config", "Serialport", "");
-            string times = ini12.INIRead(Script_Path, "Config", "Times", "");
-
-            comboBox_Serialport.Text = port;
-            textBox_MonitorID.Text = monitor;
-            textBox_times.Text = times;
+            comboBox_Serialport.Text = "A";
+            textBox_MonitorID.Text = "01";
+            comboBox_function.Text = "R";
+            textBox_times.Text = "1000";
         }
 
         private void AutoKit_GPIO_icon_10_Create(int count)
@@ -406,10 +402,6 @@ namespace DDS
                 this.Controls.AddRange(AutoKit_GPIO_icon_on_button);
                 this.Controls.AddRange(AutoKit_GPIO_icon_remark);
                 this.Controls.AddRange(AutoKit_GPIO_icon_label);
-                if (ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", "") != "" && int.Parse(ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", "")) != 0)
-                {
-                    AutoKit_GPIO_icon_Control(index, ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", ""));
-                }
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -441,8 +433,6 @@ namespace DDS
                 AutoKit_RS232_one_Bar_hscorllbar[index].Minimum = int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Min", ""));
                 AutoKit_RS232_one_Bar_hscorllbar[index].Maximum = int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Max", ""));
                 AutoKit_RS232_one_Bar_hscorllbar[index].LargeChange = int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Step", ""));
-                if (ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "") != "" && int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "")) != 0)
-                    AutoKit_RS232_one_Bar_hscorllbar[index].Value = int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", ""));
                 AutoKit_RS232_one_Bar_hscorllbar[index].ValueChanged += new EventHandler(this.AutoKit_RS232_one_Bar_hscorllbar_ValueChanged);
                 AutoKit_RS232_one_Bar_textbox[index] = new TextBox();
                 AutoKit_RS232_one_Bar_textbox[index].Name = "AutoKit_RS232_one_Bar_textbox_" + index;
@@ -465,8 +455,6 @@ namespace DDS
                 this.Controls.AddRange(AutoKit_RS232_one_Bar_textbox);
                 this.Controls.AddRange(AutoKit_RS232_one_Bar_hscorllbar);
                 this.Controls.AddRange(AutoKit_RS232_one_Bar_label);
-                if (ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "") != "" && int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "")) != 0)
-                    AutoKit_RS232_Control("oneBar", index, ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", ""), ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", ""));
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -514,17 +502,17 @@ namespace DDS
         {
             byte[] InputBuffer = new byte[6];
             byte[] OutputBuffer = new byte[8];
-            string monitor = ini12.INIRead(Script_Path, "Config", "MonitorID", "");
-            string port = ini12.INIRead(Script_Path, "Config", "Serialport", "");
-            string times = ini12.INIRead(Script_Path, "Config", "Times", "");
-            string behavior = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Com", "");
-            string name = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "");
+            string port = comboBox_Serialport.Text;
+            string monitor = textBox_MonitorID.Text;
+            string function = comboBox_function.Text;
+            string times = textBox_times.Text;
+
             string OutputString = "";
             OutputString = "_HEX,,,";
             OutputString += port + ",,,";
 
-            InputBuffer[0] = Convert.ToByte((Convert.ToInt32(monitor, 16)));
-            switch (behavior)
+            InputBuffer[0] = Convert.ToByte(monitor, 16);
+            switch (function)
             {
                 case "R":
                     InputBuffer[1] = Convert.ToByte("03");
@@ -537,18 +525,7 @@ namespace DDS
                     break;
             }
             InputBuffer[2] = 0x00;
-            switch (name)
-            {
-                case "Power Status":
-                    InputBuffer[3] = Convert.ToByte("01");
-                    break;
-                case "Volume":
-                    InputBuffer[3] = Convert.ToByte("02");
-                    break;
-                case "Mute":
-                    InputBuffer[3] = Convert.ToByte("03");
-                    break;
-            }
+            InputBuffer[3] = Convert.ToByte(ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", ""), 16);
             if (status != "")
             {
                 int Decimal = Convert.ToInt32(status);
@@ -582,17 +559,17 @@ namespace DDS
         {
             byte[] InputBuffer = new byte[6];
             byte[] OutputBuffer = new byte[8];
-            string monitor = ini12.INIRead(Script_Path, "Config", "MonitorID", "");
-            string port = ini12.INIRead(Script_Path, "Config", "Serialport", "");
-            string times = ini12.INIRead(Script_Path, "Config", "Times", "");
-            string behavior = ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Com", "");
-            string name = ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "");
+            string port = comboBox_Serialport.Text;
+            string monitor = textBox_MonitorID.Text;
+            string function = comboBox_function.Text;
+            string times = textBox_times.Text;
+
             string OutputString = "";
             OutputString = "_HEX,,,";
             OutputString += port + ",,,";
 
-            InputBuffer[0] = Convert.ToByte((Convert.ToInt32(monitor, 16)));
-            switch (behavior)
+            InputBuffer[0] = Convert.ToByte(monitor, 16);
+            switch (function)
             {
                 case "R":
                     InputBuffer[1] = Convert.ToByte("03");
@@ -605,18 +582,7 @@ namespace DDS
                     break;
             }
             InputBuffer[2] = 0x00;
-            switch (name)
-            {
-                case "Power Status":
-                    InputBuffer[3] = Convert.ToByte("01");
-                    break;
-                case "Volume":
-                    InputBuffer[3] = Convert.ToByte("02");
-                    break;
-                case "Mute":
-                    InputBuffer[3] = Convert.ToByte("03");
-                    break;
-            }
+            InputBuffer[3] = Convert.ToByte(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", ""), 16);
             if (frequency != "")
             {
                 int Decimal = Convert.ToInt32(frequency);
@@ -754,22 +720,6 @@ namespace DDS
         {
             SerialPort3.Dispose();
             SerialPort3.Close();
-        }
-
-        private void textBox_MonitorID_TextChanged(object sender, EventArgs e)
-        {
-            ini12.INIWrite(Script_Path, "Config", "MonitorID", textBox_MonitorID.Text.Trim());
-        }
-
-        private void comboBox_Serialport_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ini12.INIWrite(Script_Path, "Config", "Serialport", comboBox_Serialport.Text.Trim());
-        }
-
-
-        private void textBox_times_TextChanged(object sender, EventArgs e)
-        {
-            ini12.INIWrite(Script_Path, "Config", "Times", textBox_times.Text.Trim());
         }
 
         private void button_Start_Click(object sender, EventArgs e)
