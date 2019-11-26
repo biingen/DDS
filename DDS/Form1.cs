@@ -248,8 +248,6 @@ namespace DDS
         {
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_on_button_", ""));
             AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_On", "");
-            AutoKit_GPIO_icon_on_button[index].Enabled = false;
-            AutoKit_GPIO_icon_off_button[index].Enabled = true;
             AutoKit_GPIO_icon_Control(index, ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_On", ""));
             Thread.Sleep(50);
         }
@@ -258,8 +256,6 @@ namespace DDS
         {
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_off_button_", ""));
             AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_Off", "");
-            AutoKit_GPIO_icon_on_button[index].Enabled = true;
-            AutoKit_GPIO_icon_off_button[index].Enabled = false;
             AutoKit_GPIO_icon_Control(index, ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_Off", ""));
             Thread.Sleep(50);
         }
