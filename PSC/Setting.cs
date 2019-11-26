@@ -11,7 +11,7 @@ using jini;
 using System.IO;
 using System.Threading;
 
-namespace DDS
+namespace PSC
 {
     public partial class Setting : Form
     {

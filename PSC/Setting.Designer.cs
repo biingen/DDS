@@ -1,4 +1,4 @@
-﻿namespace DDS
+﻿namespace PSC
 {
     partial class Setting
     {
@@ -31,7 +31,6 @@
             this.textBox_csv_script = new System.Windows.Forms.TextBox();
             this.button_csv_script = new System.Windows.Forms.Button();
             this.OpenFileDialog_CSV = new System.Windows.Forms.OpenFileDialog();
-            this.folderBrowserDialog_canbuslog = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // textBox_csv_script
@@ -80,6 +79,5 @@
         private System.Windows.Forms.TextBox textBox_csv_script;
         private System.Windows.Forms.Button button_csv_script;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog_CSV;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_canbuslog;
     }
 }
