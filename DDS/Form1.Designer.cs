@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.SerialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.setting_button = new System.Windows.Forms.Button();
-            this.SerialPort2 = new System.IO.Ports.SerialPort(this.components);
-            this.SerialPort3 = new System.IO.Ports.SerialPort(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +45,6 @@
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Autokit_serialPort = new System.IO.Ports.SerialPort(this.components);
             this.button_Save = new System.Windows.Forms.Button();
             this.textBox_MonitorID = new System.Windows.Forms.TextBox();
             this.comboBox_Serialport = new System.Windows.Forms.ComboBox();
@@ -319,12 +314,8 @@
         }
 
         #endregion
-        private System.IO.Ports.SerialPort SerialPort1;
         private System.Windows.Forms.Button setting_button;
-        private System.IO.Ports.SerialPort SerialPort2;
-        private System.IO.Ports.SerialPort SerialPort3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.IO.Ports.SerialPort Autokit_serialPort;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

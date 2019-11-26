@@ -12,7 +12,6 @@ using jini;
 using System.IO.Ports;
 using System.IO;
 using System.Windows;
-using MaterialSkin.Controls;
 using BlueRatLibrary;
 using System.Management;
 using Microsoft.Win32.SafeHandles;
@@ -158,26 +157,18 @@ namespace DDS
                 AutoKit_GPIO_icon_remark[index].Name = "AutoKit_GPIO_icon_remark_" + index;
                 if (ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", "") == "1" && ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_On", "") == "1")
                 {
-                    AutoKit_GPIO_icon_on_button[index].Enabled = false;
-                    AutoKit_GPIO_icon_off_button[index].Enabled = true;
                     AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_On", "");
                 }
                 else if (ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", "") == "1" && ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_On", "") == "0")
                 {
-                    AutoKit_GPIO_icon_on_button[index].Enabled = true;
-                    AutoKit_GPIO_icon_off_button[index].Enabled = false;
                     AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_Off", "");
                 }
                 else if (ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", "") == "0" && ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_On", "") == "1")
                 {
-                    AutoKit_GPIO_icon_on_button[index].Enabled = true;
-                    AutoKit_GPIO_icon_off_button[index].Enabled = false;
                     AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_Off", "");
                 }
                 else if (ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", "") == "0" && ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_On", "") == "1")
                 {
-                    AutoKit_GPIO_icon_on_button[index].Enabled = false;
-                    AutoKit_GPIO_icon_off_button[index].Enabled = true;
                     AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_On", "");
                 }
                 AutoKit_GPIO_icon_remark[index].Size = new Size(250, 30);
@@ -408,98 +399,7 @@ namespace DDS
                 return false;
             }
         }
-
-        protected void Open_serialPort1()
-        {
-            try
-            {
-                if (SerialPort1.IsOpen == false)
-                {
-                    SerialPort1.StopBits = StopBits.One;
-                    SerialPort1.PortName = ini12.INIRead(Config_Path, "serialPort1", "PortName", "");
-                    SerialPort1.BaudRate = int.Parse((ini12.INIRead(Config_Path, "serialPort1", "BaudRate", "")));
-                    SerialPort1.DataBits = 8;
-                    SerialPort1.Parity = (Parity)0;
-                    SerialPort1.ReceivedBytesThreshold = 1;
-                    // V3_serialPort.Encoding = System.Text.Encoding.GetEncoding(1252);
-                    // V3_serialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort1_DataReceived);       // DataReceived呼叫函式
-                    SerialPort1.Open();
-                }
-            }
-            catch (Exception Ex)
-            {
-                ini12.INIWrite(Config_Path, "serialPort1", "Exist", "0");
-                MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        protected void Open_serialPort2()
-        {
-            try
-            {
-                if (SerialPort2.IsOpen == false)
-                {
-                    SerialPort2.StopBits = StopBits.One;
-                    SerialPort2.PortName = ini12.INIRead(Config_Path, "serialPort2", "PortName", "");
-                    SerialPort2.BaudRate = int.Parse((ini12.INIRead(Config_Path, "serialPort2", "BaudRate", "")));
-                    SerialPort2.DataBits = 8;
-                    SerialPort2.Parity = (Parity)0;
-                    SerialPort2.ReceivedBytesThreshold = 1;
-                    // Autokit_serialPort1.Encoding = System.Text.Encoding.GetEncoding(1252);
-                    // Autokit_serialPort1.DataReceived += new SerialDataReceivedEventHandler(SerialPort1_DataReceived);       // DataReceived呼叫函式
-                    SerialPort2.Open();
-                }
-            }
-            catch (Exception Ex)
-            {
-                ini12.INIWrite(Config_Path, "serialPort2", "Exist", "0");
-                MessageBox.Show(Ex.Message.ToString(), "SerialPort2 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         
-        protected void Open_serialPort3()
-        {
-            try
-            {
-                if (SerialPort3.IsOpen == false)
-                {
-                    SerialPort3.StopBits = StopBits.One;
-                    SerialPort3.PortName = ini12.INIRead(Config_Path, "serialPort3", "PortName", "");
-                    SerialPort3.BaudRate = int.Parse((ini12.INIRead(Config_Path, "serialPort3", "BaudRate", "")));
-                    SerialPort3.DataBits = 8;
-                    SerialPort3.Parity = (Parity)0;
-                    SerialPort3.ReceivedBytesThreshold = 1;
-                    // Autokit_serialPort3.Encoding = System.Text.Encoding.GetEncoding(1252);
-                    // Autokit_serialPort3.DataReceived += new SerialDataReceivedEventHandler(SerialPort3_DataReceived);       // DataReceived呼叫函式
-                    SerialPort3.Open();
-                }
-            }
-            catch (Exception Ex)
-            {
-                ini12.INIWrite(Config_Path, "serialPort3", "Exist", "0");
-                MessageBox.Show(Ex.Message.ToString(), "SerialPort3 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        protected void Close_serialPort1()
-        {
-            SerialPort1.Dispose();
-            SerialPort1.Close();
-        }
-
-
-        protected void Close_serialPort2()
-        {
-            SerialPort2.Dispose();
-            SerialPort2.Close();
-        }
-
-        protected void Close_serialPort3()
-        {
-            SerialPort3.Dispose();
-            SerialPort3.Close();
-        }
-
         private void button_Save_Click(object sender, EventArgs e)
         {
             DateTime myDate = DateTime.Now;
@@ -519,21 +419,6 @@ namespace DDS
         {
             string csv_file = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
             Setting Setting = new Setting();
-            //如果serialport開著則先關閉//
-            if (SerialPort1.IsOpen == true)
-            {
-                Close_serialPort1();
-            }
-
-            if (SerialPort2.IsOpen == true)
-            {
-                Close_serialPort2();
-            }
-
-            if (SerialPort3.IsOpen == true)
-            {
-                Close_serialPort3();
-            }
 
             if (Setting.ShowDialog() == DialogResult.Cancel)
             {
@@ -549,8 +434,7 @@ namespace DDS
         public static int HashCode_Create(String Operand)
         {
             int HashCode = Operand.GetHashCode();
-            Console.WriteLine("The hash code for \"{0}\" is: 0x{1:X8}, {1}",
-                              Operand, HashCode);
+            //Console.WriteLine("The hash code for \"{0}\" is: 0x{1:X8}, {1}", Operand, HashCode);
             return HashCode;
         }
     }
