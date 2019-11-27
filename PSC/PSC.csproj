@@ -59,7 +59,7 @@
       <HintPath>..\BlueRatLibrary.dll</HintPath>
     </Reference>
     <Reference Include="jini">
-      <HintPath>..\..\jini.dll</HintPath>
+      <HintPath>..\jini.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -50,13 +50,15 @@ namespace PSC
 
         private void CSVtoINIfile()
         {
+            // CSV 轉 ini File
             int AutoKit_GPIO_icon_10 = 0, AutoKit_RS232_one_Bar = 0;
             string TextLine = "";
             string[] SplitLine;
             int j = 0;
             string SchedulePath = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
 
-            if ((File.Exists(SchedulePath) == true) && IsFileLocked(SchedulePath) == false)
+            // 開檔案讀取csv.
+            if ((File.Exists(SchedulePath) == true) && IsFileLocked(SchedulePath) == false) 
             {
                 dataGridView1.Rows.Clear();
                 StreamReader objReader = new StreamReader(SchedulePath);
@@ -72,14 +74,12 @@ namespace PSC
                 }
                 objReader.Close();
 
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)  // 產生 Script.ini
                 {
-                    if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "AutoKit_GPIO")
+                    if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "AutoKit_GPIO")  // 分類Autokit_GPIO
                     {
-                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Icon10")
+                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Icon10")  // button 0 or 1
                         {
-                            int hashcode = HashCode_Create("AutoKit_GPIO_Icon10_" + AutoKit_GPIO_icon_10);
-                            ini12.INIWrite(Script_Path, "AutoKit_GPIO_Icon10_" + AutoKit_GPIO_icon_10, "Hashcode", Convert.ToString(hashcode, 16));
                             ini12.INIWrite(Script_Path, "AutoKit_GPIO_Icon10_" + AutoKit_GPIO_icon_10, "Com", dataGridView1.Rows[i].Cells[1].Value.ToString());
                             ini12.INIWrite(Script_Path, "AutoKit_GPIO_Icon10_" + AutoKit_GPIO_icon_10, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
                             ini12.INIWrite(Script_Path, "AutoKit_GPIO_Icon10_" + AutoKit_GPIO_icon_10, "Command", dataGridView1.Rows[i].Cells[4].Value.ToString());
@@ -91,12 +91,10 @@ namespace PSC
                             AutoKit_GPIO_icon_10++;
                         }
                     }
-                    else if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "AutoKit_RS232")
+                    else if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "AutoKit_RS232") // 分類Autokit_RS232
                     {
-                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "oneBar")
+                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "oneBar")  // one bar
                         {
-                            int hashcode = HashCode_Create("AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar);
-                            ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Hashcode", Convert.ToString(hashcode, 16));
                             ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Com", dataGridView1.Rows[i].Cells[1].Value.ToString());
                             ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
                             ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Command", dataGridView1.Rows[i].Cells[4].Value.ToString());
@@ -109,8 +107,8 @@ namespace PSC
                         }
                     }
                 }
-                AutoKit_GPIO_icon_10_Create(AutoKit_GPIO_icon_10);
-                AutoKit_RS232_one_Bar_Create(AutoKit_RS232_one_Bar);
+                AutoKit_GPIO_icon_10_Create(AutoKit_GPIO_icon_10);   // 產生Button
+                AutoKit_RS232_one_Bar_Create(AutoKit_RS232_one_Bar); // 產生Bar
             }
             else
             {
@@ -120,13 +118,13 @@ namespace PSC
 
         private void Default_Env()
         {
-            comboBox_Serialport.Text = "A";
-            textBox_MonitorID.Text = "01";
-            comboBox_function.Text = "R";
-            textBox_times.Text = "1000";
+            comboBox_Serialport.Text = "A"; // 預設 A
+            textBox_MonitorID.Text = "01"; // 預設 MonitorID
+            comboBox_function.Text = "R"; // 預設 function
+            textBox_times.Text = "1000"; // 預設 delay
         }
 
-        private void AutoKit_GPIO_icon_10_Create(int count)
+        private void AutoKit_GPIO_icon_10_Create(int count)   // button產生數量
         {
             System.Windows.Forms.Label[] AutoKit_GPIO_icon_label;
 
@@ -252,21 +250,21 @@ namespace PSC
             Thread.Sleep(50);
         }
 
-        private void AutoKit_GPIO_icon_Control(int index, string status)
+        private void AutoKit_GPIO_icon_Control(int index, string status)    //Button 0, 1
         {
-            byte[] InputBuffer = new byte[6];
-            byte[] OutputBuffer = new byte[8];
-            string port = comboBox_Serialport.Text;
-            string monitor = textBox_MonitorID.Text;
-            string function = comboBox_function.Text;
-            string times = textBox_times.Text;
+            byte[] InputBuffer = new byte[6];       //Input陣列值
+            byte[] OutputBuffer = new byte[8];      //Output陣列值
+            string port = comboBox_Serialport.Text; //Autokit serial port
+            string monitor = textBox_MonitorID.Text;  // Monitor ID value
+            string function = comboBox_function.Text;  // Function value
+            string times = textBox_times.Text;  //Autokit wait value
 
-            string OutputString = "";
+            string OutputString = "";       //Autokit schedule 變數
             OutputString = "_HEX,,,";
             OutputString += port + ",,,";
 
-            InputBuffer[0] = Convert.ToByte(monitor, 16);
-            switch (function)
+            InputBuffer[0] = Convert.ToByte(monitor, 16);     //Monitor ID
+            switch (function)           //Function: R, W, Multi
             {
                 case "R":
                     InputBuffer[1] = Convert.ToByte("03");
@@ -278,27 +276,27 @@ namespace PSC
                     InputBuffer[1] = Convert.ToByte("10");
                     break;
             }
-            InputBuffer[2] = 0x00;
-            InputBuffer[3] = Convert.ToByte(ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", ""), 16);
-            if (status != "")
+            InputBuffer[2] = 0x00;      // 名稱位置高位元
+            InputBuffer[3] = Convert.ToByte(ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", ""), 16);     // 名稱位置低位元
+            if (status != "")     // 功能設定值
             {
-                int Decimal = Convert.ToInt32(status);
-                int Hexadecimal = Convert.ToInt32(Convert.ToString(Decimal, 16), 16);
-                byte high_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);
+                int Decimal = Convert.ToInt32(status);    //文字轉數值
+                int Hexadecimal = Convert.ToInt32(Convert.ToString(Decimal, 16), 16);  //十進制轉十六進制數值
+                byte high_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);    //取高八位元值並&一個Byte去除超過一個byte值(00-FF)
                 InputBuffer[4] = high_value;
-                byte low_value = Convert.ToByte(Hexadecimal & 0xFF);
+                byte low_value = Convert.ToByte(Hexadecimal & 0xFF);  //取低八位元並&一個Byte(00-FF)
                 InputBuffer[5] = low_value;
             }
-            Byte[] crc = CRC16.ToModbus(InputBuffer);
-            OutputBuffer[6] = crc[0];
-            OutputBuffer[7] = crc[1];
+            Byte[] crc = CRC16.ToModbus(InputBuffer);  //算CRC值
+            OutputBuffer[6] = crc[0];   //高八位
+            OutputBuffer[7] = crc[1];   //低八位
 
             for (int i = 0; i < 6; i++)
             {
-                OutputBuffer[i] = InputBuffer[i];
+                OutputBuffer[i] = InputBuffer[i];   //輸入把至轉出陣列
             }
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)    //兩個兩個分開
             {
                 if (i == 0)
                     OutputString += OutputBuffer[i].ToString("X2");
@@ -309,7 +307,7 @@ namespace PSC
         }
 
 
-        private void AutoKit_RS232_Control(string type, int index, string frequency, string duty)
+        private void AutoKit_RS232_Control(string type, int index, string frequency, string duty)   //OneBer控制
         {
             byte[] InputBuffer = new byte[6];
             byte[] OutputBuffer = new byte[8];
@@ -365,7 +363,7 @@ namespace PSC
             output_log += OutputString + ",," + times + "," + Environment.NewLine;
         }
 
-        public static bool IsFileLocked(string file)
+        public static bool IsFileLocked(string file)     //偵測檔案被鎖住
         {
             try
             {
@@ -385,7 +383,7 @@ namespace PSC
             }
         }
         
-        private void button_Save_Click(object sender, EventArgs e)
+        private void button_Save_Click(object sender, EventArgs e)          // Save button功能
         {
             DateTime myDate = DateTime.Now;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv", true))
@@ -395,17 +393,17 @@ namespace PSC
             }
         }
 
-        private void button_clear_Click(object sender, EventArgs e)
+        private void button_clear_Click(object sender, EventArgs e)         // Clear button功能
         {
             output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
         }
 
-        private void settings_button_Click(object sender, EventArgs e)
+        private void settings_button_Click(object sender, EventArgs e)      //Setting window
         {
             string csv_file = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
             Setting Setting = new Setting();
 
-            if (Setting.ShowDialog() == DialogResult.Cancel)
+            if (Setting.ShowDialog() == DialogResult.Cancel)                //當關閉Setting視窗
             {
                 if (csv_file != ini12.INIRead(Config_Path, "Config", "scriptFile", ""))
                 {
@@ -414,13 +412,6 @@ namespace PSC
                 }
             }
             Setting.Dispose();
-        }
-
-        public static int HashCode_Create(String Operand)
-        {
-            int HashCode = Operand.GetHashCode();
-            //Console.WriteLine("The hash code for \"{0}\" is: 0x{1:X8}, {1}", Operand, HashCode);
-            return HashCode;
         }
     }
 }
