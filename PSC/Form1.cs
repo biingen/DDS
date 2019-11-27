@@ -26,7 +26,7 @@ namespace PSC
         private string Script_Path = Application.StartupPath + "\\Script.ini";
         private string Config_Path = Application.StartupPath + "\\Config.ini";
 
-        private int Location_X = 25, Location_Y = 50;
+        private int Location_X = 30, Location_Y = 15;
         String output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
 
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_on_button;
@@ -120,7 +120,7 @@ namespace PSC
         {
             comboBox_Serialport.Text = "A"; // 預設 A
             textBox_MonitorID.Text = "01"; // 預設 MonitorID
-            comboBox_function.Text = "R"; // 預設 function
+            comboBox_function.Text = "W"; // 預設 function
             textBox_times.Text = "1000"; // 預設 delay
         }
 
@@ -156,10 +156,10 @@ namespace PSC
                 AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark", "");
                 AutoKit_GPIO_icon_remark[index].Size = new Size(250, 30);
                 AutoKit_GPIO_icon_remark[index].Location = new System.Drawing.Point(Location_X + 260, Location_Y + index * 30);
-                this.Controls.AddRange(AutoKit_GPIO_icon_off_button);
-                this.Controls.AddRange(AutoKit_GPIO_icon_on_button);
-                this.Controls.AddRange(AutoKit_GPIO_icon_remark);
-                this.Controls.AddRange(AutoKit_GPIO_icon_label);
+                this.panel2.Controls.AddRange(AutoKit_GPIO_icon_off_button);
+                this.panel2.Controls.AddRange(AutoKit_GPIO_icon_on_button);
+                this.panel2.Controls.AddRange(AutoKit_GPIO_icon_remark);
+                this.panel2.Controls.AddRange(AutoKit_GPIO_icon_label);
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -208,11 +208,11 @@ namespace PSC
                 AutoKit_RS232_one_Bar_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Remark", "");
                 AutoKit_RS232_one_Bar_remark[index].Size = new Size(200, 30);
                 AutoKit_RS232_one_Bar_remark[index].Location = new System.Drawing.Point(Location_X + 410, Location_Y + index * 30);
-                this.Controls.AddRange(AutoKit_RS232_one_Bar_remark);
-                this.Controls.AddRange(AutoKit_RS232_one_Bar_button);
-                this.Controls.AddRange(AutoKit_RS232_one_Bar_textbox);
-                this.Controls.AddRange(AutoKit_RS232_one_Bar_hscorllbar);
-                this.Controls.AddRange(AutoKit_RS232_one_Bar_label);
+                this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_remark);
+                this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_button);
+                this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_textbox);
+                this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_hscorllbar);
+                this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_label);
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -303,7 +303,7 @@ namespace PSC
                 else
                     OutputString += " " + OutputBuffer[i].ToString("X2");
             }
-            output_log += OutputString + ",," + times + "," + Environment.NewLine;
+            output_log += OutputString + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;
         }
 
 
@@ -360,7 +360,7 @@ namespace PSC
                 else
                     OutputString += " " + OutputBuffer[i].ToString("X2");
             }
-            output_log += OutputString + ",," + times + "," + Environment.NewLine;
+            output_log += OutputString + ",," + times + "," + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;
         }
 
         public static bool IsFileLocked(string file)     //偵測檔案被鎖住
@@ -382,8 +382,13 @@ namespace PSC
                 return false;
             }
         }
-        
-        private void button_Save_Click(object sender, EventArgs e)          // Save button功能
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button_Save_Click(object sender, EventArgs e)
         {
             DateTime myDate = DateTime.Now;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv", true))
@@ -393,12 +398,7 @@ namespace PSC
             }
         }
 
-        private void button_clear_Click(object sender, EventArgs e)         // Clear button功能
-        {
-            output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
-        }
-
-        private void settings_button_Click(object sender, EventArgs e)      //Setting window
+        private void setting_button_Click(object sender, EventArgs e)
         {
             string csv_file = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
             Setting Setting = new Setting();
@@ -407,11 +407,17 @@ namespace PSC
             {
                 if (csv_file != ini12.INIRead(Config_Path, "Config", "scriptFile", ""))
                 {
-                    MessageBox.Show("Please wait, DSS will restart.");
+                    MessageBox.Show("Please wait, PSC will restart.");
                     Application.Restart();
                 }
             }
             Setting.Dispose();
         }
+
+        private void button_clear_Click(object sender, EventArgs e)
+        {
+            output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
+        }
+
     }
 }

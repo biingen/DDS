@@ -55,18 +55,21 @@
             this.label_function = new System.Windows.Forms.Label();
             this.comboBox_function = new System.Windows.Forms.ComboBox();
             this.button_clear = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // setting_button
             // 
-            this.setting_button.Location = new System.Drawing.Point(616, 12);
+            this.setting_button.Location = new System.Drawing.Point(614, 13);
             this.setting_button.Name = "setting_button";
             this.setting_button.Size = new System.Drawing.Size(59, 26);
-            this.setting_button.TabIndex = 16;
+            this.setting_button.TabIndex = 34;
             this.setting_button.Text = "Setting";
             this.setting_button.UseVisualStyleBackColor = true;
-            this.setting_button.Click += new System.EventHandler(this.settings_button_Click);
+            this.setting_button.Click += new System.EventHandler(this.setting_button_Click);
             // 
             // dataGridView1
             // 
@@ -86,12 +89,12 @@
             this.Column12,
             this.Column13,
             this.Remark});
-            this.dataGridView1.Location = new System.Drawing.Point(681, 6);
+            this.dataGridView1.Location = new System.Drawing.Point(683, 9);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(54, 32);
-            this.dataGridView1.TabIndex = 20;
+            this.dataGridView1.Size = new System.Drawing.Size(46, 30);
+            this.dataGridView1.TabIndex = 35;
             this.dataGridView1.Visible = false;
             // 
             // Column1
@@ -192,20 +195,21 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(496, 12);
+            this.button_Save.Location = new System.Drawing.Point(494, 13);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(57, 26);
-            this.button_Save.TabIndex = 24;
+            this.button_Save.TabIndex = 36;
             this.button_Save.Text = "Save";
             this.button_Save.UseVisualStyleBackColor = true;
             this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // textBox_MonitorID
             // 
-            this.textBox_MonitorID.Location = new System.Drawing.Point(185, 13);
+            this.textBox_MonitorID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.textBox_MonitorID.Location = new System.Drawing.Point(183, 14);
             this.textBox_MonitorID.Name = "textBox_MonitorID";
             this.textBox_MonitorID.Size = new System.Drawing.Size(65, 22);
-            this.textBox_MonitorID.TabIndex = 25;
+            this.textBox_MonitorID.TabIndex = 37;
             // 
             // comboBox_Serialport
             // 
@@ -216,52 +220,52 @@
             "C",
             "D",
             "E"});
-            this.comboBox_Serialport.Location = new System.Drawing.Point(59, 14);
+            this.comboBox_Serialport.Location = new System.Drawing.Point(57, 15);
             this.comboBox_Serialport.Name = "comboBox_Serialport";
             this.comboBox_Serialport.Size = new System.Drawing.Size(55, 20);
-            this.comboBox_Serialport.TabIndex = 26;
+            this.comboBox_Serialport.TabIndex = 38;
             // 
             // textBox_times
             // 
-            this.textBox_times.Location = new System.Drawing.Point(414, 14);
+            this.textBox_times.Location = new System.Drawing.Point(412, 15);
             this.textBox_times.Name = "textBox_times";
             this.textBox_times.Size = new System.Drawing.Size(65, 22);
-            this.textBox_times.TabIndex = 27;
+            this.textBox_times.TabIndex = 39;
             // 
             // label_comport
             // 
             this.label_comport.AutoSize = true;
-            this.label_comport.Location = new System.Drawing.Point(7, 19);
+            this.label_comport.Location = new System.Drawing.Point(5, 20);
             this.label_comport.Name = "label_comport";
             this.label_comport.Size = new System.Drawing.Size(50, 12);
-            this.label_comport.TabIndex = 28;
+            this.label_comport.TabIndex = 40;
             this.label_comport.Text = "Comport:";
             // 
             // label_monitorid
             // 
             this.label_monitorid.AutoSize = true;
-            this.label_monitorid.Location = new System.Drawing.Point(120, 19);
+            this.label_monitorid.Location = new System.Drawing.Point(118, 20);
             this.label_monitorid.Name = "label_monitorid";
             this.label_monitorid.Size = new System.Drawing.Size(61, 12);
-            this.label_monitorid.TabIndex = 29;
+            this.label_monitorid.TabIndex = 41;
             this.label_monitorid.Text = "Monitor ID:";
             // 
             // label_times
             // 
             this.label_times.AutoSize = true;
-            this.label_times.Location = new System.Drawing.Point(374, 19);
+            this.label_times.Location = new System.Drawing.Point(372, 20);
             this.label_times.Name = "label_times";
             this.label_times.Size = new System.Drawing.Size(36, 12);
-            this.label_times.TabIndex = 30;
+            this.label_times.TabIndex = 42;
             this.label_times.Text = "Times:";
             // 
             // label_function
             // 
             this.label_function.AutoSize = true;
-            this.label_function.Location = new System.Drawing.Point(265, 19);
+            this.label_function.Location = new System.Drawing.Point(263, 20);
             this.label_function.Name = "label_function";
             this.label_function.Size = new System.Drawing.Size(49, 12);
-            this.label_function.TabIndex = 31;
+            this.label_function.TabIndex = 43;
             this.label_function.Text = "Function:";
             // 
             // comboBox_function
@@ -270,50 +274,68 @@
             this.comboBox_function.Items.AddRange(new object[] {
             "R",
             "W"});
-            this.comboBox_function.Location = new System.Drawing.Point(315, 14);
+            this.comboBox_function.Location = new System.Drawing.Point(313, 15);
             this.comboBox_function.Name = "comboBox_function";
             this.comboBox_function.Size = new System.Drawing.Size(55, 20);
-            this.comboBox_function.TabIndex = 32;
+            this.comboBox_function.TabIndex = 44;
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(556, 12);
+            this.button_clear.Location = new System.Drawing.Point(554, 13);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(57, 26);
-            this.button_clear.TabIndex = 33;
+            this.button_clear.TabIndex = 45;
             this.button_clear.Text = "Clear";
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.button_Save);
+            this.panel1.Controls.Add(this.button_clear);
+            this.panel1.Controls.Add(this.comboBox_Serialport);
+            this.panel1.Controls.Add(this.comboBox_function);
+            this.panel1.Controls.Add(this.textBox_times);
+            this.panel1.Controls.Add(this.label_comport);
+            this.panel1.Controls.Add(this.textBox_MonitorID);
+            this.panel1.Controls.Add(this.label_function);
+            this.panel1.Controls.Add(this.label_monitorid);
+            this.panel1.Controls.Add(this.setting_button);
+            this.panel1.Controls.Add(this.label_times);
+            this.panel1.Location = new System.Drawing.Point(2, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(738, 50);
+            this.panel1.TabIndex = 46;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(2, 59);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(738, 690);
+            this.panel2.TabIndex = 47;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(743, 754);
-            this.Controls.Add(this.button_clear);
-            this.Controls.Add(this.comboBox_function);
-            this.Controls.Add(this.label_function);
-            this.Controls.Add(this.label_times);
-            this.Controls.Add(this.label_monitorid);
-            this.Controls.Add(this.label_comport);
-            this.Controls.Add(this.textBox_times);
-            this.Controls.Add(this.comboBox_Serialport);
-            this.Controls.Add(this.textBox_MonitorID);
-            this.Controls.Add(this.button_Save);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.setting_button);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "PID Schedule Create";
             this.Load += new System.EventHandler(this.DDS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
+
         private System.Windows.Forms.Button setting_button;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -340,6 +362,8 @@
         private System.Windows.Forms.Label label_function;
         private System.Windows.Forms.ComboBox comboBox_function;
         private System.Windows.Forms.Button button_clear;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
