@@ -48,6 +48,48 @@ namespace PSC
             Default_Env();
         }
 
+        private void Extend_Initial_port()
+        {
+            string SerialPort1_Exist = ini12.INIRead(Config_Path, "serialPort1", "Exist", "");
+
+            if (SerialPort1_Exist == "1")
+            {
+                Open_serialPort1();
+            }
+        }
+
+        //  開啟SerialPort
+        protected void Open_serialPort1()
+        {
+            try
+            {
+                if (SerialPort1.IsOpen == false)
+                {
+                    SerialPort1.StopBits = StopBits.One;
+                    SerialPort1.PortName = ini12.INIRead(Config_Path, "serialPort1", "PortName", "");
+                    SerialPort1.BaudRate = int.Parse((ini12.INIRead(Config_Path, "serialPort1", "BaudRate", "")));
+                    SerialPort1.DataBits = 8;
+                    SerialPort1.Parity = (Parity)0;
+                    SerialPort1.ReceivedBytesThreshold = 1;
+                    // V3_serialPort.Encoding = System.Text.Encoding.GetEncoding(1252);
+                    // V3_serialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort1_DataReceived);       // DataReceived呼叫函式
+                    SerialPort1.Open();
+                }
+            }
+            catch (Exception Ex)
+            {
+                ini12.INIWrite(Config_Path, "serialPort1", "Exist", "0");
+                MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //  關閉SerialPort
+        protected void Close_serialPort1()
+        {
+            SerialPort1.Dispose();
+            SerialPort1.Close();
+        }
+
         private void CSVtoINIfile()
         {
             // CSV 轉 ini File
@@ -165,7 +207,7 @@ namespace PSC
             Location_Y = Location_Y + (count * 30);
         }
 
-        private void AutoKit_RS232_one_Bar_Create(int count)
+        private void AutoKit_RS232_one_Bar_Create(int count)    // bar產生數量
         {
             System.Windows.Forms.Label[] AutoKit_RS232_one_Bar_label;
             System.Windows.Forms.Label[] AutoKit_RS232_one_Bar_remark;
@@ -218,7 +260,7 @@ namespace PSC
             Location_Y = Location_Y + (count * 30);
         }
 
-        void AutoKit_GPIO_icon_on_button_Click(object sender, EventArgs e)
+        void AutoKit_GPIO_icon_on_button_Click(object sender, EventArgs e)      //按下On按鈕的動作
         {
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_on_button_", ""));
             AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_On", "");
@@ -226,7 +268,7 @@ namespace PSC
             Thread.Sleep(50);
         }
 
-        void AutoKit_GPIO_icon_off_button_Click(object sender, EventArgs e)
+        void AutoKit_GPIO_icon_off_button_Click(object sender, EventArgs e)     //按下Off按鈕的動作
         {
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_off_button_", ""));
             AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_Off", "");
@@ -234,7 +276,7 @@ namespace PSC
             Thread.Sleep(50);
         }
 
-        void AutoKit_RS232_one_Bar_hscorllbar_ValueChanged(object sender, EventArgs e)
+        void AutoKit_RS232_one_Bar_hscorllbar_ValueChanged(object sender, EventArgs e)      //調整bar的動作
         {
             int index = int.Parse(((HScrollBar)(sender)).Name.ToString().Replace("AutoKit_RS232_one_Bar_hscorllbar_", ""));
             AutoKit_RS232_one_Bar_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
@@ -296,7 +338,19 @@ namespace PSC
                 OutputBuffer[i] = InputBuffer[i];   //輸入把至轉出陣列
             }
 
-            for (int i = 0; i < 8; i++)    //兩個兩個分開
+            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
+            {
+                try
+                {
+                    SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            for (int i = 0; i < 8; i++)    //記錄log, 兩個兩個HEX值並且用空格分開
             {
                 if (i == 0)
                     OutputString += OutputBuffer[i].ToString("X2");
@@ -353,6 +407,30 @@ namespace PSC
                 OutputBuffer[i] = InputBuffer[i];
             }
 
+            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
+            {
+                try
+                {
+                    SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
+            {
+                try
+                {
+                    SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             for (int i = 0; i < 8; i++)
             {
                 if (i == 0)
@@ -383,11 +461,6 @@ namespace PSC
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button_Save_Click(object sender, EventArgs e)
         {
             DateTime myDate = DateTime.Now;
@@ -403,6 +476,12 @@ namespace PSC
             string csv_file = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
             Setting Setting = new Setting();
 
+            //如果serialport開著則先關閉//
+            if (SerialPort1.IsOpen == true)
+            {
+                Close_serialPort1();
+            }
+
             if (Setting.ShowDialog() == DialogResult.Cancel)                //當關閉Setting視窗
             {
                 if (csv_file != ini12.INIRead(Config_Path, "Config", "scriptFile", ""))
@@ -410,13 +489,17 @@ namespace PSC
                     MessageBox.Show("Please wait, PSC will restart.");
                     Application.Restart();
                 }
+                else
+                {
+                    Extend_Initial_port();
+                }
             }
             Setting.Dispose();
         }
 
         private void button_clear_Click(object sender, EventArgs e)
         {
-            output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
+            output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;      //預設Schedule第一行內容
         }
 
     }

@@ -24,7 +24,24 @@ namespace PSC
 
         private void Setting_Load(object sender, EventArgs e)
         {
+            comboBox2.DataSource = System.IO.Ports.SerialPort.GetPortNames();
             textBox_csv_script.Text = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
+
+            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
+            {
+                checkBox1.Checked = true;
+                comboBox2.Enabled = true;
+                comboBox3.Enabled = true;
+            }
+            else
+            {
+                checkBox1.Checked = false;
+                comboBox2.Enabled = false;
+                comboBox3.Enabled = false;
+            }
+
+            comboBox2.Text = ini12.INIRead(Config_Path, "serialPort1", "PortName", "");
+            comboBox3.Text = ini12.INIRead(Config_Path, "serialPort1", "BaudRate", "");
         }
 
         private void button_csv_script_Click(object sender, EventArgs e)
@@ -43,6 +60,32 @@ namespace PSC
             {
                 ini12.INIWrite(Config_Path, "Config", "scriptFile", textBox_csv_script.Text.Trim());
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                ini12.INIWrite(Config_Path, "serialPort1", "Exist", "1");
+                comboBox2.Enabled = true;
+                comboBox3.Enabled = true;
+            }
+            else
+            {
+                ini12.INIWrite(Config_Path, "serialPort1", "Exist", "0");
+                comboBox2.Enabled = false;
+                comboBox3.Enabled = false;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ini12.INIWrite(Config_Path, "serialPort1", "PortName", comboBox2.Text.Trim());
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ini12.INIWrite(Config_Path, "serialPort1", "BaudRate", comboBox3.Text.Trim());
         }
     }
 }
