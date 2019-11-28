@@ -345,9 +345,14 @@ namespace PSC
                 try
                 {
                     SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                    string Output_log = "";
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Output_log = Output_log + OutputBuffer[i];
+                    }
                     DateTime dt = DateTime.Now;
-                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputBuffer + "\r\n";
-                    log_content = string.Concat(log_content, OutputBuffer);
+                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + Output_log + Environment.NewLine;
+                    log_content = string.Concat(log_content, text);
                 }
                 catch (Exception Ex)
                 {
@@ -417,21 +422,14 @@ namespace PSC
                 try
                 {
                     SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
-            {
-                try
-                {
-                    SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                    string Output_log = "";
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Output_log = Output_log + OutputBuffer[i];
+                    }
                     DateTime dt = DateTime.Now;
-                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputBuffer + "\r\n";
-                    log_content = string.Concat(log_content, OutputBuffer);
+                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + Output_log + Environment.NewLine;
+                    log_content = string.Concat(log_content, text);
                 }
                 catch (Exception Ex)
                 {
@@ -527,7 +525,7 @@ namespace PSC
                     DateTime dt;
                     dt = DateTime.Now;
 
-                    hexValues = "[Receive_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + hexValues + "\r\n";
+                    hexValues = "[Receive_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + hexValues + Environment.NewLine;
 
                     log_content = string.Concat(log_content, hexValues);
                 }
