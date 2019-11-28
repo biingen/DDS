@@ -28,6 +28,7 @@ namespace PSC
 
         private int Location_X = 30, Location_Y = 15;
         String output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
+        String log_content = "";
 
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_on_button;
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_off_button;
@@ -45,6 +46,7 @@ namespace PSC
         private void DDS_Load(object sender, EventArgs e)
         {
             CSVtoINIfile();
+            Extend_Initial_port();
             Default_Env();
         }
 
@@ -343,6 +345,9 @@ namespace PSC
                 try
                 {
                     SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                    DateTime dt = DateTime.Now;
+                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputBuffer + "\r\n";
+                    log_content = string.Concat(log_content, OutputBuffer);
                 }
                 catch (Exception Ex)
                 {
@@ -424,6 +429,9 @@ namespace PSC
                 try
                 {
                     SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                    DateTime dt = DateTime.Now;
+                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputBuffer + "\r\n";
+                    log_content = string.Concat(log_content, OutputBuffer);
                 }
                 catch (Exception Ex)
                 {
@@ -469,6 +477,12 @@ namespace PSC
                 file.Write(output_log);
                 output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
             }
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt", true))
+            {
+                file.Write(log_content);
+                log_content = "";
+            }
         }
 
         private void setting_button_Click(object sender, EventArgs e)
@@ -497,9 +511,37 @@ namespace PSC
             Setting.Dispose();
         }
 
+        private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                int data_to_read = SerialPort1.BytesToRead;
+                if (data_to_read > 0)
+                {
+                    byte[] dataset = new byte[data_to_read];
+
+                    SerialPort1.Read(dataset, 0, data_to_read);
+
+                    // hex to string
+                    string hexValues = BitConverter.ToString(dataset).Replace("-", "");
+                    DateTime dt;
+                    dt = DateTime.Now;
+
+                    hexValues = "[Receive_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + hexValues + "\r\n";
+
+                    log_content = string.Concat(log_content, hexValues);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         private void button_clear_Click(object sender, EventArgs e)
         {
             output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;      //預設Schedule第一行內容
+            log_content = "";   //預設log內容
         }
 
     }

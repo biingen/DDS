@@ -318,6 +318,10 @@
             this.panel2.Size = new System.Drawing.Size(738, 690);
             this.panel2.TabIndex = 47;
             // 
+            // SerialPort1
+            // 
+            this.SerialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort1_DataReceived);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
