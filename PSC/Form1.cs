@@ -36,6 +36,7 @@ namespace PSC
 
         System.Windows.Forms.HScrollBar[] AutoKit_RS232_one_Bar_hscorllbar;
         System.Windows.Forms.TextBox[] AutoKit_RS232_one_Bar_textbox;
+        System.Windows.Forms.TextBox[] AutoKit_RS232_one_Bar_High_textbox;
         System.Windows.Forms.Button[] AutoKit_RS232_one_Bar_button;
 
         public Main()
@@ -102,7 +103,7 @@ namespace PSC
             string SchedulePath = ini12.INIRead(Config_Path, "Config", "scriptFile", "");
 
             // 開檔案讀取csv.
-            if ((File.Exists(SchedulePath) == true) && IsFileLocked(SchedulePath) == false) 
+            if ((File.Exists(SchedulePath) == true) && IsFileLocked(SchedulePath) == false)
             {
                 dataGridView1.Rows.Clear();
                 StreamReader objReader = new StreamReader(SchedulePath);
@@ -146,6 +147,8 @@ namespace PSC
                             ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Min", dataGridView1.Rows[i].Cells[6].Value.ToString());
                             ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Max", dataGridView1.Rows[i].Cells[7].Value.ToString());
                             ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Step", dataGridView1.Rows[i].Cells[8].Value.ToString());
+                            ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Duty_Min", dataGridView1.Rows[i].Cells[10].Value.ToString()); //
+                            ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Duty_Step", dataGridView1.Rows[i].Cells[11].Value.ToString()); //
                             ini12.INIWrite(Script_Path, "AutoKit_RS232_oneBar_" + AutoKit_RS232_one_Bar, "Remark", dataGridView1.Rows[i].Cells[13].Value.ToString());
                             AutoKit_RS232_one_Bar++;
                         }
@@ -213,12 +216,15 @@ namespace PSC
         {
             System.Windows.Forms.Label[] AutoKit_RS232_one_Bar_label;
             System.Windows.Forms.Label[] AutoKit_RS232_one_Bar_remark;
+            System.Windows.Forms.Label[] AutoKit_RS232_one_Bar_sign;
 
             AutoKit_RS232_one_Bar_label = new Label[count];
             AutoKit_RS232_one_Bar_hscorllbar = new HScrollBar[count];
             AutoKit_RS232_one_Bar_textbox = new TextBox[count];
+            AutoKit_RS232_one_Bar_High_textbox = new TextBox[count];
             AutoKit_RS232_one_Bar_button = new Button[count];
             AutoKit_RS232_one_Bar_remark = new Label[count];
+            AutoKit_RS232_one_Bar_sign = new Label[count];
 
             for (int index = 0; index < count; index++)
             {
@@ -236,27 +242,39 @@ namespace PSC
                 AutoKit_RS232_one_Bar_hscorllbar[index].Maximum = int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Max", ""));
                 AutoKit_RS232_one_Bar_hscorllbar[index].LargeChange = int.Parse(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Step", ""));
                 AutoKit_RS232_one_Bar_hscorllbar[index].ValueChanged += new EventHandler(this.AutoKit_RS232_one_Bar_hscorllbar_ValueChanged);
-                AutoKit_RS232_one_Bar_textbox[index] = new TextBox();
+                AutoKit_RS232_one_Bar_textbox[index] = new TextBox();  //min
                 AutoKit_RS232_one_Bar_textbox[index].Name = "AutoKit_RS232_one_Bar_textbox_" + index;
                 AutoKit_RS232_one_Bar_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
                 AutoKit_RS232_one_Bar_textbox[index].Size = new Size(60, 30);
                 AutoKit_RS232_one_Bar_textbox[index].Location = new System.Drawing.Point(Location_X + 290, Location_Y + index * 30);
+                AutoKit_RS232_one_Bar_sign[index] = new Label();  // ~~~~~~~~
+                AutoKit_RS232_one_Bar_sign[index].Name = "AutoKit_RS232_one_Bar_sign_" + index;
+                AutoKit_RS232_one_Bar_sign[index].Text = " ~~~~~ ";
+                AutoKit_RS232_one_Bar_sign[index].Size = new Size(30, 30);
+                AutoKit_RS232_one_Bar_sign[index].Location = new System.Drawing.Point(Location_X + 350, Location_Y + index * 30);
+                AutoKit_RS232_one_Bar_High_textbox[index] = new TextBox();  //max
+                AutoKit_RS232_one_Bar_High_textbox[index].Name = "AutoKit_RS232_one_Bar_High_textbox" + index;
+                AutoKit_RS232_one_Bar_High_textbox[index].Text = "1";
+                AutoKit_RS232_one_Bar_High_textbox[index].Size = new Size(60, 30);
+                AutoKit_RS232_one_Bar_High_textbox[index].Location = new System.Drawing.Point(Location_X + 380, Location_Y + index * 30);
                 AutoKit_RS232_one_Bar_button[index] = new Button();
                 AutoKit_RS232_one_Bar_button[index].Name = "AutoKit_RS232_one_Bar_button_" + index;
                 AutoKit_RS232_one_Bar_button[index].Text = "Enter";
                 AutoKit_RS232_one_Bar_button[index].Size = new Size(60, 30);
-                AutoKit_RS232_one_Bar_button[index].Location = new System.Drawing.Point(Location_X + 350, Location_Y + index * 30);
+                AutoKit_RS232_one_Bar_button[index].Location = new System.Drawing.Point(Location_X + 440, Location_Y + index * 30);
                 AutoKit_RS232_one_Bar_button[index].Click += new EventHandler(this.AutoKit_RS232_one_Bar_button_Click);
-                AutoKit_RS232_one_Bar_remark[index] = new Label();
+                /*AutoKit_RS232_one_Bar_remark[index] = new Label();
                 AutoKit_RS232_one_Bar_remark[index].Name = "AutoKit_RS232_one_Bar_remark" + index;
                 AutoKit_RS232_one_Bar_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Remark", "");
                 AutoKit_RS232_one_Bar_remark[index].Size = new Size(200, 30);
-                AutoKit_RS232_one_Bar_remark[index].Location = new System.Drawing.Point(Location_X + 410, Location_Y + index * 30);
+                AutoKit_RS232_one_Bar_remark[index].Location = new System.Drawing.Point(Location_X + 410, Location_Y + index * 30);  */
                 this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_remark);
                 this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_button);
                 this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_textbox);
+                this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_High_textbox);
                 this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_hscorllbar);
                 this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_label);
+                this.panel2.Controls.AddRange(AutoKit_RS232_one_Bar_sign);
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -280,18 +298,54 @@ namespace PSC
 
         void AutoKit_RS232_one_Bar_hscorllbar_ValueChanged(object sender, EventArgs e)      //調整bar的動作
         {
+
             int index = int.Parse(((HScrollBar)(sender)).Name.ToString().Replace("AutoKit_RS232_one_Bar_hscorllbar_", ""));
-            AutoKit_RS232_one_Bar_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
-            AutoKit_RS232_Control("oneBar", index, AutoKit_RS232_one_Bar_textbox[index].Text, AutoKit_RS232_one_Bar_textbox[index].Text);
-            Thread.Sleep(50);
+            int min = Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text);
+            int max = Convert.ToInt32(AutoKit_RS232_one_Bar_High_textbox[index].Text);
+            if (min <= max )
+            {
+                AutoKit_RS232_one_Bar_High_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
+                AutoKit_RS232_Control("oneBar", index, Convert.ToInt32(AutoKit_RS232_one_Bar_High_textbox[index].Text), AutoKit_RS232_one_Bar_High_textbox[index].Text);
+                Thread.Sleep(50);
+
+                /*AutoKit_RS232_one_Bar_High_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
+                AutoKit_RS232_Control("oneBar", index, AutoKit_RS232_one_Bar_High_textbox[index].Text, AutoKit_RS232_one_Bar_High_textbox[index].Text);
+                Thread.Sleep(50);*/
+            }
+            
+            else if (min > max)
+            {
+                MessageBox.Show("Min cannot be greater than Max.", "Error");
+            }
         }
 
         void AutoKit_RS232_one_Bar_button_Click(object sender, EventArgs e)
         {
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_RS232_one_Bar_button_", ""));
-            if (AutoKit_RS232_one_Bar_textbox[index].Text != "")
-                AutoKit_RS232_Control("oneBar", index, AutoKit_RS232_one_Bar_textbox[index].Text, AutoKit_RS232_one_Bar_textbox[index].Text);
-            Thread.Sleep(50);
+            int min = Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text);
+            int max = Convert.ToInt32(AutoKit_RS232_one_Bar_High_textbox[index].Text);
+            if (min < max)
+            {
+                if (AutoKit_RS232_one_Bar_textbox[index].Text != AutoKit_RS232_one_Bar_High_textbox[index].Text)
+                {
+                    for (int i = 0; i <= (max - min); i++)
+                    {
+                        Console.WriteLine("index: " + i);
+                        AutoKit_RS232_Control("oneBar", index, Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text) + i, AutoKit_RS232_one_Bar_High_textbox[i].Text);
+                        Thread.Sleep(50);
+                    }
+
+                }
+                else if (AutoKit_RS232_one_Bar_textbox[index].Text == AutoKit_RS232_one_Bar_High_textbox[index].Text)
+                {
+                    AutoKit_RS232_Control("oneBar", index, Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text), AutoKit_RS232_one_Bar_textbox[index].Text);
+                    Thread.Sleep(50);
+                }
+            }
+            else if (min > max)
+            {
+                MessageBox.Show("Min cannot be greater than Max.", "Error");
+            }
         }
 
         private void AutoKit_GPIO_icon_Control(int index, string status)    //Button 0, 1
@@ -370,8 +424,7 @@ namespace PSC
             output_log += OutputString + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;
         }
 
-
-        private void AutoKit_RS232_Control(string type, int index, string frequency, string duty)   //OneBer控制
+        private void AutoKit_RS232_Control(string type, int index, int frequency, string duty)   //OneBer控制
         {
             byte[] InputBuffer = new byte[6];
             byte[] OutputBuffer = new byte[8];
@@ -379,6 +432,8 @@ namespace PSC
             string monitor = textBox_MonitorID.Text;
             string function = comboBox_function.Text;
             string times = textBox_times.Text;
+            string high_value = "", low_value = "";
+
 
             string OutputString = "";
             OutputString = "_HEX,,,";
@@ -399,22 +454,43 @@ namespace PSC
             }
             InputBuffer[2] = 0x00;
             InputBuffer[3] = Convert.ToByte(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", ""), 16);
-            if (frequency != "")
+            if (frequency > -1)
             {
-                int Decimal = Convert.ToInt32(frequency);
-                int Hexadecimal = Convert.ToInt32(Convert.ToString(Decimal, 16), 16);
-                byte high_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);
-                InputBuffer[4] = high_value;
-                byte low_value = Convert.ToByte(Hexadecimal & 0xFF);
-                InputBuffer[5] = low_value;
+                int Hexadecimal = 0;
+                int.TryParse(Convert.ToString(frequency, 16), out Hexadecimal);
+                high_value = Convert.ToString(Hexadecimal >> 8 & 0xFF);
+                byte high_byte_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);
+                InputBuffer[4] = high_byte_value;
+                low_value = Convert.ToString(Hexadecimal & 0xFF);
+                byte low_byte_value = Convert.ToByte(Hexadecimal & 0xFF);
+                InputBuffer[5] = low_byte_value;
             }
-            Byte[] crc = CRC16.ToModbus(InputBuffer);
-            OutputBuffer[6] = crc[0];
-            OutputBuffer[7] = crc[1];
+            byte[] crc = CRC16.ToModbus(InputBuffer);
 
-            for (int i = 0; i < 6; i++)
+            List<string> lst = new List<string> { };
+            for (int i = 0; i < 4; i++)
             {
-                OutputBuffer[i] = InputBuffer[i];
+                lst.Add(InputBuffer[i].ToString("X2"));
+            }
+
+            lst.Add(high_value.PadLeft(2, '0'));
+            lst.Add(low_value.PadLeft(2, '0'));
+
+            for (int j = 6; j < 8; j++)
+            {
+                lst.Add(crc[j - 6].ToString("X2"));
+            }
+
+            int HexIndex = 0;
+            foreach(string s in lst)
+            {
+                // Convert the number expressed in base-16 to an integer.
+                int value = Convert.ToInt32(s, 16);
+                // Get the character corresponding to the integral value.
+                Console.WriteLine("hexadecimal value = {0}, int value = {1}", s, value);
+                byte number = Convert.ToByte(Convert.ToInt32(s, 16));
+                OutputBuffer[HexIndex] = number;
+                HexIndex++;
             }
 
             if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
@@ -422,13 +498,8 @@ namespace PSC
                 try
                 {
                     SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
-                    string Output_log = "";
-                    for (int i = 0; i < 8; i++)
-                    {
-                        Output_log = Output_log + OutputBuffer[i];
-                    }
                     DateTime dt = DateTime.Now;
-                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + Output_log + Environment.NewLine;
+                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + Convert.ToString(OutputBuffer) + Environment.NewLine;
                     log_content = string.Concat(log_content, text);
                 }
                 catch (Exception Ex)
@@ -444,7 +515,7 @@ namespace PSC
                 else
                     OutputString += " " + OutputBuffer[i].ToString("X2");
             }
-            output_log += OutputString + ",," + times + "," + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;
+            output_log += OutputString + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;
         }
 
         public static bool IsFileLocked(string file)     //偵測檔案被鎖住
