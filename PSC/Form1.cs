@@ -305,7 +305,7 @@ namespace PSC
             if (min <= max )
             {
                 AutoKit_RS232_one_Bar_High_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
-                AutoKit_RS232_Control("oneBar", index, Convert.ToInt32(AutoKit_RS232_one_Bar_High_textbox[index].Text), AutoKit_RS232_one_Bar_High_textbox[index].Text);
+                AutoKit_RS232_Control("oneBar", index, AutoKit_RS232_one_Bar_High_textbox[index].Text, AutoKit_RS232_one_Bar_High_textbox[index].Text);
                 Thread.Sleep(50);
 
                 /*AutoKit_RS232_one_Bar_High_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
@@ -324,6 +324,7 @@ namespace PSC
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_RS232_one_Bar_button_", ""));
             int min = Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text);
             int max = Convert.ToInt32(AutoKit_RS232_one_Bar_High_textbox[index].Text);
+            int value = Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text);
             if (min < max)
             {
                 if (AutoKit_RS232_one_Bar_textbox[index].Text != AutoKit_RS232_one_Bar_High_textbox[index].Text)
@@ -331,14 +332,14 @@ namespace PSC
                     for (int i = 0; i <= (max - min); i++)
                     {
                         Console.WriteLine("index: " + i);
-                        AutoKit_RS232_Control("oneBar", index, Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text) + i, AutoKit_RS232_one_Bar_High_textbox[i].Text);
+                        AutoKit_RS232_Control("oneBar", index, Convert.ToString(value + i), AutoKit_RS232_one_Bar_High_textbox[i].Text);
                         Thread.Sleep(50);
                     }
 
                 }
                 else if (AutoKit_RS232_one_Bar_textbox[index].Text == AutoKit_RS232_one_Bar_High_textbox[index].Text)
                 {
-                    AutoKit_RS232_Control("oneBar", index, Convert.ToInt32(AutoKit_RS232_one_Bar_textbox[index].Text), AutoKit_RS232_one_Bar_textbox[index].Text);
+                    AutoKit_RS232_Control("oneBar", index, AutoKit_RS232_one_Bar_textbox[index].Text, AutoKit_RS232_one_Bar_textbox[index].Text);
                     Thread.Sleep(50);
                 }
             }
@@ -350,63 +351,76 @@ namespace PSC
 
         private void AutoKit_GPIO_icon_Control(int index, string status)    //Button 0, 1
         {
-            byte[] InputBuffer = new byte[6];       //Input陣列值
-            byte[] OutputBuffer = new byte[8];      //Output陣列值
             string port = comboBox_Serialport.Text; //Autokit serial port
             string monitor = textBox_MonitorID.Text;  // Monitor ID value
             string function = comboBox_function.Text;  // Function value
+            switch (function)
+            {
+                case "R":
+                    function = "03";
+                    break;
+                case "W":
+                    function = "06";
+                    break;
+                case "Multi":
+                    function = "10";
+                    break;
+            }
             string times = textBox_times.Text;  //Autokit wait value
+            int value = Convert.ToInt32(status);
+
+            string high_value = "", low_value = "";
+            if (value > -1)
+            {
+                int Hexadecimal = 0;
+                int.TryParse(Convert.ToString(value, 16), out Hexadecimal);
+                high_value = Convert.ToString(Hexadecimal >> 8 & 0xFF);
+                low_value = Convert.ToString(Hexadecimal & 0xFF);
+            }
+            string CRC_calu = "";
 
             string OutputString = "";       //Autokit schedule 變數
             OutputString = "_HEX,,,";
             OutputString += port + ",,,";
 
-            InputBuffer[0] = Convert.ToByte(monitor, 16);     //Monitor ID
-            switch (function)           //Function: R, W, Multi
-            {
-                case "R":
-                    InputBuffer[1] = Convert.ToByte("03");
-                    break;
-                case "W":
-                    InputBuffer[1] = Convert.ToByte("06");
-                    break;
-                case "Multi":
-                    InputBuffer[1] = Convert.ToByte("10");
-                    break;
-            }
-            InputBuffer[2] = 0x00;      // 名稱位置高位元
-            InputBuffer[3] = Convert.ToByte(ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", ""), 16);     // 名稱位置低位元
-            if (status != "")     // 功能設定值
-            {
-                int Decimal = Convert.ToInt32(status);    //文字轉數值
-                int Hexadecimal = Convert.ToInt32(Convert.ToString(Decimal, 16), 16);  //十進制轉十六進制數值
-                byte high_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);    //取高八位元值並&一個Byte去除超過一個byte值(00-FF)
-                InputBuffer[4] = high_value;
-                byte low_value = Convert.ToByte(Hexadecimal & 0xFF);  //取低八位元並&一個Byte(00-FF)
-                InputBuffer[5] = low_value;
-            }
-            Byte[] crc = CRC16.ToModbus(InputBuffer);  //算CRC值
-            OutputBuffer[6] = crc[0];   //高八位
-            OutputBuffer[7] = crc[1];   //低八位
 
-            for (int i = 0; i < 6; i++)
+            CRC_calu = (Convert.ToInt32(monitor)).ToString("X2") + " " + function + " 00 " + Convert.ToInt32(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "")).ToString("X2") + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
+            string[] hexValuesSplit = CRC_calu.Split(' ');
+            byte[] bytes = new byte[hexValuesSplit.Count()];
+            int hex_number = 0;
+            foreach (string hex in hexValuesSplit)          //改為Byte陣列
             {
-                OutputBuffer[i] = InputBuffer[i];   //輸入把至轉出陣列
+                // Convert the number expressed in base-16 to an integer.
+                byte number = Convert.ToByte(Convert.ToInt32(hex, 16));
+                // Get the character corresponding to the integral value.
+                bytes[hex_number++] = number;
             }
 
-            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
+            ushort crc = Crc16.ComputeCrc(bytes);       //計算CRC
+            string crcHex = ((int)crc).ToString("X2");
+            string crcLow = crcHex.Substring(0, 2);     //低位數
+            string crcHigh = crcHex.Substring(2);       //高位數
+            CRC_calu += " " + crcHigh + " " + crcLow;   //原始資料加入CRC
+
+            string[] CRCSplit = CRC_calu.Split(' ');
+            byte[] CRCbytes = new byte[CRCSplit.Count()];
+            int CRCindex = 0;
+            foreach (string hex in hexValuesSplit)          //改為Byte陣列
+            {
+                // Convert the number expressed in base-16 to an integer.
+                byte number = Convert.ToByte(Convert.ToInt32(hex, 16));
+                // Get the character corresponding to the integral value.
+                CRCbytes[CRCindex++] = number;
+            }
+
+            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")          //送至Comport
             {
                 try
                 {
-                    SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
-                    string Output_log = "";
-                    for (int i = 0; i < 8; i++)
-                    {
-                        Output_log = Output_log + OutputBuffer[i];
-                    }
+                    SerialPort1.Write(CRCbytes, 0, CRCbytes.Length);
                     DateTime dt = DateTime.Now;
-                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + Output_log + Environment.NewLine;
-                    log_content = string.Concat(log_content, text);
+                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + CRC_calu + Environment.NewLine;
+                    log_content = string.Concat(log_content, text);         //輸出至log變數
                 }
                 catch (Exception Ex)
                 {
@@ -414,108 +428,87 @@ namespace PSC
                 }
             }
 
-            for (int i = 0; i < 8; i++)    //記錄log, 兩個兩個HEX值並且用空格分開
-            {
-                if (i == 0)
-                    OutputString += OutputBuffer[i].ToString("X2");
-                else
-                    OutputString += " " + OutputBuffer[i].ToString("X2");
-            }
             output_log += OutputString + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;
         }
 
-        private void AutoKit_RS232_Control(string type, int index, int frequency, string duty)   //OneBer控制
+        private void AutoKit_RS232_Control(string type, int index, string frequency, string duty)   //OneBer控制
         {
-            byte[] InputBuffer = new byte[6];
-            byte[] OutputBuffer = new byte[8];
-            string port = comboBox_Serialport.Text;
-            string monitor = textBox_MonitorID.Text;
-            string function = comboBox_function.Text;
-            string times = textBox_times.Text;
-            string high_value = "", low_value = "";
-
-
-            string OutputString = "";
-            OutputString = "_HEX,,,";
-            OutputString += port + ",,,";
-
-            InputBuffer[0] = Convert.ToByte(monitor, 16);
+            string port = comboBox_Serialport.Text;     // Autokit serial port
+            string monitor = textBox_MonitorID.Text;    // Monitor ID value
+            string function = comboBox_function.Text;   // Function value
             switch (function)
             {
                 case "R":
-                    InputBuffer[1] = Convert.ToByte("03");
+                    function = "03";
                     break;
                 case "W":
-                    InputBuffer[1] = Convert.ToByte("06");
+                    function = "06";
                     break;
                 case "Multi":
-                    InputBuffer[1] = Convert.ToByte("10");
+                    function = "10";
                     break;
             }
-            InputBuffer[2] = 0x00;
-            InputBuffer[3] = Convert.ToByte(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", ""), 16);
-            if (frequency > -1)
+            string times = textBox_times.Text;
+            string high_value = "", low_value = "";
+            int value = Convert.ToInt32(frequency);
+            if (value > -1)
             {
                 int Hexadecimal = 0;
-                int.TryParse(Convert.ToString(frequency, 16), out Hexadecimal);
+                int.TryParse(Convert.ToString(value, 16), out Hexadecimal);
                 high_value = Convert.ToString(Hexadecimal >> 8 & 0xFF);
-                byte high_byte_value = Convert.ToByte(Hexadecimal >> 8 & 0xFF);
-                InputBuffer[4] = high_byte_value;
                 low_value = Convert.ToString(Hexadecimal & 0xFF);
-                byte low_byte_value = Convert.ToByte(Hexadecimal & 0xFF);
-                InputBuffer[5] = low_byte_value;
             }
-            byte[] crc = CRC16.ToModbus(InputBuffer);
+            string CRC_calu = "";
 
-            List<string> lst = new List<string> { };
-            for (int i = 0; i < 4; i++)
-            {
-                lst.Add(InputBuffer[i].ToString("X2"));
-            }
+            string OutputString = "";           //Autokit schedule 變數
+            OutputString = "_HEX,,,";
+            OutputString += port + ",,,";
 
-            lst.Add(high_value.PadLeft(2, '0'));
-            lst.Add(low_value.PadLeft(2, '0'));
-
-            for (int j = 6; j < 8; j++)
-            {
-                lst.Add(crc[j - 6].ToString("X2"));
-            }
-
-            int HexIndex = 0;
-            foreach(string s in lst)
+            CRC_calu = (Convert.ToInt32(monitor)).ToString("X2") + " " + function + " 00 " + Convert.ToInt32(ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "")).ToString("X2") + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
+            string[] hexValuesSplit = CRC_calu.Split(' ');
+            byte[] bytes = new byte[hexValuesSplit.Count()];
+            int hex_number = 0;
+            foreach (string hex in hexValuesSplit)          //改為Byte陣列
             {
                 // Convert the number expressed in base-16 to an integer.
-                int value = Convert.ToInt32(s, 16);
+                byte number = Convert.ToByte(Convert.ToInt32(hex, 16));
                 // Get the character corresponding to the integral value.
-                Console.WriteLine("hexadecimal value = {0}, int value = {1}", s, value);
-                byte number = Convert.ToByte(Convert.ToInt32(s, 16));
-                OutputBuffer[HexIndex] = number;
-                HexIndex++;
+                bytes[hex_number++] = number;
             }
 
-            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")
+            ushort crc = Crc16.ComputeCrc(bytes);       //計算CRC
+            string crcHex = ((int)crc).ToString("X2");  
+            string crcLow = crcHex.Substring(0, 2);     //低位數
+            string crcHigh = crcHex.Substring(2);       //高位數
+            CRC_calu += " " + crcHigh + " " + crcLow;   //原始資料加入CRC
+
+            string[] CRCSplit = CRC_calu.Split(' ');
+            byte[] CRCbytes = new byte[CRCSplit.Count()];
+            int CRCindex = 0;
+            foreach (string hex in hexValuesSplit)          //改為Byte陣列
+            {
+                // Convert the number expressed in base-16 to an integer.
+                byte number = Convert.ToByte(Convert.ToInt32(hex, 16));
+                // Get the character corresponding to the integral value.
+                CRCbytes[CRCindex++] = number;
+            }
+
+            if (ini12.INIRead(Config_Path, "serialPort1", "Exist", "") == "1")          //送至Comport
             {
                 try
                 {
-                    SerialPort1.Write(OutputBuffer, 0, OutputBuffer.Length);
+                    SerialPort1.Write(CRCbytes, 0, CRCbytes.Length);
                     DateTime dt = DateTime.Now;
-                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + Convert.ToString(OutputBuffer) + Environment.NewLine;
-                    log_content = string.Concat(log_content, text);
+                    string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + CRC_calu + Environment.NewLine;
+                    log_content = string.Concat(log_content, text);         //輸出至log變數
                 }
                 catch (Exception Ex)
                 {
                     MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            for (int i = 0; i < 8; i++)
-            {
-                if (i == 0)
-                    OutputString += OutputBuffer[i].ToString("X2");
-                else
-                    OutputString += " " + OutputBuffer[i].ToString("X2");
-            }
-            output_log += OutputString + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;
+            
+            output_log += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;    //輸出至Schedule變數
         }
 
         public static bool IsFileLocked(string file)     //偵測檔案被鎖住
