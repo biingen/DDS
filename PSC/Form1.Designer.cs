@@ -57,15 +57,19 @@
             this.comboBox_function = new System.Windows.Forms.ComboBox();
             this.button_clear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.SerialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.hScrollBar_monitorID = new System.Windows.Forms.HScrollBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // setting_button
             // 
-            this.setting_button.Location = new System.Drawing.Point(614, 13);
+            this.setting_button.Location = new System.Drawing.Point(495, 10);
             this.setting_button.Name = "setting_button";
             this.setting_button.Size = new System.Drawing.Size(59, 26);
             this.setting_button.TabIndex = 34;
@@ -91,7 +95,7 @@
             this.Column12,
             this.Column13,
             this.Remark});
-            this.dataGridView1.Location = new System.Drawing.Point(683, 9);
+            this.dataGridView1.Location = new System.Drawing.Point(623, 39);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -197,9 +201,9 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(494, 13);
+            this.button_Save.Location = new System.Drawing.Point(623, 11);
             this.button_Save.Name = "button_Save";
-            this.button_Save.Size = new System.Drawing.Size(57, 26);
+            this.button_Save.Size = new System.Drawing.Size(59, 26);
             this.button_Save.TabIndex = 36;
             this.button_Save.Text = "Save";
             this.button_Save.UseVisualStyleBackColor = true;
@@ -208,7 +212,7 @@
             // textBox_MonitorID
             // 
             this.textBox_MonitorID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBox_MonitorID.Location = new System.Drawing.Point(183, 14);
+            this.textBox_MonitorID.Location = new System.Drawing.Point(186, 10);
             this.textBox_MonitorID.Name = "textBox_MonitorID";
             this.textBox_MonitorID.Size = new System.Drawing.Size(65, 22);
             this.textBox_MonitorID.TabIndex = 37;
@@ -222,14 +226,14 @@
             "C",
             "D",
             "E"});
-            this.comboBox_Serialport.Location = new System.Drawing.Point(57, 15);
+            this.comboBox_Serialport.Location = new System.Drawing.Point(55, 11);
             this.comboBox_Serialport.Name = "comboBox_Serialport";
             this.comboBox_Serialport.Size = new System.Drawing.Size(55, 20);
             this.comboBox_Serialport.TabIndex = 38;
             // 
             // textBox_times
             // 
-            this.textBox_times.Location = new System.Drawing.Point(412, 15);
+            this.textBox_times.Location = new System.Drawing.Point(408, 11);
             this.textBox_times.Name = "textBox_times";
             this.textBox_times.Size = new System.Drawing.Size(65, 22);
             this.textBox_times.TabIndex = 39;
@@ -237,36 +241,40 @@
             // label_comport
             // 
             this.label_comport.AutoSize = true;
-            this.label_comport.Location = new System.Drawing.Point(5, 20);
+            this.label_comport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_comport.Location = new System.Drawing.Point(3, 14);
             this.label_comport.Name = "label_comport";
-            this.label_comport.Size = new System.Drawing.Size(50, 12);
+            this.label_comport.Size = new System.Drawing.Size(55, 14);
             this.label_comport.TabIndex = 40;
             this.label_comport.Text = "Comport:";
             // 
             // label_monitorid
             // 
             this.label_monitorid.AutoSize = true;
-            this.label_monitorid.Location = new System.Drawing.Point(118, 20);
+            this.label_monitorid.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_monitorid.Location = new System.Drawing.Point(116, 15);
             this.label_monitorid.Name = "label_monitorid";
-            this.label_monitorid.Size = new System.Drawing.Size(61, 12);
+            this.label_monitorid.Size = new System.Drawing.Size(68, 14);
             this.label_monitorid.TabIndex = 41;
             this.label_monitorid.Text = "Monitor ID:";
             // 
             // label_times
             // 
             this.label_times.AutoSize = true;
-            this.label_times.Location = new System.Drawing.Point(372, 20);
+            this.label_times.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_times.Location = new System.Drawing.Point(367, 14);
             this.label_times.Name = "label_times";
-            this.label_times.Size = new System.Drawing.Size(36, 12);
+            this.label_times.Size = new System.Drawing.Size(43, 14);
             this.label_times.TabIndex = 42;
             this.label_times.Text = "Times:";
             // 
             // label_function
             // 
             this.label_function.AutoSize = true;
-            this.label_function.Location = new System.Drawing.Point(263, 20);
+            this.label_function.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_function.Location = new System.Drawing.Point(253, 14);
             this.label_function.Name = "label_function";
-            this.label_function.Size = new System.Drawing.Size(49, 12);
+            this.label_function.Size = new System.Drawing.Size(56, 14);
             this.label_function.TabIndex = 43;
             this.label_function.Text = "Function:";
             // 
@@ -276,14 +284,14 @@
             this.comboBox_function.Items.AddRange(new object[] {
             "R",
             "W"});
-            this.comboBox_function.Location = new System.Drawing.Point(313, 15);
+            this.comboBox_function.Location = new System.Drawing.Point(307, 11);
             this.comboBox_function.Name = "comboBox_function";
             this.comboBox_function.Size = new System.Drawing.Size(55, 20);
             this.comboBox_function.TabIndex = 44;
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(554, 13);
+            this.button_clear.Location = new System.Drawing.Point(560, 10);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(57, 26);
             this.button_clear.TabIndex = 45;
@@ -293,9 +301,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.hScrollBar_monitorID);
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Controls.Add(this.button_Save);
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button_clear);
+            this.panel1.Controls.Add(this.button_Save);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.comboBox_Serialport);
             this.panel1.Controls.Add(this.comboBox_function);
             this.panel1.Controls.Add(this.textBox_times);
@@ -307,26 +318,66 @@
             this.panel1.Controls.Add(this.label_times);
             this.panel1.Location = new System.Drawing.Point(2, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(738, 50);
+            this.panel1.Size = new System.Drawing.Size(800, 69);
             this.panel1.TabIndex = 46;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.textBox1.Location = new System.Drawing.Point(691, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(67, 22);
+            this.textBox1.TabIndex = 46;
+            this.textBox1.Text = "Version:";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(691, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 26);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "Log Analysis";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
             this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(2, 59);
+            this.panel2.Location = new System.Drawing.Point(2, 78);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(738, 690);
+            this.panel2.Size = new System.Drawing.Size(800, 671);
             this.panel2.TabIndex = 47;
             // 
             // SerialPort1
             // 
             this.SerialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort1_DataReceived);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // hScrollBar_monitorID
+            // 
+            this.hScrollBar_monitorID.LargeChange = 1;
+            this.hScrollBar_monitorID.Location = new System.Drawing.Point(119, 39);
+            this.hScrollBar_monitorID.Minimum = 1;
+            this.hScrollBar_monitorID.Name = "hScrollBar_monitorID";
+            this.hScrollBar_monitorID.Size = new System.Drawing.Size(132, 17);
+            this.hScrollBar_monitorID.TabIndex = 48;
+            this.hScrollBar_monitorID.Value = 1;
+            this.hScrollBar_monitorID.ValueChanged += new System.EventHandler(this.hScrollBar_monitorID_ValueChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 754);
+            this.ClientSize = new System.Drawing.Size(805, 700);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -371,6 +422,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.IO.Ports.SerialPort SerialPort1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.HScrollBar hScrollBar_monitorID;
     }
 }
 
