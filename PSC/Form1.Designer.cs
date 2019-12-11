@@ -57,12 +57,12 @@
             this.comboBox_function = new System.Windows.Forms.ComboBox();
             this.button_clear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.hScrollBar_monitorID = new System.Windows.Forms.HScrollBar();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.SerialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.hScrollBar_monitorID = new System.Windows.Forms.HScrollBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -201,7 +201,7 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(623, 11);
+            this.button_Save.Location = new System.Drawing.Point(633, 11);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(59, 26);
             this.button_Save.TabIndex = 36;
@@ -216,6 +216,7 @@
             this.textBox_MonitorID.Name = "textBox_MonitorID";
             this.textBox_MonitorID.Size = new System.Drawing.Size(65, 22);
             this.textBox_MonitorID.TabIndex = 37;
+            this.textBox_MonitorID.TextChanged += new System.EventHandler(this.textBox_MonitorID_TextChanged);
             // 
             // comboBox_Serialport
             // 
@@ -293,9 +294,9 @@
             // 
             this.button_clear.Location = new System.Drawing.Point(560, 10);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(57, 26);
+            this.button_clear.Size = new System.Drawing.Size(67, 26);
             this.button_clear.TabIndex = 45;
-            this.button_clear.Text = "Clear";
+            this.button_clear.Text = "Clear all";
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
@@ -321,6 +322,18 @@
             this.panel1.Size = new System.Drawing.Size(800, 69);
             this.panel1.TabIndex = 46;
             // 
+            // hScrollBar_monitorID
+            // 
+            this.hScrollBar_monitorID.LargeChange = 1;
+            this.hScrollBar_monitorID.Location = new System.Drawing.Point(119, 39);
+            this.hScrollBar_monitorID.Minimum = 1;
+            this.hScrollBar_monitorID.Name = "hScrollBar_monitorID";
+            this.hScrollBar_monitorID.Size = new System.Drawing.Size(132, 17);
+            this.hScrollBar_monitorID.TabIndex = 48;
+            this.hScrollBar_monitorID.Value = 1;
+            this.hScrollBar_monitorID.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar_monitorID_Scroll);
+            this.hScrollBar_monitorID.ValueChanged += new System.EventHandler(this.hScrollBar_monitorID_ValueChanged);
+            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
@@ -336,7 +349,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(691, 11);
+            this.button1.Location = new System.Drawing.Point(698, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 26);
             this.button1.TabIndex = 47;
@@ -361,17 +374,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // hScrollBar_monitorID
-            // 
-            this.hScrollBar_monitorID.LargeChange = 1;
-            this.hScrollBar_monitorID.Location = new System.Drawing.Point(119, 39);
-            this.hScrollBar_monitorID.Minimum = 1;
-            this.hScrollBar_monitorID.Name = "hScrollBar_monitorID";
-            this.hScrollBar_monitorID.Size = new System.Drawing.Size(132, 17);
-            this.hScrollBar_monitorID.TabIndex = 48;
-            this.hScrollBar_monitorID.Value = 1;
-            this.hScrollBar_monitorID.ValueChanged += new System.EventHandler(this.hScrollBar_monitorID_ValueChanged);
             // 
             // Main
             // 

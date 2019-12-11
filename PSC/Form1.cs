@@ -30,6 +30,7 @@ namespace PSC
         private int Location_X = 30, Location_Y = 15;
         String output_schedule = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
         String output_log = "";
+        String monitorid = "00";
 
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_on_button;
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_off_button;
@@ -43,7 +44,7 @@ namespace PSC
         public Main()
         {
             InitializeComponent();
-            this.textBox1.Text = "Ver:001";
+            this.textBox1.Text = "Ver:002";
         }
 
         private void DDS_Load(object sender, EventArgs e)
@@ -429,8 +430,8 @@ namespace PSC
                 }
             }
 
-            output_schedule += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;
-            output_log += "[Schedule] [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + status + Environment.NewLine;
+            output_schedule += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;  //輸出至schedule 變數
+            output_log += "[Schedule] [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + status + Environment.NewLine; //輸出至Log變數
         }
 
         private void AutoKit_RS232_Control(string type, int index, string frequency, string duty)   //OneBer控制
@@ -438,7 +439,8 @@ namespace PSC
             string port = comboBox_Serialport.Text;     // Autokit serial port
             string monitor = textBox_MonitorID.Text;    // Monitor ID value
             string function = comboBox_function.Text;   // Function value
-            
+            string initial = ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "").PadLeft(2, '0');
+
             switch (function)
             {
                 case "R":
@@ -455,7 +457,7 @@ namespace PSC
             string high_value = "", low_value = "";
             int value = Convert.ToInt32(frequency);
             string hexValue = string.Empty;
-            if (value > -1 && value < 65536)
+            if (value > -1 && value < 65536)  //避免超出65535=FFFF 
             {
                 hexValue = value.ToString("X").PadLeft(4, '0');
                 high_value = hexValue.Substring(0, 2);
@@ -466,8 +468,17 @@ namespace PSC
             string OutputString = "";           //Autokit schedule 變數
             OutputString = "_HEX,,,";
             OutputString += port + ",,,";
+            if (initial == "00")   //monitorid fuction
+            {
+                CRC_calu = (Convert.ToInt32(monitorid)).ToString("X2") + " " + function + " 00 " + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "").PadLeft(2, '0') + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
+                monitorid = frequency;
+            }
+            else
+            {
+                CRC_calu = (Convert.ToInt32(monitor)).ToString("X2") + " " + function + " 00 " + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "").PadLeft(2, '0') + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
+            }
 
-            CRC_calu = (Convert.ToInt32(monitor)).ToString("X2") + " " + function + " 00 " + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "").PadLeft(2, '0') + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
+
             string[] hexValuesSplit = CRC_calu.Split(' ');
             byte[] bytes = new byte[hexValuesSplit.Count()];
             int hex_number = 0;
@@ -512,7 +523,7 @@ namespace PSC
             }
             
             output_schedule += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;    //輸出至Schedule變數
-            output_log += "[Schedule] [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;
+            output_log += "[Schedule] [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;  //輸出至Log變數
         }
 
         public static bool IsFileLocked(string file)     //偵測檔案被鎖住
@@ -614,7 +625,17 @@ namespace PSC
         {
             string old_value = hScrollBar_monitorID.Value.ToString();
             string new_value = hScrollBar_monitorID.Value.ToString();
-            textBox_MonitorID.Text = hScrollBar_monitorID.Value.ToString();
+            textBox_MonitorID.Text = hScrollBar_monitorID.Value.ToString().PadLeft(2,'0');
+        }
+
+        private void textBox_MonitorID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hScrollBar_monitorID_Scroll(object sender, ScrollEventArgs e)
+        {
+
         }
 
         private void button_clear_Click(object sender, EventArgs e)

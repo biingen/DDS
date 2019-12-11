@@ -206,7 +206,9 @@ namespace PSC
                             {
                                 Receivecount++;
                                 string[] scheduleSplit = content.Split(new string[] { "]  " }, StringSplitOptions.None);
-                                response = scheduleSplit[1].Trim();  //選取分割後第1個字元
+
+
+
                                 hexAdd = hexAdd + response;
 
                                 commandColumn1 = worksheet.Cell(commandCount + 2, 6);
