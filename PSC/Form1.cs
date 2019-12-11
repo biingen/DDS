@@ -387,6 +387,7 @@ namespace PSC
 
 
             CRC_calu = (Convert.ToInt32(monitor)).ToString("X2") + " " + function + " 00 " + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Initial", "").PadLeft(2,'0') + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
+
             string[] hexValuesSplit = CRC_calu.Split(' ');
             byte[] bytes = new byte[hexValuesSplit.Count()];
             int hex_number = 0;
@@ -429,7 +430,6 @@ namespace PSC
                     MessageBox.Show(Ex.Message.ToString(), "SerialPort1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             output_schedule += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;  //輸出至schedule 變數
             output_log += "[Schedule] [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + status + Environment.NewLine; //輸出至Log變數
         }
@@ -456,6 +456,7 @@ namespace PSC
             string times = textBox_times.Text;
             string high_value = "", low_value = "";
             int value = Convert.ToInt32(frequency);
+
             string hexValue = string.Empty;
             if (value > -1 && value < 65536)  //避免超出65535=FFFF 
             {
@@ -468,6 +469,7 @@ namespace PSC
             string OutputString = "";           //Autokit schedule 變數
             OutputString = "_HEX,,,";
             OutputString += port + ",,,";
+
             if (initial == "00")   //monitorid fuction
             {
                 CRC_calu = (Convert.ToInt32(monitorid)).ToString("X2") + " " + function + " 00 " + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "").PadLeft(2, '0') + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
@@ -477,7 +479,6 @@ namespace PSC
             {
                 CRC_calu = (Convert.ToInt32(monitor)).ToString("X2") + " " + function + " 00 " + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Initial", "").PadLeft(2, '0') + " " + high_value.PadLeft(2, '0') + " " + low_value.PadLeft(2, '0');       //計算CRC原始資料
             }
-
 
             string[] hexValuesSplit = CRC_calu.Split(' ');
             byte[] bytes = new byte[hexValuesSplit.Count()];
@@ -499,6 +500,7 @@ namespace PSC
             string[] CRCSplit = CRC_calu.Split(' ');
             byte[] CRCbytes = new byte[CRCSplit.Count()];
             int CRCindex = 0;
+
             foreach (string hex in CRCSplit)          //改為Byte陣列
             {
                 // Convert the number expressed in base-16 to an integer.
