@@ -4,6 +4,7 @@ Freq_Min","Remark_On
 Freq_Max","Status_Off
 Freq_Step","Remark_Off
 Duty_Initial",Duty_Min,Duty_Max,Duty_Step,Remark
+AutoKit_RS232,,oneBar,Monitor ID,,0,1,100,1,,,,,
 AutoKit_GPIO,,Icon10,Power Status,,1,1,Power on,0,Power off,,,,
 AutoKit_RS232,,oneBar,Volume,,2,0,100,1,,,,,
 AutoKit_GPIO,,Icon10,Mute,,3,1,Mute,0,Unmute,,,,

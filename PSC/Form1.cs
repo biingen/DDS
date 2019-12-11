@@ -28,8 +28,8 @@ namespace PSC
         
 
         private int Location_X = 30, Location_Y = 15;
-        String output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
-        String log_content = "";
+        String output_schedule = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
+        String output_log = "";
 
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_on_button;
         System.Windows.Forms.Button[] AutoKit_GPIO_icon_off_button;
@@ -421,7 +421,7 @@ namespace PSC
                     SerialPort1.Write(CRCbytes, 0, CRCbytes.Length);
                     DateTime dt = DateTime.Now;
                     string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + CRC_calu + Environment.NewLine;
-                    log_content = string.Concat(log_content, text);         //輸出至log變數
+                    output_log = string.Concat(output_log, text);         //輸出至log變數
                 }
                 catch (Exception Ex)
                 {
@@ -429,7 +429,8 @@ namespace PSC
                 }
             }
 
-            output_log += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;
+            output_schedule += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Control Name", "") + " : " + AutoKit_GPIO_icon_remark[index].Text + Environment.NewLine;
+            output_log += "[Schedule] [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + status + Environment.NewLine;
         }
 
         private void AutoKit_RS232_Control(string type, int index, string frequency, string duty)   //OneBer控制
@@ -437,6 +438,7 @@ namespace PSC
             string port = comboBox_Serialport.Text;     // Autokit serial port
             string monitor = textBox_MonitorID.Text;    // Monitor ID value
             string function = comboBox_function.Text;   // Function value
+            
             switch (function)
             {
                 case "R":
@@ -501,7 +503,7 @@ namespace PSC
                     SerialPort1.Write(CRCbytes, 0, CRCbytes.Length);
                     DateTime dt = DateTime.Now;
                     string text = "[Send_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + CRC_calu + Environment.NewLine;
-                    log_content = string.Concat(log_content, text);         //輸出至log變數
+                    output_log = string.Concat(output_log, text);         //輸出至log變數
                 }
                 catch (Exception Ex)
                 {
@@ -509,7 +511,8 @@ namespace PSC
                 }
             }
             
-            output_log += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;    //輸出至Schedule變數
+            output_schedule += OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;    //輸出至Schedule變數
+            output_log += "[Schedule] [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + OutputString + CRC_calu + ",," + times + "," + function + @"/" + ini12.INIRead(Script_Path, "AutoKit_RS232_oneBar_" + index, "Control Name", "") + ": " + frequency + Environment.NewLine;
         }
 
         public static bool IsFileLocked(string file)     //偵測檔案被鎖住
@@ -537,14 +540,14 @@ namespace PSC
             DateTime myDate = DateTime.Now;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\Schedule\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv", true))
             {
-                file.Write(output_log);
-                output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
+                file.Write(output_schedule);
+                output_schedule = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;
             }
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@".\Log\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt", true))
             {
-                file.Write(log_content);
-                log_content = "";
+                file.Write(output_log);
+                output_log = "";
             }
         }
 
@@ -592,7 +595,7 @@ namespace PSC
 
                     hexValues = "[Receive_Port] [" + dt.ToString("yyyy/MM/dd HH:mm:ss.fff") + "]  " + hexValues + Environment.NewLine;
 
-                    log_content = string.Concat(log_content, hexValues);
+                    output_log = string.Concat(output_log, hexValues);
                 }
             }
             catch (Exception ex)
@@ -616,8 +619,8 @@ namespace PSC
 
         private void button_clear_Click(object sender, EventArgs e)
         {
-            output_log = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;      //預設Schedule第一行內容
-            log_content = "";   //預設log內容
+            output_schedule = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;      //預設Schedule第一行內容
+            output_log = "";   //預設log內容
         }
 
     }
