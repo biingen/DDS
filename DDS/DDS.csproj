@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="BlockMessage.cs" />
     <Compile Include="CAN_Read.cs" />
+    <Compile Include="USB_Device.cs" />
     <Compile Include="DTC_ABS.cs" />
     <Compile Include="DTC_OBD.cs" />
     <Compile Include="Form1.cs">

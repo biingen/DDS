@@ -161,7 +161,7 @@ namespace DDS
         private void DDS_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            USB_Read();
+            USB_Device.USB_Read();
             Form_K_Line_Load();
             AutoKit_Initial_port();
             Extend_Initial_port();
@@ -169,146 +169,6 @@ namespace DDS
             ConnectCanBus();
             ConnectKline();
         }
-
-        #region -- 讀取USB裝置 --
-        public void USB_Read()
-        {
-            //預設AutoBox沒接上
-            ini12.INIWrite(Config_Path, "AutoKit", "Exist", "0");
-            ini12.INIWrite(Config_Path, "AutoKit", "PortName", "");
-            ini12.INIWrite(Config_Path, "NI_6501", "Exist", "0");
-            ini12.INIWrite(Config_Path, "K_Line", "Exist", "0");
-
-            ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity");
-            ManagementObjectCollection collection = search.Get();
-            var usbList = from u in collection.Cast<ManagementBaseObject>()
-                          select new
-                          {
-                              id = u.GetPropertyValue("DeviceID"),
-                              name = u.GetPropertyValue("Name"),
-                              description = u.GetPropertyValue("Description"),
-                              status = u.GetPropertyValue("Status"),
-                              system = u.GetPropertyValue("SystemName"),
-                              caption = u.GetPropertyValue("Caption"),
-                              pnp = u.GetPropertyValue("PNPDeviceID"),
-                          };
-
-            foreach (var usbDevice in usbList)
-            {
-                string deviceId = (string)usbDevice.id;
-                string deviceTp = (string)usbDevice.name;
-                string deviecDescription = (string)usbDevice.description;
-
-                string deviceStatus = (string)usbDevice.status;
-                string deviceSystem = (string)usbDevice.system;
-                string deviceCaption = (string)usbDevice.caption;
-                string devicePnp = (string)usbDevice.pnp;
-
-                if (deviecDescription != null)
-                {
-                    #region 偵測相機
-                    if (deviecDescription.IndexOf("USB 視訊裝置", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        deviecDescription.IndexOf("USB 视频设备", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        deviceTp.IndexOf("Webcam", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        deviceTp.IndexOf("Camera", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        if (deviceId.IndexOf("VID_", StringComparison.OrdinalIgnoreCase) >= 0)
-                        {
-                            int vidIndex = deviceId.IndexOf("VID_");
-                            string startingAtVid = deviceId.Substring(vidIndex + 4); // + 4 to remove "VID_"
-                            string vid = startingAtVid.Substring(0, 4); // vid is four characters long
-                            VID.Add(vid);
-                        }
-
-                        if (deviceId.IndexOf("PID_", StringComparison.OrdinalIgnoreCase) >= 0)
-                        {
-                            int pidIndex = deviceId.IndexOf("PID_");
-                            string startingAtPid = deviceId.Substring(pidIndex + 4); // + 4 to remove "PID_"
-                            string pid = startingAtPid.Substring(0, 4); // pid is four characters long
-                            PID.Add(pid);
-                        }
-
-                        Console.WriteLine("-----------------Camera------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        //Camera存在
-                        ini12.INIWrite(Config_Path, "Camera", "Exist", "1");
-                    }
-                    #endregion
-
-                    #region 偵測AutoBox2
-                    if (deviceId.IndexOf("&0&5", StringComparison.OrdinalIgnoreCase) >= 0 &&
-                        deviceId.IndexOf("USB\\VID_067B&PID_2303\\", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        Console.WriteLine("-----------------AutoBox2------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        int FirstIndex = deviceTp.IndexOf("(");
-                        string AutoBoxPortSubstring = deviceTp.Substring(FirstIndex + 1);
-                        string AutoBoxPort = AutoBoxPortSubstring.Substring(0);
-
-                        int AutoBoxPortLengh = AutoBoxPort.Length;
-                        string AutoBoxPortFinal = AutoBoxPort.Remove(AutoBoxPortLengh - 1);
-
-                        if (AutoBoxPortSubstring.Substring(0, 3) == "COM")
-                        {
-                            ini12.INIWrite(Config_Path, "AutoKit", "Exist", "1");
-                            ini12.INIWrite(Config_Path, "AutoKit", "PortName", AutoBoxPortFinal);
-                        }
-                    }
-                    #endregion
-
-                    #region 偵測NI_USB-6501
-                    if (deviceId.IndexOf("USB\\VID_3923&PID_718A\\", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        Console.WriteLine("-----------------NI_USB-6501------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        ini12.INIWrite(Config_Path, "NI_6501", "Exist", "1");
-                    }
-                    #endregion
-
-                    #region 偵測K-Line
-                    if (deviceId.IndexOf("USB\\VID_0403&PID_6001\\", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        Console.WriteLine("-----------------FTDI K-Line------------------");
-                        Console.WriteLine("DeviceID: {0}\n" +
-                                              "Name: {1}\n" +
-                                              "Description: {2}\n" +
-                                              "Status: {3}\n" +
-                                              "System: {4}\n" +
-                                              "Caption: {5}\n" +
-                                              "Pnp: {6}\n"
-                                              , deviceId, deviceTp, deviecDescription, deviceStatus, deviceSystem, deviceCaption, devicePnp);
-
-                        ini12.INIWrite(Config_Path, "K_Line", "Exist", "1");
-                    }
-                    #endregion
-                }
-            }
-        }
-        #endregion
 
         private void AutoKit_Initial_port()
         {
@@ -378,7 +238,7 @@ namespace DDS
 
         private void CSVtoINIfile()
         {
-            int v3_GPIO_icon_onoff = 0, v3_GPIO_iconR = 0, v3_GPIO_key = 0, DSS_GPIO_one_Bar = 0, v3_PWM_two_Bar = 0, AutoKit_GPIO_icon_10 = 0, AutoKit_RS232_one_Bar = 0, AutoKit_RS232_two_Bar = 0, NI_GPIO_icon_10 = 0, Kline_msg = 0;
+            int v3_GPIO_icon_onoff = 0, v3_GPIO_iconR = 0, v3_GPIO_key = 0, DSS_GPIO_one_Bar = 0, v3_PWM_two_Bar = 0, AutoKit_GPIO_icon_10 = 0, AutoKit_RS232_one_Bar = 0, AutoKit_RS232_two_Bar = 0, NI_GPIO_icon_10 = 0, Canbus_text = 0;
             string TextLine = "";
             string[] SplitLine;
             int j = 0;
@@ -554,20 +414,20 @@ namespace DDS
                             NI_GPIO_icon_10++;
                         }
                     }
-                    else if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "Kline")
+                    else if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "Canbus")
                     {
-                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Msg")
+                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Text")
                         {
-                            int hashcode = HashCode_Create("Kline_Msg_" + Kline_msg);
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Hashcode", Convert.ToString(hashcode, 16));
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Com", dataGridView1.Rows[i].Cells[1].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Command", dataGridView1.Rows[i].Cells[4].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Freq_Initial", dataGridView1.Rows[i].Cells[5].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Freq_Min", dataGridView1.Rows[i].Cells[6].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Freq_Max", dataGridView1.Rows[i].Cells[7].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Kline_Msg_" + Kline_msg, "Freq_Step", dataGridView1.Rows[i].Cells[8].Value.ToString());
-                            Kline_msg++;
+                            int hashcode = HashCode_Create("Canbus_Text_" + Canbus_text);
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Hashcode", Convert.ToString(hashcode, 16));
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Com", dataGridView1.Rows[i].Cells[1].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Command", dataGridView1.Rows[i].Cells[4].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Initial", dataGridView1.Rows[i].Cells[5].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Min", dataGridView1.Rows[i].Cells[6].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Max", dataGridView1.Rows[i].Cells[7].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Step", dataGridView1.Rows[i].Cells[8].Value.ToString());
+                            Canbus_text++;
                         }
                     }
                 }
@@ -580,7 +440,7 @@ namespace DDS
                 AutoKit_RS232_one_Bar_Create(AutoKit_RS232_one_Bar);
                 AutoKit_RS232_two_Bar_Create(AutoKit_RS232_two_Bar);
                 NI_GPIO_icon_10_Create(NI_GPIO_icon_10);
-                Kline_msg_Create(Kline_msg);
+                Canbus_text_Create(Canbus_text);
             }
             else
             {
@@ -1112,7 +972,7 @@ namespace DDS
             Location_Y = Location_Y + (count * 30);
         }
 
-        private void Kline_msg_Create(int count)
+        private void Canbus_text_Create(int count)
         {
 
         }
@@ -2736,7 +2596,7 @@ namespace DDS
                 }
                 else 
                 {
-                    USB_Read();
+                    USB_Device.USB_Read();
                     AutoKit_Initial_port();
                     Extend_Initial_port();
                     ConnectCanBus();

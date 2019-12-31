@@ -32,3 +32,4 @@ DSS_GPIO,ComB,oneBar,Temp,Temp,-20,-20,50,5,,,,,Temp
 AutoKit_RS232,ComB,oneBar,GPP4323 (0.1V),VSET1:,65,50,200,1,,,,,GPP4323 (0.1V)
 AutoKit_RS232,ComB,oneBar,GPP4323 (0.1A),ISET1:,10,0,50,1,,,,,GPP4323 (0.1A)
 DSS_GPIO,ComB,oneBar,Ohm,Ohm,0,0,255,1,,,,,Ohm
+Canbus,200,Text,Gear engaged,63-60,0,0,7,1,,,,,
