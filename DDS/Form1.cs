@@ -974,7 +974,31 @@ namespace DDS
 
         private void Canbus_text_Create(int count)
         {
+            System.Windows.Forms.Label[] Canbus_text_label;
+            System.Windows.Forms.TextBox[] Canbus_text_textbox;
 
+            Canbus_text_label = new Label[count];
+            Canbus_text_textbox = new TextBox[count];
+
+            for (int index = 0; index < count; index++)
+            {
+                Canbus_text_label[index] = new Label();
+                Canbus_text_label[index].Name = "Canbus_text_" + index;
+                Canbus_text_label[index].Text = ini12.INIRead(Script_Path, "Canbus_text_" + index, "Control Name", "");
+                Canbus_text_label[index].Size = new Size(150, 30);
+                Canbus_text_label[index].Location = new System.Drawing.Point(Location_X, Location_Y + index * 30);
+                Canbus_text_textbox[index] = new TextBox();
+                Canbus_text_textbox[index].Name = "Canbus_text_" + index;
+                Canbus_text_textbox[index].Text = "0";
+                Canbus_text_textbox[index].Size = new Size(60, 30);
+                Canbus_text_textbox[index].Location = new System.Drawing.Point(Location_X + 210, Location_Y + index * 30);
+                Canbus_text_textbox[index].TextChanged += new System.EventHandler(this.Canbus_text_textbox_TextChanged);
+                this.Controls.AddRange(Canbus_text_label);
+                this.Controls.AddRange(Canbus_text_textbox);
+                Canbus_text_Control(index, Canbus_text_textbox[index].Text);
+                Thread.Sleep(50);
+            }
+            Location_Y = Location_Y + (count * 30);
         }
 
         void v3_GPIO_icon_on_button_Click(object sender, EventArgs e)
@@ -1104,6 +1128,16 @@ namespace DDS
         }
 
         void NI_GPIO_icon_off_button_Click(object sender, EventArgs e)
+        {
+            NI_Initial = 1;
+            int index = int.Parse(((Button)(sender)).Name.ToString().Replace("NI_GPIO_icon_off_button_", ""));
+            NI_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "NI_GPIO_Icon10_" + index, "Remark_Off", "");
+            NI_GPIO_icon_on_button[index].Enabled = true;
+            NI_GPIO_icon_off_button[index].Enabled = false;
+            NI_GPIO_icon_Control(index, ini12.INIRead(Script_Path, "NI_GPIO_Icon10_" + index, "Status_Off", ""));
+        }
+
+        void Canbus_text_textbox_TextChanged(object sender, EventArgs e)
         {
             NI_Initial = 1;
             int index = int.Parse(((Button)(sender)).Name.ToString().Replace("NI_GPIO_icon_off_button_", ""));
@@ -1690,6 +1724,18 @@ namespace DDS
                         break;
                 }
             }
+        }
+
+        private void Canbus_text_Control(int index, string value)
+        {
+            string Can_ID = ini12.INIRead(Script_Path, "Canbus_Text_"+ index, "Com", "");
+            string Can_startbit = ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Command", "");
+
+            uint Can_value = Convert.ToByte(value, 2);
+            byte Can_mask = Convert.ToByte(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Initial", ""));
+
+
+
         }
 
         public static bool IsFileLocked(string file)
@@ -2535,6 +2581,17 @@ namespace DDS
             SerialPort1.Close();
         }
 
+        private void button_canbus_Click(object sender, EventArgs e)
+        {
+            CAN_Write CAN_Write = new CAN_Write();
+
+            if (CAN_Write.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+
+            CAN_Write.Dispose();
+        }
 
         protected void Close_serialPort2()
         {

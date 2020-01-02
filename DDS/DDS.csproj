@@ -88,6 +88,12 @@
   <ItemGroup>
     <Compile Include="BlockMessage.cs" />
     <Compile Include="CAN_Read.cs" />
+    <Compile Include="CAN_Write.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAN_Write.Designer.cs">
+      <DependentUpon>CAN_Write.cs</DependentUpon>
+    </Compile>
     <Compile Include="USB_Device.cs" />
     <Compile Include="DTC_ABS.cs" />
     <Compile Include="DTC_OBD.cs" />
@@ -107,6 +113,9 @@
     <Compile Include="Setting.Designer.cs">
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CAN_Write.resx">
+      <DependentUpon>CAN_Write.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
