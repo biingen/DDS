@@ -46,6 +46,8 @@ namespace DDS
         private List<BlockMessage> MyBlockMessageList = new List<BlockMessage>();
         private ProcessBlockMessage MyProcessBlockMessage = new ProcessBlockMessage();
 
+        UInt64 Can_ID100 = Convert.ToUInt64(~0UL), Can_ID200 = Convert.ToUInt64(~0UL);
+
         System.Windows.Forms.Label[] v3_GPIO_icon_remark;
         System.Windows.Forms.Label[] v3_GPIO_iconR_remark;
         System.Windows.Forms.Label[] v3_GPIO_key_remark;
@@ -73,6 +75,8 @@ namespace DDS
         System.Windows.Forms.Button[] NI_GPIO_icon_on_button;
         System.Windows.Forms.Button[] NI_GPIO_icon_off_button;
         System.Windows.Forms.Label[] NI_GPIO_icon_remark;
+
+        System.Windows.Forms.TextBox[] Canbus_text_textbox;
 
         private CAN_Reader MYCanReader = new CAN_Reader();
         
@@ -975,7 +979,6 @@ namespace DDS
         private void Canbus_text_Create(int count)
         {
             System.Windows.Forms.Label[] Canbus_text_label;
-            System.Windows.Forms.TextBox[] Canbus_text_textbox;
 
             Canbus_text_label = new Label[count];
             Canbus_text_textbox = new TextBox[count];
@@ -1139,12 +1142,10 @@ namespace DDS
 
         void Canbus_text_textbox_TextChanged(object sender, EventArgs e)
         {
-            NI_Initial = 1;
-            int index = int.Parse(((Button)(sender)).Name.ToString().Replace("NI_GPIO_icon_off_button_", ""));
-            NI_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "NI_GPIO_Icon10_" + index, "Remark_Off", "");
-            NI_GPIO_icon_on_button[index].Enabled = true;
-            NI_GPIO_icon_off_button[index].Enabled = false;
-            NI_GPIO_icon_Control(index, ini12.INIRead(Script_Path, "NI_GPIO_Icon10_" + index, "Status_Off", ""));
+            int index = int.Parse(((TextBox)(sender)).Name.ToString().Replace("Canbus_text_", ""));
+            Canbus_text_textbox[index].Text = Convert.ToString(Canbus_text_textbox[index].Text);
+            Canbus_text_Control(index, Canbus_text_textbox[index].Text);
+            Thread.Sleep(50);
         }
 
         private void v3_GPIO_icon_Control(string type, int index, string status)
@@ -1728,14 +1729,37 @@ namespace DDS
 
         private void Canbus_text_Control(int index, string value)
         {
-            string Can_ID = ini12.INIRead(Script_Path, "Canbus_Text_"+ index, "Com", "");
-            string Can_startbit = ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Command", "");
+            UInt64 after_value, before_value, data_value, data_min, data_max;
+            int data_pos, data_len, can_id, can_unit;
+            can_id = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_"+ index, "Com", ""));
+            data_pos = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Command", ""));
+            data_len = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Initial", ""));
+            can_unit = Convert.ToUInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Step", ""));
+            data_min = Convert.ToUInt64(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Min", ""));
+            data_max = Convert.ToUInt64(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Max", ""));
+            // Process user input value
+            data_value = (UInt64)(Convert.ToDouble(value) * can_unit);
 
-            uint Can_value = Convert.ToByte(value, 2);
-            byte Can_mask = Convert.ToByte(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Initial", ""));
+            switch (can_id)
+            {
+                case 100:
+                    before_value = Can_ID100;
+                    // Insert values into corresponding fields
+                    after_value = CAN_Write.Update_value(before_value, data_value, data_min, data_max, data_pos, data_len);
+                    string can_ID100 = after_value.ToString("X");
+                    break;
+                case 200:
+                    before_value = Can_ID200;
+                    // Insert values into corresponding fields
+                    after_value = CAN_Write.Update_value(before_value, data_value, data_min, data_max, data_pos, data_len);
+                    string can_ID200 = after_value.ToString("X");
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
 
-
-
+            //After_value.Text = Engine1_message_after_value.ToString("X");
         }
 
         public static bool IsFileLocked(string file)

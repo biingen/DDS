@@ -807,7 +807,7 @@
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5017);
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5019);
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5055);
-            this.Group_ABS_Error_Code.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Group_ABS_Error_Code.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Group_ABS_Error_Code.Location = new System.Drawing.Point(532, 1);
             this.Group_ABS_Error_Code.Margin = new System.Windows.Forms.Padding(2);
             this.Group_ABS_Error_Code.Name = "Group_ABS_Error_Code";
@@ -1037,7 +1037,7 @@
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_C0085);
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_C0083);
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_P0503);
-            this.Group_OBD_Error_Code.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Group_OBD_Error_Code.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Group_OBD_Error_Code.Location = new System.Drawing.Point(625, 1);
             this.Group_OBD_Error_Code.Margin = new System.Windows.Forms.Padding(2);
             this.Group_OBD_Error_Code.Name = "Group_OBD_Error_Code";
@@ -1666,7 +1666,7 @@
             this.Group_DTC_data_option.Controls.Add(this.DTC_option_all_in_turn);
             this.Group_DTC_data_option.Controls.Add(this.DTC_option_first_six);
             this.Group_DTC_data_option.Enabled = false;
-            this.Group_DTC_data_option.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Group_DTC_data_option.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Group_DTC_data_option.Location = new System.Drawing.Point(395, 1);
             this.Group_DTC_data_option.Margin = new System.Windows.Forms.Padding(2);
             this.Group_DTC_data_option.Name = "Group_DTC_data_option";
@@ -1762,7 +1762,7 @@
             this.groupBox1.Controls.Add(this.Can_OBD_C0085);
             this.groupBox1.Controls.Add(this.Can_OBD_C0083);
             this.groupBox1.Controls.Add(this.Can_OBD_P0503);
-            this.groupBox1.Font = new System.Drawing.Font("PMingLiU", 9F);
+            this.groupBox1.Font = new System.Drawing.Font("新細明體", 9F);
             this.groupBox1.Location = new System.Drawing.Point(1071, 448);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -2438,7 +2438,7 @@
             this.groupBox2.Controls.Add(this.Can_ABS_0x5017);
             this.groupBox2.Controls.Add(this.Can_ABS_0x5019);
             this.groupBox2.Controls.Add(this.Can_ABS_0x5055);
-            this.groupBox2.Font = new System.Drawing.Font("PMingLiU", 9F);
+            this.groupBox2.Font = new System.Drawing.Font("新細明體", 9F);
             this.groupBox2.Location = new System.Drawing.Point(973, 448);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
@@ -2645,7 +2645,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1372, 856);
+            this.ClientSize = new System.Drawing.Size(1364, 749);
             this.Controls.Add(this.button_canbus);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);

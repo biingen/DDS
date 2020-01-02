@@ -17,7 +17,7 @@ namespace DDS
             InitializeComponent();
         }
 
-        private UInt64 Update_value(UInt64 before_value, UInt64 data_value, UInt64 data_min, 
+        static public UInt64 Update_value(UInt64 before_value, UInt64 data_value, UInt64 data_min, 
             UInt64 data_max, int data_pos, int data_len)
         {
             UInt64 data_mask = ~0UL;
