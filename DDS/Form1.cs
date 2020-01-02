@@ -1730,7 +1730,8 @@ namespace DDS
         private void Canbus_text_Control(int index, string value)
         {
             UInt64 after_value, before_value, data_value, data_min, data_max;
-            int data_pos, data_len, can_id, can_unit;
+            int data_pos, data_len, can_id, can_unit, i;
+            string data, can_data;
             can_id = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_"+ index, "Com", ""));
             data_pos = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Command", ""));
             data_len = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Initial", ""));
@@ -1746,13 +1747,25 @@ namespace DDS
                     before_value = Can_ID100;
                     // Insert values into corresponding fields
                     after_value = CAN_Write.Update_value(before_value, data_value, data_min, data_max, data_pos, data_len);
-                    string can_ID100 = after_value.ToString("X");
+                    Can_ID100 = after_value;
+                    data = Can_ID100.ToString("X");
+                    can_data = data.Substring(0, 2);
+                    for (i = 2; i < data.Length; i = i + 2)
+                    {
+                        can_data += " " + data.Substring(i, 2);
+                    }
                     break;
                 case 200:
                     before_value = Can_ID200;
                     // Insert values into corresponding fields
                     after_value = CAN_Write.Update_value(before_value, data_value, data_min, data_max, data_pos, data_len);
-                    string can_ID200 = after_value.ToString("X");
+                    Can_ID200 = after_value;
+                    data = Can_ID200.ToString("X");
+                    can_data = data.Substring(0, 2);
+                    for (i = 2; i < data.Length; i = i + 2)
+                    {
+                        can_data += " " + data.Substring(i, 2);
+                    }
                     break;
                 default:
                     Console.WriteLine("Default case");
