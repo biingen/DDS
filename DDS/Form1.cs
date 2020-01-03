@@ -1744,16 +1744,8 @@ namespace DDS
             switch (can_id)
             {
                 case 100:
-                    before_value = Can_ID100;
-                    // Insert values into corresponding fields
-                    after_value = CAN_Write.Update_value(before_value, data_value, data_min, data_max, data_pos, data_len);
-                    Can_ID100 = after_value;
-                    data = Can_ID100.ToString("X");
-                    can_data = data.Substring(0, 2);
-                    for (i = 2; i < data.Length; i = i + 2)
-                    {
-                        can_data += " " + data.Substring(i, 2);
-                    }
+                    Can_ID100 = CAN_Write.Update_value(Can_ID100, data_value, data_min, data_max, data_pos, data_len);
+                    MYCanReader.TransmitData(can_id, Can_ID100);
                     break;
                 case 200:
                     before_value = Can_ID200;

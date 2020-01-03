@@ -94,6 +94,7 @@
     <Compile Include="CAN_Write.Designer.cs">
       <DependentUpon>CAN_Write.cs</DependentUpon>
     </Compile>
+    <Compile Include="USB_CAN_Adaptor.cs" />
     <Compile Include="USB_Device.cs" />
     <Compile Include="DTC_ABS.cs" />
     <Compile Include="DTC_OBD.cs" />
