@@ -77,6 +77,7 @@ namespace DDS
         System.Windows.Forms.Label[] NI_GPIO_icon_remark;
 
         System.Windows.Forms.TextBox[] Canbus_text_textbox;
+        System.Windows.Forms.Label[] Canbus_text_remark;
 
         private CAN_Reader MYCanReader = new CAN_Reader();
         
@@ -982,6 +983,7 @@ namespace DDS
 
             Canbus_text_label = new Label[count];
             Canbus_text_textbox = new TextBox[count];
+            Canbus_text_remark = new Label[count];
 
             for (int index = 0; index < count; index++)
             {
@@ -992,13 +994,19 @@ namespace DDS
                 Canbus_text_label[index].Location = new System.Drawing.Point(Location_X, Location_Y + index * 30);
                 Canbus_text_textbox[index] = new TextBox();
                 Canbus_text_textbox[index].Name = "Canbus_text_" + index;
-                Canbus_text_textbox[index].Text = "0";
+                Canbus_text_textbox[index].Text = ini12.INIRead(Script_Path, "Canbus_text_" + index, "Freq_Min", "");
                 Canbus_text_textbox[index].Size = new Size(60, 30);
-                Canbus_text_textbox[index].Location = new System.Drawing.Point(Location_X + 210, Location_Y + index * 30);
+                Canbus_text_textbox[index].Location = new System.Drawing.Point(Location_X + 150, Location_Y + index * 30);
                 Canbus_text_textbox[index].TextChanged += new System.EventHandler(this.Canbus_text_textbox_TextChanged);
+                Canbus_text_remark[index] = new Label();
+                Canbus_text_remark[index].Name = "Canbus_text_" + index;
+                Canbus_text_remark[index].Text = Convert.ToInt32(Canbus_text_textbox[index].Text).ToString("X");
+                Canbus_text_remark[index].Size = new Size(60, 30);
+                Canbus_text_remark[index].Location = new System.Drawing.Point(Location_X + 210, Location_Y + index * 30);
                 this.Controls.AddRange(Canbus_text_label);
                 this.Controls.AddRange(Canbus_text_textbox);
-                Canbus_text_Control(index, Canbus_text_textbox[index].Text);
+                this.Controls.AddRange(Canbus_text_remark);
+                Canbus_Text_Control(index, Canbus_text_textbox[index].Text);
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -1143,8 +1151,11 @@ namespace DDS
         void Canbus_text_textbox_TextChanged(object sender, EventArgs e)
         {
             int index = int.Parse(((TextBox)(sender)).Name.ToString().Replace("Canbus_text_", ""));
-            Canbus_text_textbox[index].Text = Convert.ToString(Canbus_text_textbox[index].Text);
-            Canbus_text_Control(index, Canbus_text_textbox[index].Text);
+            if (Canbus_text_textbox[index].Text != "")
+            {
+                Canbus_text_remark[index].Text = Convert.ToUInt32(Canbus_text_textbox[index].Text).ToString("X");
+                Canbus_Text_Control(index, Canbus_text_textbox[index].Text);
+            }
             Thread.Sleep(50);
         }
 
@@ -1727,44 +1738,37 @@ namespace DDS
             }
         }
 
-        private void Canbus_text_Control(int index, string value)
+        private void Canbus_Text_Control(int index, string value)
         {
-            UInt64 after_value, before_value, data_value, data_min, data_max;
-            int data_pos, data_len, can_id, can_unit, i;
-            string data, can_data;
-            can_id = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_"+ index, "Com", ""));
+            UInt64 data_value, data_min, data_max;
+            UInt32 can_id;
+            int data_pos, data_len, can_unit;
+            can_id = Convert.ToUInt32("0x" + ini12.INIRead(Script_Path, "Canbus_Text_"+ index, "Com", ""), 16);
             data_pos = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Command", ""));
             data_len = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Initial", ""));
             can_unit = Convert.ToUInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Step", ""));
             data_min = Convert.ToUInt64(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Min", ""));
             data_max = Convert.ToUInt64(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Max", ""));
             // Process user input value
-            data_value = (UInt64)(Convert.ToDouble(value) * can_unit);
-
-            switch (can_id)
+            if (Convert.ToUInt64(value) >= data_min && Convert.ToUInt64(value) <= data_max)
             {
-                case 100:
-                    Can_ID100 = CAN_Write.Update_value(Can_ID100, data_value, data_min, data_max, data_pos, data_len);
-                    MYCanReader.TransmitData(can_id, Can_ID100);
-                    break;
-                case 200:
-                    before_value = Can_ID200;
-                    // Insert values into corresponding fields
-                    after_value = CAN_Write.Update_value(before_value, data_value, data_min, data_max, data_pos, data_len);
-                    Can_ID200 = after_value;
-                    data = Can_ID200.ToString("X");
-                    can_data = data.Substring(0, 2);
-                    for (i = 2; i < data.Length; i = i + 2)
-                    {
-                        can_data += " " + data.Substring(i, 2);
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Default case");
-                    break;
-            }
+                data_value = (UInt64)(Convert.ToDouble(value) * can_unit);
 
-            //After_value.Text = Engine1_message_after_value.ToString("X");
+                switch (Convert.ToString(can_id, 16))
+                {
+                    case "100":
+                        Can_ID100 = CAN_Write.Update_value(Can_ID100, data_value, data_min, data_max, data_pos, data_len);
+                        MYCanReader.TransmitData(can_id, Can_ID100);
+                        break;
+                    case "200":
+                        Can_ID200 = CAN_Write.Update_value(Can_ID200, data_value, data_min, data_max, data_pos, data_len);
+                        MYCanReader.TransmitData(can_id, Can_ID200);
+                        break;
+                    default:
+                        Console.WriteLine("Default case");
+                        break;
+                }
+            }
         }
 
         public static bool IsFileLocked(string file)

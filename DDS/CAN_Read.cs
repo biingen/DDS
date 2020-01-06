@@ -187,11 +187,14 @@ namespace DDS
             return res;
         }
 
-        unsafe public void TransmitData(string ID, UInt64 uint64_data)
+        unsafe public void TransmitData(UInt32 ID, UInt64 uint64_data)
         {
             VCI_CAN_OBJ sendout_obj = new VCI_CAN_OBJ();
             UInt64 temp = uint64_data;
 
+            sendout_obj.ID = ID;
+            sendout_obj.RemoteFlag = default_RemoteFlag;
+            sendout_obj.ExternFlag = default_ExternFlag;
             for (int index=sizeof(UInt64)-1;index>=0;index--)
             {
                 sendout_obj.Data[index] = (byte)(temp & 0xff);
