@@ -196,6 +196,7 @@ namespace DDS
             sendout_obj.RemoteFlag = default_RemoteFlag;
             sendout_obj.ExternFlag = default_ExternFlag;
             sendout_obj.DataLen = sizeof(UInt64);
+
             for (int index=sizeof(UInt64)-1;index>=0;index--)
             {
                 sendout_obj.Data[index] = (byte)(temp & 0xff);

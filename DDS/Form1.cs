@@ -243,7 +243,7 @@ namespace DDS
 
         private void CSVtoINIfile()
         {
-            int v3_GPIO_icon_onoff = 0, v3_GPIO_iconR = 0, v3_GPIO_key = 0, DSS_GPIO_one_Bar = 0, v3_PWM_two_Bar = 0, AutoKit_GPIO_icon_10 = 0, AutoKit_RS232_one_Bar = 0, AutoKit_RS232_two_Bar = 0, NI_GPIO_icon_10 = 0, Canbus_text = 0;
+            int v3_GPIO_icon_onoff = 0, v3_GPIO_iconR = 0, v3_GPIO_key = 0, DSS_GPIO_one_Bar = 0, v3_PWM_two_Bar = 0, AutoKit_GPIO_icon_10 = 0, AutoKit_RS232_one_Bar = 0, AutoKit_RS232_two_Bar = 0, NI_GPIO_icon_10 = 0, Canbus_IconOnOff = 0, Canbus_Text = 0, Canbus_one_Bar = 0;
             string TextLine = "";
             string[] SplitLine;
             int j = 0;
@@ -421,18 +421,46 @@ namespace DDS
                     }
                     else if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "Canbus")
                     {
-                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Text")
+                        if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "IconOnOff")
                         {
-                            int hashcode = HashCode_Create("Canbus_Text_" + Canbus_text);
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Hashcode", Convert.ToString(hashcode, 16));
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Com", dataGridView1.Rows[i].Cells[1].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Command", dataGridView1.Rows[i].Cells[4].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Initial", dataGridView1.Rows[i].Cells[5].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Min", dataGridView1.Rows[i].Cells[6].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Max", dataGridView1.Rows[i].Cells[7].Value.ToString());
-                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_text, "Freq_Step", dataGridView1.Rows[i].Cells[8].Value.ToString());
-                            Canbus_text++;
+                            int hashcode = HashCode_Create("Canbus_IconOnOff_" + Canbus_IconOnOff);
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Hashcode", Convert.ToString(hashcode, 16));
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "ID", dataGridView1.Rows[i].Cells[5].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Initial", dataGridView1.Rows[i].Cells[5].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Min", dataGridView1.Rows[i].Cells[6].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Max", dataGridView1.Rows[i].Cells[7].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Gain", dataGridView1.Rows[i].Cells[8].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Start", dataGridView1.Rows[i].Cells[9].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_IconOnOff_" + Canbus_IconOnOff, "Length", dataGridView1.Rows[i].Cells[10].Value.ToString());
+                            Canbus_IconOnOff++;
+                        }
+                        else if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Text")
+                        {
+                            int hashcode = HashCode_Create("Canbus_Text_" + Canbus_Text);
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Hashcode", Convert.ToString(hashcode, 16));
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "ID", dataGridView1.Rows[i].Cells[4].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Initial", dataGridView1.Rows[i].Cells[5].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Min", dataGridView1.Rows[i].Cells[6].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Max", dataGridView1.Rows[i].Cells[7].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Gain", dataGridView1.Rows[i].Cells[8].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Start", dataGridView1.Rows[i].Cells[9].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_Text_" + Canbus_Text, "Length", dataGridView1.Rows[i].Cells[10].Value.ToString());
+                            Canbus_Text++;
+                        }
+                        else if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "oneBar")
+                        {
+                            int hashcode = HashCode_Create("Canbus_oneBar_" + Canbus_one_Bar);
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "Hashcode", Convert.ToString(hashcode, 16));
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "Control Name", dataGridView1.Rows[i].Cells[3].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "ID", dataGridView1.Rows[i].Cells[5].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "Min", dataGridView1.Rows[i].Cells[6].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "Max", dataGridView1.Rows[i].Cells[7].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "Gain", dataGridView1.Rows[i].Cells[8].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "Start", dataGridView1.Rows[i].Cells[9].Value.ToString());
+                            ini12.INIWrite(Script_Path, "Canbus_oneBar_" + Canbus_one_Bar, "Length", dataGridView1.Rows[i].Cells[10].Value.ToString());
+                            Canbus_one_Bar++;
                         }
                     }
                 }
@@ -445,7 +473,9 @@ namespace DDS
                 AutoKit_RS232_one_Bar_Create(AutoKit_RS232_one_Bar);
                 AutoKit_RS232_two_Bar_Create(AutoKit_RS232_two_Bar);
                 NI_GPIO_icon_10_Create(NI_GPIO_icon_10);
-                Canbus_text_Create(Canbus_text);
+                //Canbus_icon_Create(Canbus_IconOnOff);
+                Canbus_text_Create(Canbus_Text);
+                //Canbus_one_Bar_Create(Canbus_one_Bar);
             }
             else
             {
@@ -2614,7 +2644,19 @@ namespace DDS
             SerialPort1.Close();
         }
 
-        private void button_canbus_Click(object sender, EventArgs e)
+        private void button_canbus_write_Click(object sender, EventArgs e)
+        {
+            Data_Import Data_Import = new Data_Import();
+
+            if (Data_Import.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+
+            Data_Import.Dispose();
+        }
+
+        private void button_canbus_calulate_Click(object sender, EventArgs e)
         {
             CAN_Write CAN_Write = new CAN_Write();
 

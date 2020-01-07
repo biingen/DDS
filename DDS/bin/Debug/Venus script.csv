@@ -1,9 +1,11 @@
-Interface,Com,Type,Control Name,Command,"Initial
+Interface,Com,Type,Control Name,"Command
+ID","Initial
 Freq_Initial","Status_On
 Freq_Min","Remark_On
 Freq_Max","Status_Off
 Freq_Step","Remark_Off
 Duty_Initial",Duty_Min,Duty_Max,Duty_Step,Remark
+Interface,,Type,Control Name,,ID,Min,Max,Gain,Start address,Address length,,,
 V3_GPIO,ComA,IconOnOff,IGN,io o 1,1,1,Power on,0,Power off,,,,
 V3_GPIO,ComA,IconOnOff,Right turn signal,io o 2,0,1,Right turn signal active (High); LED color = Green,0,Right turn signal off,,,,
 V3_GPIO,ComA,IconOnOff,Left turn signal,io o 3,0,1,Left turn signal active (High); LED color = Green,0,Left turn signal off,,,,
@@ -25,3 +27,6 @@ DSS_GPIO,ComB,oneBar,Fuel Display,Fuel Display,0,0,8,1,,,,,Fuel Display
 DSS_GPIO,ComB,oneBar,Temp,Temp,-20,-20,50,5,,,,,Temp
 AutoKit_RS232,ComB,oneBar,GPP4323 (0.1V),VSET1:,65,50,200,1,,,,,GPP4323 (0.1V)
 AutoKit_RS232,ComB,oneBar,GPP4323 (0.1A),ISET1:,10,0,50,1,,,,,GPP4323 (0.1A)
+Canbus,100,IconOnOff,Gear engaged,60,4,0,7,1,,,,,
+Canbus,100,Text,Vehicle Speed,48,12,0,1023,0.25,,,,,
+Canbus,100,Text,Engine Speed,24,16,0,20000,1,,,,,

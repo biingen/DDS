@@ -1,9 +1,4 @@
-Interface,Com,Type,Control Name,Command,"Initial
-Freq_Initial","Status_On
-Freq_Min","Remark_On
-Freq_Max","Status_Off
-Freq_Step","Remark_Off
-Duty_Initial",Duty_Min,Duty_Max,Duty_Step,Remark
-Canbus,100,Text,Gear engaged,60,4,0,7,1,,,,,
-Canbus,100,Text,Vehicle Speed,48,12,0,4095,1,,,,,
-Canbus,100,Text,Engine Speed,24,16,0,65535,4,,,,,
+Interface,Com,Type,Control Name,ID,Initial,Min,Max,Gain,Start address,Address length
+CANBUS,,Text,Gear engaged,100,,0,7,1,60,4
+CANBUS,,Text,Vehicle Speed,100,,0,1023,0.25,48,12
+CANBUS,,Text,Engine Speed,100,,0,65535,1,24,16

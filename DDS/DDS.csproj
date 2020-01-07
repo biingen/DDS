@@ -94,6 +94,13 @@
     <Compile Include="CAN_Write.Designer.cs">
       <DependentUpon>CAN_Write.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSV_Reader.cs" />
+    <Compile Include="Data_Import.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Data_Import.Designer.cs">
+      <DependentUpon>Data_Import.cs</DependentUpon>
+    </Compile>
     <Compile Include="USB_CAN_Adaptor.cs" />
     <Compile Include="USB_Device.cs" />
     <Compile Include="DTC_ABS.cs" />
@@ -116,6 +123,9 @@
     </Compile>
     <EmbeddedResource Include="CAN_Write.resx">
       <DependentUpon>CAN_Write.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data_Import.resx">
+      <DependentUpon>Data_Import.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

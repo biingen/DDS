@@ -224,7 +224,8 @@
             this.Can_ABS_0x5017 = new System.Windows.Forms.RadioButton();
             this.Can_ABS_0x5019 = new System.Windows.Forms.RadioButton();
             this.Can_ABS_0x5055 = new System.Windows.Forms.RadioButton();
-            this.button_canbus = new System.Windows.Forms.Button();
+            this.button_canbus_calulate = new System.Windows.Forms.Button();
+            this.button_canbus_write = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Group_CAN_Reader.SuspendLayout();
             this.Group_Driving_Status.SuspendLayout();
@@ -807,7 +808,7 @@
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5017);
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5019);
             this.Group_ABS_Error_Code.Controls.Add(this.Kline_ABS_0x5055);
-            this.Group_ABS_Error_Code.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Group_ABS_Error_Code.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Group_ABS_Error_Code.Location = new System.Drawing.Point(532, 1);
             this.Group_ABS_Error_Code.Margin = new System.Windows.Forms.Padding(2);
             this.Group_ABS_Error_Code.Name = "Group_ABS_Error_Code";
@@ -1037,7 +1038,7 @@
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_C0085);
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_C0083);
             this.Group_OBD_Error_Code.Controls.Add(this.Kline_OBD_P0503);
-            this.Group_OBD_Error_Code.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Group_OBD_Error_Code.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Group_OBD_Error_Code.Location = new System.Drawing.Point(625, 1);
             this.Group_OBD_Error_Code.Margin = new System.Windows.Forms.Padding(2);
             this.Group_OBD_Error_Code.Name = "Group_OBD_Error_Code";
@@ -1666,7 +1667,7 @@
             this.Group_DTC_data_option.Controls.Add(this.DTC_option_all_in_turn);
             this.Group_DTC_data_option.Controls.Add(this.DTC_option_first_six);
             this.Group_DTC_data_option.Enabled = false;
-            this.Group_DTC_data_option.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Group_DTC_data_option.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Group_DTC_data_option.Location = new System.Drawing.Point(395, 1);
             this.Group_DTC_data_option.Margin = new System.Windows.Forms.Padding(2);
             this.Group_DTC_data_option.Name = "Group_DTC_data_option";
@@ -1762,7 +1763,7 @@
             this.groupBox1.Controls.Add(this.Can_OBD_C0085);
             this.groupBox1.Controls.Add(this.Can_OBD_C0083);
             this.groupBox1.Controls.Add(this.Can_OBD_P0503);
-            this.groupBox1.Font = new System.Drawing.Font("新細明體", 9F);
+            this.groupBox1.Font = new System.Drawing.Font("PMingLiU", 9F);
             this.groupBox1.Location = new System.Drawing.Point(1071, 448);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -2438,7 +2439,7 @@
             this.groupBox2.Controls.Add(this.Can_ABS_0x5017);
             this.groupBox2.Controls.Add(this.Can_ABS_0x5019);
             this.groupBox2.Controls.Add(this.Can_ABS_0x5055);
-            this.groupBox2.Font = new System.Drawing.Font("新細明體", 9F);
+            this.groupBox2.Font = new System.Drawing.Font("PMingLiU", 9F);
             this.groupBox2.Location = new System.Drawing.Point(973, 448);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
@@ -2630,23 +2631,34 @@
             this.Can_ABS_0x5055.Text = "0x5055";
             this.Can_ABS_0x5055.UseVisualStyleBackColor = true;
             // 
-            // button_canbus
+            // button_canbus_calulate
             // 
-            this.button_canbus.Location = new System.Drawing.Point(893, 374);
-            this.button_canbus.Name = "button_canbus";
-            this.button_canbus.Size = new System.Drawing.Size(75, 23);
-            this.button_canbus.TabIndex = 33;
-            this.button_canbus.Text = "Open";
-            this.button_canbus.UseVisualStyleBackColor = true;
-            this.button_canbus.Click += new System.EventHandler(this.button_canbus_Click);
+            this.button_canbus_calulate.Location = new System.Drawing.Point(893, 374);
+            this.button_canbus_calulate.Name = "button_canbus_calulate";
+            this.button_canbus_calulate.Size = new System.Drawing.Size(75, 23);
+            this.button_canbus_calulate.TabIndex = 33;
+            this.button_canbus_calulate.Text = "Canbus_Cal";
+            this.button_canbus_calulate.UseVisualStyleBackColor = true;
+            this.button_canbus_calulate.Click += new System.EventHandler(this.button_canbus_calulate_Click);
+            // 
+            // button_canbus_write
+            // 
+            this.button_canbus_write.Location = new System.Drawing.Point(814, 374);
+            this.button_canbus_write.Name = "button_canbus_write";
+            this.button_canbus_write.Size = new System.Drawing.Size(75, 23);
+            this.button_canbus_write.TabIndex = 34;
+            this.button_canbus_write.Text = "Canbus";
+            this.button_canbus_write.UseVisualStyleBackColor = true;
+            this.button_canbus_write.Click += new System.EventHandler(this.button_canbus_write_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1364, 749);
-            this.Controls.Add(this.button_canbus);
+            this.ClientSize = new System.Drawing.Size(1381, 749);
+            this.Controls.Add(this.button_canbus_write);
+            this.Controls.Add(this.button_canbus_calulate);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label_Kline_status);
@@ -2879,7 +2891,8 @@
         private System.Windows.Forms.RadioButton Can_ABS_0x5017;
         private System.Windows.Forms.RadioButton Can_ABS_0x5019;
         private System.Windows.Forms.RadioButton Can_ABS_0x5055;
-        private System.Windows.Forms.Button button_canbus;
+        private System.Windows.Forms.Button button_canbus_calulate;
+        private System.Windows.Forms.Button button_canbus_write;
     }
 }
 
