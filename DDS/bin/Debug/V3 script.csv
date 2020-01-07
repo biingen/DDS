@@ -1,4 +1,6 @@
-Interface,Com,Type,Control Name,ID,Initial,Min,Max,Gain,Start address,Address length
-CANBUS,,Text,Gear engaged,100,,0,7,1,60,4
-CANBUS,,Text,Vehicle Speed,100,,0,1023,0.25,48,12
-CANBUS,,Text,Engine Speed,100,,0,65535,1,24,16
+Interface,Com,Type,Control Name,ID,Initial,Min,Max,Gain,Start address,Address length,Min_remark,Max_remark,Remark
+CANBUS,,Text,Gear engaged,100,0,0,7,1,60,4,,,
+CANBUS,,oneBar,Vehicle Speed,100,0,0,1023,0.25,48,12,,,
+CANBUS,,oneBar,Engine Speed,100,0,0,65535,1,24,16,,,
+CANBUS,,Icon,MIL Lamp Sts,100,1,0,1,1,23,1,,,
+CANBUS,,Icon,Warning Lamp Sts,100,1,0,1,1,22,1,,,
