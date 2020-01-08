@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using jini;
 using System.Threading;
+using Can_Reader_Lib;
 
 namespace DDS
 {
@@ -20,8 +21,8 @@ namespace DDS
         public UInt32 Min;
         public UInt32 Max;
         public UInt32 Gain;
-        public UInt32 start_Address;
-        public UInt32 address_Length;
+        public int start_Position;
+        public int address_Length;
         public string remark_Min;
         public string remark_Max;
     }
@@ -34,8 +35,8 @@ namespace DDS
         public UInt32 Min;
         public UInt32 Max;
         public UInt32 Gain;
-        public UInt32 start_Address;
-        public UInt32 address_Length;
+        public int start_Position;
+        public int address_Length;
         public string remark;
     }
 
@@ -47,8 +48,8 @@ namespace DDS
         public UInt32 Min;
         public UInt32 Max;
         public UInt32 Gain;
-        public UInt32 start_Address;
-        public UInt32 address_Length;
+        public int start_Position;
+        public int address_Length;
         public string remark;
     }
 
@@ -70,6 +71,8 @@ namespace DDS
 
         System.Windows.Forms.TextBox[] Canbus_text_textbox;
         System.Windows.Forms.Label[] Canbus_text_remark;
+
+        private CAN_Reader MYCanReader = new CAN_Reader();
 
         public Data_Import()
         {
@@ -132,8 +135,10 @@ namespace DDS
                                         canbus_icon.Gain = (UInt16)(1 / Convert.ToDouble(columns[8]));
                                     else
                                         canbus_icon.Gain = Convert.ToUInt32(columns[8]);
-                                    canbus_icon.start_Address = Convert.ToUInt32(columns[9]);
-                                    canbus_icon.start_Address = Convert.ToUInt32(columns[10]);
+                                    canbus_icon.start_Position = Convert.ToInt32(columns[9]);
+                                    canbus_icon.address_Length = Convert.ToInt32(columns[10]);
+                                    canbus_icon.remark_Min = columns[11];
+                                    canbus_icon.remark_Max = columns[12];
                                     canbus_icon_list.Add(canbus_icon);
                                     break;
                                 case "Text":
@@ -146,8 +151,9 @@ namespace DDS
                                         canbus_text.Gain = (UInt16)(1 / Convert.ToDouble(columns[8]));
                                     else
                                         canbus_text.Gain = Convert.ToUInt32(columns[8]);
-                                    canbus_text.start_Address = Convert.ToUInt32(columns[9]);
-                                    canbus_text.start_Address = Convert.ToUInt32(columns[10]);
+                                    canbus_text.start_Position = Convert.ToInt32(columns[9]);
+                                    canbus_text.address_Length = Convert.ToInt32(columns[10]);
+                                    canbus_text.remark = columns[13];
                                     canbus_text_list.Add(canbus_text);
                                     break;
                                 case "oneBar":
@@ -160,8 +166,9 @@ namespace DDS
                                         canbus_onebar.Gain = (UInt16)(1 / Convert.ToDouble(columns[8]));
                                     else
                                         canbus_onebar.Gain = Convert.ToUInt32(columns[8]);
-                                    canbus_onebar.start_Address = Convert.ToUInt32(columns[9]);
-                                    canbus_onebar.start_Address = Convert.ToUInt32(columns[10]);
+                                    canbus_onebar.start_Position = Convert.ToInt32(columns[9]);
+                                    canbus_onebar.address_Length = Convert.ToInt32(columns[10]);
+                                    canbus_onebar.remark = columns[13];
                                     canbus_onebar_list.Add(canbus_onebar);
                                     break;
                                 default:
@@ -234,7 +241,7 @@ namespace DDS
                 this.Controls.AddRange(Canbus_icon_on_button);
                 this.Controls.AddRange(Canbus_icon_remark);
                 this.Controls.AddRange(Canbus_icon_label);
-                Canbus_Control(index, canbus_icon_list[index].Initial.ToString());
+                Canbus_Control("Icon", index, canbus_icon_list[index].Initial);
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -269,7 +276,7 @@ namespace DDS
                 this.Controls.AddRange(Canbus_text_label);
                 this.Controls.AddRange(Canbus_text_textbox);
                 this.Controls.AddRange(Canbus_text_remark);
-                Canbus_Control(index, Canbus_text_textbox[index].Text);
+                Canbus_Control("Text", index, canbus_text_list[index].Initial);
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -316,7 +323,7 @@ namespace DDS
                 this.Controls.AddRange(Canbus_oneBar_textbox);
                 this.Controls.AddRange(Canbus_oneBar_hscorllbar);
                 this.Controls.AddRange(Canbus_oneBar_label);
-                Canbus_Control(index, canbus_onebar_list[index].Initial.ToString());
+                Canbus_Control("oneBar", index, canbus_onebar_list[index].Initial);
                 Thread.Sleep(50);
             }
             Location_Y = Location_Y + (count * 30);
@@ -324,31 +331,21 @@ namespace DDS
 
         void Canbus_icon_on_button_Click(object sender, EventArgs e)
         {
-            AutoKit_Initial = 1;
-            int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_on_button_", ""));
-            AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_On", "");
-            AutoKit_GPIO_icon_on_button[index].Enabled = false;
-            AutoKit_GPIO_icon_off_button[index].Enabled = true;
-            AutoKit_GPIO_icon_Control(index, ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_On", ""));
+            int index = int.Parse(((Button)(sender)).Name.ToString().Replace("Canbus_icon_on_button_", ""));
+            Canbus_icon_remark[index].Text = canbus_icon_list[index].remark_Max;
+            Canbus_icon_on_button[index].Enabled = false;
+            Canbus_icon_off_button[index].Enabled = true;
+            Canbus_Control("Icon", index, canbus_icon_list[index].Max);
             Thread.Sleep(50);
         }
 
         void Canbus_icon_off_button_Click(object sender, EventArgs e)
         {
-            AutoKit_Initial = 1;
-            int index = int.Parse(((Button)(sender)).Name.ToString().Replace("AutoKit_GPIO_icon_off_button_", ""));
-            AutoKit_GPIO_icon_remark[index].Text = ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Remark_Off", "");
-            AutoKit_GPIO_icon_on_button[index].Enabled = true;
-            AutoKit_GPIO_icon_off_button[index].Enabled = false;
-            AutoKit_GPIO_icon_Control(index, ini12.INIRead(Script_Path, "AutoKit_GPIO_Icon10_" + index, "Status_Off", ""));
-            Thread.Sleep(50);
-        }
-
-        void Canbus_oneBar_hscorllbar_ValueChanged(object sender, EventArgs e)
-        {
-            int index = int.Parse(((HScrollBar)(sender)).Name.ToString().Replace("AutoKit_RS232_one_Bar_hscorllbar_", ""));
-            AutoKit_RS232_one_Bar_textbox[index].Text = Convert.ToString(AutoKit_RS232_one_Bar_hscorllbar[index].Value);
-            AutoKit_RS232_Control("oneBar", index, AutoKit_RS232_one_Bar_textbox[index].Text, AutoKit_RS232_one_Bar_textbox[index].Text);
+            int index = int.Parse(((Button)(sender)).Name.ToString().Replace("Canbus_icon_off_button_", ""));
+            Canbus_icon_remark[index].Text = canbus_icon_list[index].remark_Min;
+            Canbus_icon_on_button[index].Enabled = true;
+            Canbus_icon_off_button[index].Enabled = false;
+            Canbus_Control("Icon", index, canbus_icon_list[index].Min);
             Thread.Sleep(50);
         }
 
@@ -358,41 +355,115 @@ namespace DDS
             if (Canbus_text_textbox[index].Text != "")
             {
                 Canbus_text_remark[index].Text = Convert.ToUInt32(Canbus_text_textbox[index].Text).ToString("X");
-                Canbus_Control(index, Canbus_text_textbox[index].Text);
+                Canbus_Control("Text", index, (UInt64)Convert.ToDouble(Canbus_text_textbox[index].Text));
             }
             Thread.Sleep(50);
         }
 
-        private void Canbus_Control(int index, string value)
+        void Canbus_oneBar_hscorllbar_ValueChanged(object sender, EventArgs e)
+        {
+            int index = int.Parse(((HScrollBar)(sender)).Name.ToString().Replace("Canbus_oneBar_hscorllbar_", ""));
+            Canbus_oneBar_textbox[index].Text = Convert.ToString(Canbus_oneBar_hscorllbar[index].Value);
+            Canbus_Control("oneBar", index, (UInt64)(Canbus_oneBar_textbox[index].Text);
+            Thread.Sleep(50);
+        }
+
+        private void Canbus_Control(string type, int index, uint value)
         {
             UInt64 data_value, data_min, data_max;
-            UInt32 can_id;
-            int data_pos, data_len, can_unit;
-            can_id = Convert.ToUInt32("0x" + ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Com", ""), 16);
-            data_pos = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Command", ""));
-            data_len = Convert.ToInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Initial", ""));
-            can_unit = Convert.ToUInt16(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Step", ""));
-            data_min = Convert.ToUInt64(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Min", ""));
-            data_max = Convert.ToUInt64(ini12.INIRead(Script_Path, "Canbus_Text_" + index, "Freq_Max", ""));
-            // Process user input value
-            if (Convert.ToUInt64(value) >= data_min && Convert.ToUInt64(value) <= data_max)
-            {
-                data_value = (UInt64)(Convert.ToDouble(value) * can_unit);
+            UInt32 can_id, can_unit;
+            int data_pos, data_len;
+            string data_remark_min, data_remark_max, data_remark;
 
-                switch (Convert.ToString(can_id, 16))
-                {
-                    case "100":
-                        Can_ID100 = CAN_Write.Update_value(Can_ID100, data_value, data_min, data_max, data_pos, data_len);
-                        MYCanReader.TransmitData(can_id, Can_ID100);
-                        break;
-                    case "200":
-                        Can_ID200 = CAN_Write.Update_value(Can_ID200, data_value, data_min, data_max, data_pos, data_len);
-                        MYCanReader.TransmitData(can_id, Can_ID200);
-                        break;
-                    default:
-                        Console.WriteLine("Default case");
-                        break;
-                }
+            switch (type)
+            {
+                case "Icon":
+                    can_id = Convert.ToUInt32(canbus_icon_list[index].ID.ToString(), 16);
+                    data_pos = canbus_icon_list[index].start_Position;
+                    data_len = canbus_icon_list[index].address_Length;
+                    can_unit = canbus_icon_list[index].Gain;
+                    data_min = canbus_icon_list[index].Min;
+                    data_max = canbus_icon_list[index].Max;
+                    data_remark_min = canbus_icon_list[index].remark_Min;
+                    data_remark_max = canbus_icon_list[index].remark_Max;
+                    // Process user input value
+                    if (Convert.ToUInt64(value) >= data_min && Convert.ToUInt64(value) <= data_max)
+                    {
+                        data_value = (UInt64)(Convert.ToDouble(value) * can_unit);
+
+                        switch (Convert.ToString(can_id, 16))
+                        {
+                            case "100":
+                                Can_ID100 = CAN_Write.Update_value(Can_ID100, data_value, data_min, data_max, data_pos, data_len);
+                                MYCanReader.TransmitData(can_id, Can_ID100);
+                                break;
+                            case "200":
+                                Can_ID200 = CAN_Write.Update_value(Can_ID200, data_value, data_min, data_max, data_pos, data_len);
+                                MYCanReader.TransmitData(can_id, Can_ID200);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case "Text":
+                    can_id = Convert.ToUInt32(canbus_text_list[index].ID.ToString(), 16);
+                    data_pos = canbus_text_list[index].start_Position;
+                    data_len = canbus_text_list[index].address_Length;
+                    can_unit = canbus_text_list[index].Gain;
+                    data_min = canbus_text_list[index].Min;
+                    data_max = canbus_text_list[index].Max;
+                    data_remark = canbus_text_list[index].remark;
+                    // Process user input value
+                    if (Convert.ToUInt64(value) >= data_min && Convert.ToUInt64(value) <= data_max)
+                    {
+                        data_value = (UInt64)(Convert.ToDouble(value) * can_unit);
+
+                        switch (Convert.ToString(can_id, 16))
+                        {
+                            case "100":
+                                Can_ID100 = CAN_Write.Update_value(Can_ID100, data_value, data_min, data_max, data_pos, data_len);
+                                MYCanReader.TransmitData(can_id, Can_ID100);
+                                break;
+                            case "200":
+                                Can_ID200 = CAN_Write.Update_value(Can_ID200, data_value, data_min, data_max, data_pos, data_len);
+                                MYCanReader.TransmitData(can_id, Can_ID200);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case "oneBar":
+                    can_id = Convert.ToUInt32(canbus_onebar_list[index].ID.ToString(), 16);
+                    data_pos = canbus_onebar_list[index].start_Position;
+                    data_len = canbus_onebar_list[index].address_Length;
+                    can_unit = canbus_onebar_list[index].Gain;
+                    data_min = canbus_onebar_list[index].Min;
+                    data_max = canbus_onebar_list[index].Max;
+                    data_remark = canbus_onebar_list[index].remark;
+                    // Process user input value
+                    if (Convert.ToUInt64(value) >= data_min && Convert.ToUInt64(value) <= data_max)
+                    {
+                        data_value = (UInt64)(Convert.ToDouble(value) * can_unit);
+
+                        switch (Convert.ToString(can_id, 16))
+                        {
+                            case "100":
+                                Can_ID100 = CAN_Write.Update_value(Can_ID100, data_value, data_min, data_max, data_pos, data_len);
+                                MYCanReader.TransmitData(can_id, Can_ID100);
+                                break;
+                            case "200":
+                                Can_ID200 = CAN_Write.Update_value(Can_ID200, data_value, data_min, data_max, data_pos, data_len);
+                                MYCanReader.TransmitData(can_id, Can_ID200);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
