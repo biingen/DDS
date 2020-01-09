@@ -297,13 +297,13 @@ namespace DDS
                 Canbus_oneBar_label[index] = new Label();
                 Canbus_oneBar_label[index].Name = "Canbus_oneBar_label_" + index;
                 Canbus_oneBar_label[index].Text = canbus_onebar_list[index].control_Name;
-                Canbus_oneBar_label[index].Size = new Size(200, 30);
+                Canbus_oneBar_label[index].Size = new Size(100, 30);
                 Canbus_oneBar_label[index].Location = new System.Drawing.Point(Location_X, Location_Y + index * 30);
                 Canbus_oneBar_hscorllbar[index] = new HScrollBar();
                 Canbus_oneBar_hscorllbar[index].Name = "Canbus_oneBar_hscorllbar_" + index;
                 Canbus_oneBar_hscorllbar[index].Text = canbus_onebar_list[index].control_Name;
                 Canbus_oneBar_hscorllbar[index].Size = new Size(150, 30);
-                Canbus_oneBar_hscorllbar[index].Location = new System.Drawing.Point(Location_X + 200, Location_Y + index * 30);
+                Canbus_oneBar_hscorllbar[index].Location = new System.Drawing.Point(Location_X + 150, Location_Y + index * 30);
                 Canbus_oneBar_hscorllbar[index].Minimum = (int)canbus_onebar_list[index].Min;
                 Canbus_oneBar_hscorllbar[index].Maximum = (int)canbus_onebar_list[index].Max;
                 Canbus_oneBar_hscorllbar[index].LargeChange = (int)canbus_onebar_list[index].Gain;
@@ -313,12 +313,12 @@ namespace DDS
                 Canbus_oneBar_textbox[index].Name = "Canbus_oneBar_textbox_" + index;
                 Canbus_oneBar_textbox[index].Text = Convert.ToString(Canbus_oneBar_hscorllbar[index].Value);
                 Canbus_oneBar_textbox[index].Size = new Size(60, 30);
-                Canbus_oneBar_textbox[index].Location = new System.Drawing.Point(Location_X + 350, Location_Y + index * 30);
+                Canbus_oneBar_textbox[index].Location = new System.Drawing.Point(Location_X + 300, Location_Y + index * 30);
                 Canbus_oneBar_remark[index] = new Label();
                 Canbus_oneBar_remark[index].Name = "Canbus_oneBar_remark" + index;
                 Canbus_oneBar_remark[index].Text = canbus_onebar_list[index].remark;
                 Canbus_oneBar_remark[index].Size = new Size(200, 30);
-                Canbus_oneBar_remark[index].Location = new System.Drawing.Point(Location_X + 410, Location_Y + index * 30);
+                Canbus_oneBar_remark[index].Location = new System.Drawing.Point(Location_X + 360, Location_Y + index * 30);
                 this.Controls.AddRange(Canbus_oneBar_remark);
                 this.Controls.AddRange(Canbus_oneBar_textbox);
                 this.Controls.AddRange(Canbus_oneBar_hscorllbar);
@@ -355,7 +355,7 @@ namespace DDS
             if (Canbus_text_textbox[index].Text != "")
             {
                 Canbus_text_remark[index].Text = Convert.ToUInt32(Canbus_text_textbox[index].Text).ToString("X");
-                Canbus_Control("Text", index, (UInt64)Convert.ToDouble(Canbus_text_textbox[index].Text));
+                Canbus_Control("Text", index, (UInt32)Convert.ToDouble(Canbus_text_textbox[index].Text));
             }
             Thread.Sleep(50);
         }
@@ -364,7 +364,7 @@ namespace DDS
         {
             int index = int.Parse(((HScrollBar)(sender)).Name.ToString().Replace("Canbus_oneBar_hscorllbar_", ""));
             Canbus_oneBar_textbox[index].Text = Convert.ToString(Canbus_oneBar_hscorllbar[index].Value);
-            Canbus_Control("oneBar", index, (UInt64)(Canbus_oneBar_textbox[index].Text);
+            Canbus_Control("oneBar", index, (UInt32)Convert.ToDouble(Canbus_oneBar_textbox[index].Text));
             Thread.Sleep(50);
         }
 
