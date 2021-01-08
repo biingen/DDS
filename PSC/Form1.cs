@@ -630,16 +630,6 @@ namespace PSC
             textBox_MonitorID.Text = hScrollBar_monitorID.Value.ToString().PadLeft(2,'0');
         }
 
-        private void textBox_MonitorID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void hScrollBar_monitorID_Scroll(object sender, ScrollEventArgs e)
-        {
-
-        }
-
         private void button_clear_Click(object sender, EventArgs e)
         {
             output_schedule = "Command,>Times >Keyword#,Interval,>COM  >Pin,Function,Sub-function,>SerialPort                   >I/O cmd,AC/USB Switch,Wait,Remark," + Environment.NewLine;      //預設Schedule第一行內容
